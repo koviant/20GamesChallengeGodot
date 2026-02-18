@@ -85,6 +85,7 @@ func _process_ball(delta: float) -> void:
 			Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y - $Ball.size.y), 
 			Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y + $PlayerLeft.size.y))
 		
+		# Intersection is INF when intersection point is outside the player
 		if intersection != Vector2.INF:
 			ball_speed.x *= -1
 			$Ball.position = Vector2(intersection.x + 1, intersection.y)
@@ -99,6 +100,7 @@ func _process_ball(delta: float) -> void:
 			Vector2($PlayerRight.position.x, $PlayerRight.position.y - $Ball.size.y), 
 			Vector2($PlayerRight.position.x, $PlayerRight.position.y + $PlayerRight.size.y))
 		
+		# Intersection is INF when intersection point is outside the player
 		if intersection != Vector2.INF:
 			ball_speed.x *= -1
 			$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
@@ -111,14 +113,15 @@ func _process_ball(delta: float) -> void:
 		$Ball.position = Vector2(intersection.x, intersection.y + 1)
 		
 	# Bottom border
-	elif $Ball.position.y + $Ball.size.y >= viewport_size.y:
+	elif new_position.y + $Ball.size.y >= viewport_size.y:
 		var intersection = _line_intersection(
-			$Ball.position, new_position, 
+			Vector2($Ball.position.x, $Ball.position.y + $Ball.size.y),
+			Vector2(new_position.x, new_position.y + $Ball.size.y), 
 			Vector2(0, viewport_size.y), Vector2(viewport_size.x, viewport_size.y))
 		
 		ball_speed.y *= -1
-		var np = Vector2(intersection.x - $Ball.size.x, intersection.y - $Ball.size.y - 1)
-		$Ball.position = np
+		$Ball.position = Vector2(intersection.x, intersection.y - $Ball.size.y - 1)
+		
 	else:
 		$Ball.position += ball_speed * delta
 
@@ -132,6 +135,7 @@ func _line_intersection(p1: Vector2, p2: Vector2, q1: Vector2, q2: Vector2) -> V
 	var denominator = dx_p * dy_q - dy_p * dx_q
 
 	var u = ((q1.x - p1.x) * dy_p - (q1.y - p1.y) * dx_p) / denominator
+	
 	# Check that intersection is inside the q1->q2 segment
 	if u < 0 or u > 1:
 		return Vector2.INF
