@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://b821myv7hqira"]
+
+[ext_resource type="Script" uid="uid://5kew2vksj747" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://buukgi0et88kj" path="res://scripts/center_line.gd" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://b6twgfn5wo61h" path="res://scripts/hud.gd" id="6_tefeu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbgi4"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_tefeu"]
+font_size = 64
+
+[node name="Main" type="Node" unique_id=1207804753]
+script = ExtResource("1_0wfyh")
+
+[node name="CenterLine" type="Line2D" parent="." unique_id=1513979780]
+position = Vector2(980, 0)
+points = PackedVector2Array(0, 0, 0, 1080)
+width = 5.0
+default_color = Color(1, 1, 1, 0)
+script = ExtResource("3_jyhfs")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=324994146]
+script = ExtResource("6_tefeu")
+
+[node name="ScoreLeft" type="Label" parent="HUD" unique_id=1212225381]
+offset_left = 460.0
+offset_top = 2.0
+offset_right = 619.0
+offset_bottom = 90.0
+text = "5"
+label_settings = SubResource("LabelSettings_tbgi4")
+
+[node name="ScoreRight" type="Label" parent="HUD" unique_id=314673042]
+offset_left = 1414.0
+offset_top = 1.0
+offset_right = 1578.0
+offset_bottom = 95.0
+text = "6"
+label_settings = SubResource("LabelSettings_tefeu")
+
+[node name="PlayerLeft" type="ColorRect" parent="." unique_id=306217227]
+offset_left = 50.0
+offset_top = 490.0
+offset_right = 80.0
+offset_bottom = 690.0
+
+[node name="PlayerRight" type="ColorRect" parent="." unique_id=632470124]
+offset_left = 1840.0
+offset_top = 490.0
+offset_right = 1870.0
+offset_bottom = 690.0
+
+[node name="Ball" type="ColorRect" parent="." unique_id=804545269]
+offset_left = 971.0
+offset_top = 553.0
+offset_right = 991.0
+offset_bottom = 573.0
+
+[node name="RoundStartTimer" type="Timer" parent="." unique_id=345171795]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]
