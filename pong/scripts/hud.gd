@@ -1,15 +1,19 @@
 extends CanvasLayer
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	reset()
+var left_info_text = "0":
+	get: return $InfoLeft.text
+	set(value): 
+		$InfoLeft.text = value 
+		
+var right_info_text = "0":
+	get: return $InfoRight.text
+	set(value):
+		$InfoRight.text = value
 
 func reset() -> void:
-	$ScoreLeft.text = "0"
-	$ScoreRight.text = "0"
+	left_info_text = "0"
+	right_info_text = "0"
+	$RestartButton.hide()
 
-func update_left_score(score: int) -> void:
-	$ScoreLeft.text = str(score)
-
-func update_right_score(score: int) -> void:
-	$ScoreRight.text = str(score)
+func show_restart() -> void:
+	$RestartButton.show()

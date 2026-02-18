@@ -23,21 +23,29 @@ script = ExtResource("3_jyhfs")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=324994146]
 script = ExtResource("6_tefeu")
 
-[node name="ScoreLeft" type="Label" parent="HUD" unique_id=1212225381]
+[node name="InfoLeft" type="Label" parent="HUD" unique_id=1212225381]
 offset_left = 460.0
 offset_top = 2.0
-offset_right = 619.0
+offset_right = 723.0
 offset_bottom = 90.0
 text = "5"
 label_settings = SubResource("LabelSettings_tbgi4")
 
-[node name="ScoreRight" type="Label" parent="HUD" unique_id=314673042]
+[node name="InfoRight" type="Label" parent="HUD" unique_id=314673042]
 offset_left = 1414.0
 offset_top = 1.0
-offset_right = 1578.0
+offset_right = 1688.0
 offset_bottom = 95.0
 text = "6"
 label_settings = SubResource("LabelSettings_tefeu")
+
+[node name="RestartButton" type="Button" parent="HUD" unique_id=2135032652]
+offset_left = 826.0
+offset_top = 345.0
+offset_right = 1139.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 32
+text = "Restart"
 
 [node name="PlayerLeft" type="ColorRect" parent="." unique_id=306217227]
 offset_left = 50.0
@@ -61,4 +69,5 @@ offset_bottom = 573.0
 wait_time = 2.0
 one_shot = true
 
+[connection signal="pressed" from="HUD/RestartButton" to="." method="_reset"]
 [connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]
