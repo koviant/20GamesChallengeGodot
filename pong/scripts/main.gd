@@ -87,7 +87,8 @@ func _process_ball(delta: float) -> void:
 		
 		# Intersection is INF when intersection point is outside the player
 		if intersection != Vector2.INF:
-			ball_speed.x *= -1
+			ball_speed.x *= -1.1
+			ball_speed.y *= 1.1
 			$Ball.position = Vector2(intersection.x + 1, intersection.y)
 			return
 		
@@ -102,7 +103,8 @@ func _process_ball(delta: float) -> void:
 		
 		# Intersection is INF when intersection point is outside the player
 		if intersection != Vector2.INF:
-			ball_speed.x *= -1
+			ball_speed.x *= -1.1
+			ball_speed.y *= 1.1
 			$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
 			return
 	
@@ -126,6 +128,8 @@ func _process_ball(delta: float) -> void:
 		$Ball.position += ball_speed * delta
 
 
+# Line intersection check required to avoid situations when ball with high speed 
+# teleports behind the player in one tick, or far away outside the screen
 func _line_intersection(p1: Vector2, p2: Vector2, q1: Vector2, q2: Vector2) -> Vector2:
 	var dx_p = p2.x - p1.x
 	var dy_p = p2.y - p1.y
