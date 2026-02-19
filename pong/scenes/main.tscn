@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://5kew2vksj747" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://buukgi0et88kj" path="res://scripts/center_line.gd" id="3_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://d3ac0w2jwejp5" path="res://sounds/bounce.wav" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://ythwa7lju0yj" path="res://sounds/goal.wav" id="5_tefeu"]
+[ext_resource type="AudioStream" uid="uid://cq8m7px2omjnn" path="res://sounds/game_over.wav" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://b6twgfn5wo61h" path="res://scripts/hud.gd" id="6_tefeu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbgi4"]
@@ -51,13 +54,13 @@ text = "Restart"
 offset_left = 50.0
 offset_top = 490.0
 offset_right = 80.0
-offset_bottom = 690.0
+offset_bottom = 640.0
 
 [node name="PlayerRight" type="ColorRect" parent="." unique_id=632470124]
 offset_left = 1840.0
 offset_top = 490.0
 offset_right = 1870.0
-offset_bottom = 690.0
+offset_bottom = 640.0
 
 [node name="Ball" type="ColorRect" parent="." unique_id=804545269]
 offset_left = 971.0
@@ -69,5 +72,18 @@ offset_bottom = 573.0
 wait_time = 2.0
 one_shot = true
 
+[node name="RoundEndTimer" type="Timer" parent="." unique_id=1644078320]
+one_shot = true
+
+[node name="BounceSound" type="AudioStreamPlayer" parent="." unique_id=1023836621]
+stream = ExtResource("4_jyhfs")
+
+[node name="GoalSound" type="AudioStreamPlayer" parent="." unique_id=157339350]
+stream = ExtResource("5_tefeu")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=93201839]
+stream = ExtResource("6_o6xl0")
+
 [connection signal="pressed" from="HUD/RestartButton" to="." method="_reset"]
 [connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]
+[connection signal="timeout" from="RoundEndTimer" to="." method="_start_round"]

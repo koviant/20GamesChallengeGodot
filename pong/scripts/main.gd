@@ -1,9 +1,10 @@
 extends Node
 
-const player_speed: int = 400;
+const player_speed: int = 700;
 var viewport_size: Vector2
 
-const ball_start_speed = Vector2(400, 0)
+const ball_start_speed: Vector2 = Vector2(600, 0)
+const ball_speed_increment: Vector2= Vector2(30, 0)
 var ball_speed: Vector2 = Vector2.ZERO
 var ball_linear_speed: Vector2 = ball_start_speed
 
@@ -98,6 +99,7 @@ func _process_ball(delta: float) -> void:
 		var intersection = _line_intersection($Ball.position, new_position, Vector2(0, 0), Vector2(viewport_size.x, 0))
 		ball_speed.y *= -1
 		$Ball.position = Vector2(intersection.x, intersection.y + 1)
+		$BounceSound.play()
 		
 	elif new_position.y + $Ball.size.y >= viewport_size.y:
 		# Bottom border collision
@@ -108,6 +110,7 @@ func _process_ball(delta: float) -> void:
 		
 		ball_speed.y *= -1
 		$Ball.position = Vector2(intersection.x, intersection.y - $Ball.size.y - 1)
+		$BounceSound.play()
 		
 	else:
 		$Ball.position += ball_speed * delta
@@ -121,37 +124,40 @@ func _process_intersection_with_left_player(new_position: Vector2) -> bool:
 		Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y + $PlayerLeft.size.y))
 	
 	# Intersection fraction is outside [0,1] when intersection point is outside the player
-	var intersection_fraction = (intersection.y - $PlayerLeft.position.y) / $PlayerLeft.size.y
+	var intersection_fraction = (intersection.y - ($PlayerLeft.position.y - $Ball.size.y)) / ($Ball.size.y + $PlayerLeft.size.y)
 	if intersection_fraction < 0 or intersection_fraction > 1:
 		return false
 		
 	var bounce_angle_deg = -45 + 90 * intersection_fraction
-	ball_linear_speed *= 1.1
+	ball_linear_speed += ball_speed_increment
 	ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
 	$Ball.position = Vector2(intersection.x + 1, intersection.y)
+	$BounceSound.play()
 	
 	return true
 
 
 func _process_intersection_with_right_player(new_position: Vector2) -> bool:
 	# Check intersection of path for top right ball corner and left side of a right player
-		var intersection = _line_intersection(
-			Vector2($Ball.position.x + $Ball.size.x, $Ball.position.y), 
-			Vector2(new_position.x + $Ball.size.x, new_position.y), 
-			Vector2($PlayerRight.position.x, $PlayerRight.position.y - $Ball.size.y), 
-			Vector2($PlayerRight.position.x, $PlayerRight.position.y + $PlayerRight.size.y))
-		
-		# Intersection fraction is outside [0,1] when intersection point is outside the player
-		var intersection_fraction = (intersection.y - $PlayerRight.position.y) / $PlayerRight.size.y
-		if intersection_fraction < 0 or intersection_fraction > 1:
-			return false
-		
-		var bounce_angle_deg = 225 - 90 * intersection_fraction
-		ball_linear_speed *= 1.1
-		ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
-		$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
-		
-		return true
+	var intersection = _line_intersection(
+		Vector2($Ball.position.x + $Ball.size.x, $Ball.position.y), 
+		Vector2(new_position.x + $Ball.size.x, new_position.y), 
+		Vector2($PlayerRight.position.x, $PlayerRight.position.y - $Ball.size.y), 
+		Vector2($PlayerRight.position.x, $PlayerRight.position.y + $PlayerRight.size.y))
+	
+	# Intersection fraction is outside [0,1] when intersection point is outside the player
+	var intersection_fraction = (intersection.y - ($PlayerRight.position.y - $Ball.size.y)) / ($PlayerRight.size.y + $Ball.size.y)
+	
+	if intersection_fraction < 0 or intersection_fraction > 1:
+		return false
+	
+	var bounce_angle_deg = 225 - 90 * intersection_fraction
+	ball_linear_speed += ball_speed_increment
+	ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
+	$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
+	$BounceSound.play()
+	
+	return true
 
 
 func _ball_jumps_over_left_player_x(new_position: Vector2) -> bool:
@@ -184,11 +190,13 @@ func _add_right_score():
 		$HUD.right_info_text = str(score_right) + ", WIN"
 		$HUD.show_restart()
 		round_started = false
+		$GameOverSound.play()
 		return
 		
 	$HUD.right_info_text = str(score_right)
 	lastScored = Player.RIGHT
 	round_started = false
+	$GoalSound.play()
 	$RoundEndTimer.start()
 
 
@@ -198,9 +206,11 @@ func _add_left_score():
 		$HUD.left_info_text = str(score_left) + ", WIN"
 		$HUD.show_restart()
 		round_started = false
+		$GameOverSound.play()
 		return
 		
 	$HUD.left_info_text = str(score_left)
 	lastScored = Player.LEFT
 	round_started = false
+	$GoalSound.play()
 	$RoundEndTimer.start()
