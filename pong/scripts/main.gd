@@ -3,8 +3,9 @@ extends Node
 const player_speed: int = 400;
 var viewport_size: Vector2
 
-const ball_speed_base = Vector2(400, 0)
-var ball_speed = Vector2.ZERO
+const ball_start_speed = Vector2(400, 0)
+var ball_speed: Vector2 = Vector2.ZERO
+var ball_linear_speed: Vector2 = ball_start_speed
 
 var ball_start_position: Vector2
 
@@ -42,7 +43,8 @@ func _start_round() -> void:
 func _on_round_start_timer_timeout() -> void:
 	var base_rotation = 135 if lastScored == Player.LEFT else -45
 	var rotation = base_rotation + 90 * randf()
-	ball_speed = ball_speed_base.rotated(deg_to_rad(rotation))
+	ball_linear_speed = ball_start_speed
+	ball_speed = ball_linear_speed.rotated(deg_to_rad(rotation))
 	round_started = true
 
 
@@ -85,10 +87,13 @@ func _process_ball(delta: float) -> void:
 			Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y - $Ball.size.y), 
 			Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y + $PlayerLeft.size.y))
 		
+		var intersection_fraction = (intersection.y - $PlayerLeft.position.y) / $PlayerLeft.size.y
+		var bounce_angle_deg = -45 + 90 * intersection_fraction
+		
 		# Intersection is INF when intersection point is outside the player
 		if intersection != Vector2.INF:
-			ball_speed.x *= -1.1
-			ball_speed.y *= 1.1
+			ball_linear_speed *= 1.1
+			ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
 			$Ball.position = Vector2(intersection.x + 1, intersection.y)
 			return
 		
@@ -101,10 +106,13 @@ func _process_ball(delta: float) -> void:
 			Vector2($PlayerRight.position.x, $PlayerRight.position.y - $Ball.size.y), 
 			Vector2($PlayerRight.position.x, $PlayerRight.position.y + $PlayerRight.size.y))
 		
+		var intersection_fraction = (intersection.y - $PlayerRight.position.y) / $PlayerRight.size.y
+		var bounce_angle_deg = 225 - 90 * intersection_fraction
+		
 		# Intersection is INF when intersection point is outside the player
 		if intersection != Vector2.INF:
-			ball_speed.x *= -1.1
-			ball_speed.y *= 1.1
+			ball_linear_speed *= 1.1
+			ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
 			$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
 			return
 	
