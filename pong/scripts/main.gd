@@ -8,6 +8,8 @@ var ball_speed: Vector2 = Vector2.ZERO
 var ball_linear_speed: Vector2 = ball_start_speed
 
 var ball_start_position: Vector2
+var left_player_start_position: Vector2
+var right_player_start_position: Vector2
 
 const max_score: int = 5
 var score_left: int = 0
@@ -23,6 +25,8 @@ func _ready() -> void:
 	$PlayerRight.color = Color.RED
 	viewport_size = get_viewport().get_visible_rect().size
 	ball_start_position = get_viewport().get_visible_rect().get_center() + $Ball.size / 2
+	left_player_start_position = Vector2(30, viewport_size.y / 2 - $PlayerLeft.size.y / 2)
+	right_player_start_position = Vector2(viewport_size.x - $PlayerRight.size.x - 30, viewport_size.y / 2 - $PlayerLeft.size.y / 2)
 	lastScored = Player.LEFT if randf() < 0.5 else Player.RIGHT
 	_reset()
 
@@ -35,8 +39,9 @@ func _reset() -> void:
 
 
 func _start_round() -> void:
-	round_started = false
 	$Ball.position = ball_start_position
+	$PlayerLeft.position = left_player_start_position
+	$PlayerRight.position = right_player_start_position
 	$RoundStartTimer.start()
 
 
@@ -183,7 +188,8 @@ func _add_right_score():
 		
 	$HUD.right_info_text = str(score_right)
 	lastScored = Player.RIGHT
-	_start_round()
+	round_started = false
+	$RoundEndTimer.start()
 
 
 func _add_left_score():
@@ -196,4 +202,5 @@ func _add_left_score():
 		
 	$HUD.left_info_text = str(score_left)
 	lastScored = Player.LEFT
-	_start_round()
+	round_started = false
+	$RoundEndTimer.start()
