@@ -78,52 +78,24 @@ func _process_ball(delta: float) -> void:
 
 	var new_position = $Ball.position + ball_speed * delta
 	
-	# Left player collision
-	if ball_speed.x < 0 and new_position.x <= $PlayerLeft.position.x + $PlayerLeft.size.x:
-		# Check intersection of path for top left ball corner and right side of a left player
-		var intersection = _line_intersection(
-			$Ball.position, 
-			new_position, 
-			Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y - $Ball.size.y), 
-			Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y + $PlayerLeft.size.y))
-		
-		var intersection_fraction = (intersection.y - $PlayerLeft.position.y) / $PlayerLeft.size.y
-		var bounce_angle_deg = -45 + 90 * intersection_fraction
-		
-		# Intersection is INF when intersection point is outside the player
-		if intersection != Vector2.INF:
-			ball_linear_speed *= 1.1
-			ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
-			$Ball.position = Vector2(intersection.x + 1, intersection.y)
+	if ball_speed.x < 0 and _ball_jumps_over_left_player_x(new_position):
+		# Left player collision
+		if _process_intersection_with_left_player(new_position):
 			return
 		
-	# Right player collision
-	elif ball_speed.x > 0 and new_position.x + $Ball.size.x >= $PlayerRight.position.x:
-		# Check intersection of path for top right ball corner and left side of a right player
-		var intersection = _line_intersection(
-			Vector2($Ball.position.x + $Ball.size.x, $Ball.position.y), 
-			Vector2(new_position.x + $Ball.size.x, $Ball.position.y), 
-			Vector2($PlayerRight.position.x, $PlayerRight.position.y - $Ball.size.y), 
-			Vector2($PlayerRight.position.x, $PlayerRight.position.y + $PlayerRight.size.y))
-		
-		var intersection_fraction = (intersection.y - $PlayerRight.position.y) / $PlayerRight.size.y
-		var bounce_angle_deg = 225 - 90 * intersection_fraction
-		
-		# Intersection is INF when intersection point is outside the player
-		if intersection != Vector2.INF:
-			ball_linear_speed *= 1.1
-			ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
-			$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
+	elif ball_speed.x > 0 and _ball_jumps_over_right_player_x(new_position):
+		# Right player collision
+		if _process_intersection_with_right_player(new_position):
 			return
-	
-	# Top border
+		
 	if new_position.y <= 0:
+		# Top border collision
 		var intersection = _line_intersection($Ball.position, new_position, Vector2(0, 0), Vector2(viewport_size.x, 0))
 		ball_speed.y *= -1
 		$Ball.position = Vector2(intersection.x, intersection.y + 1)
 		
-	# Bottom border
 	elif new_position.y + $Ball.size.y >= viewport_size.y:
+		# Bottom border collision
 		var intersection = _line_intersection(
 			Vector2($Ball.position.x, $Ball.position.y + $Ball.size.y),
 			Vector2(new_position.x, new_position.y + $Ball.size.y), 
@@ -135,6 +107,54 @@ func _process_ball(delta: float) -> void:
 	else:
 		$Ball.position += ball_speed * delta
 
+func _process_intersection_with_left_player(new_position: Vector2) -> bool:
+	# Check intersection of path for top left ball corner and right side of a left player
+	var intersection = _line_intersection(
+		$Ball.position, 
+		new_position, 
+		Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y - $Ball.size.y), 
+		Vector2($PlayerLeft.position.x + $PlayerLeft.size.x, $PlayerLeft.position.y + $PlayerLeft.size.y))
+	
+	# Intersection fraction is outside [0,1] when intersection point is outside the player
+	var intersection_fraction = (intersection.y - $PlayerLeft.position.y) / $PlayerLeft.size.y
+	if intersection_fraction < 0 or intersection_fraction > 1:
+		return false
+		
+	var bounce_angle_deg = -45 + 90 * intersection_fraction
+	ball_linear_speed *= 1.1
+	ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
+	$Ball.position = Vector2(intersection.x + 1, intersection.y)
+	
+	return true
+
+
+func _process_intersection_with_right_player(new_position: Vector2) -> bool:
+	# Check intersection of path for top right ball corner and left side of a right player
+		var intersection = _line_intersection(
+			Vector2($Ball.position.x + $Ball.size.x, $Ball.position.y), 
+			Vector2(new_position.x + $Ball.size.x, new_position.y), 
+			Vector2($PlayerRight.position.x, $PlayerRight.position.y - $Ball.size.y), 
+			Vector2($PlayerRight.position.x, $PlayerRight.position.y + $PlayerRight.size.y))
+		
+		# Intersection fraction is outside [0,1] when intersection point is outside the player
+		var intersection_fraction = (intersection.y - $PlayerRight.position.y) / $PlayerRight.size.y
+		if intersection_fraction < 0 or intersection_fraction > 1:
+			return false
+		
+		var bounce_angle_deg = 225 - 90 * intersection_fraction
+		ball_linear_speed *= 1.1
+		ball_speed = ball_linear_speed.rotated(deg_to_rad(bounce_angle_deg))
+		$Ball.position = Vector2(intersection.x - $Ball.size.x, intersection.y)
+		
+		return true
+
+
+func _ball_jumps_over_left_player_x(new_position: Vector2) -> bool:
+	return $Ball.position.x > $PlayerLeft.position.x + $PlayerLeft.size.x and new_position.x <= $PlayerLeft.position.x + $PlayerLeft.size.x
+	
+	
+func _ball_jumps_over_right_player_x(new_position: Vector2) -> bool:
+	return $Ball.position.x + $Ball.size.x < $PlayerRight.position.x and new_position.x + $Ball.size.x >= $PlayerRight.position.x
 
 # Line intersection check required to avoid the situation when ball with high speed 
 # teleports behind the player in one tick, or teleports far away outside the screen
@@ -146,12 +166,8 @@ func _line_intersection(p1: Vector2, p2: Vector2, q1: Vector2, q2: Vector2) -> V
 
 	var denominator = dx_p * dy_q - dy_p * dx_q
 
-	var u = ((q1.x - p1.x) * dy_p - (q1.y - p1.y) * dx_p) / denominator
-	
-	# Check that intersection is inside the q1->q2 segment
-	if u < 0 or u > 1:
-		return Vector2.INF
-	
+	# No need to check if denominator == 0, since this would be the case only for parallel or collinear lines,
+	# which means that ball has to move strictly vertically, which is not possible here
 	var t = ((q1.x - p1.x) * dy_q - (q1.y - p1.y) * dx_q) / denominator
 
 	return Vector2(p1.x + t * dx_p, p1.y + t * dy_p)
