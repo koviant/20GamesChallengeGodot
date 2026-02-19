@@ -128,8 +128,8 @@ func _process_ball(delta: float) -> void:
 		$Ball.position += ball_speed * delta
 
 
-# Line intersection check required to avoid situations when ball with high speed 
-# teleports behind the player in one tick, or far away outside the screen
+# Line intersection check required to avoid the situation when ball with high speed 
+# teleports behind the player in one tick, or teleports far away outside the screen
 func _line_intersection(p1: Vector2, p2: Vector2, q1: Vector2, q2: Vector2) -> Vector2:
 	var dx_p = p2.x - p1.x
 	var dy_p = p2.y - p1.y
@@ -150,26 +150,26 @@ func _line_intersection(p1: Vector2, p2: Vector2, q1: Vector2, q2: Vector2) -> V
 
 
 func _add_right_score():
-		score_right += 1
-		if score_right == max_score:
-			$HUD.right_info_text = str(score_right) + ", WIN"
-			$HUD.show_restart()
-			round_started = false
-			return
-			
-		$HUD.right_info_text = str(score_right)
-		lastScored = Player.RIGHT
-		_start_round()
+	score_right += 1
+	if score_right == max_score:
+		$HUD.right_info_text = str(score_right) + ", WIN"
+		$HUD.show_restart()
+		round_started = false
+		return
+		
+	$HUD.right_info_text = str(score_right)
+	lastScored = Player.RIGHT
+	_start_round()
 
 
 func _add_left_score():
-		score_left += 1
-		if score_left == max_score:
-			$HUD.left_info_text = str(score_left) + ", WIN"
-			$HUD.show_restart()
-			round_started = false
-			return
-			
-		$HUD.left_info_text = str(score_left)
-		lastScored = Player.LEFT
-		_start_round()
+	score_left += 1
+	if score_left == max_score:
+		$HUD.left_info_text = str(score_left) + ", WIN"
+		$HUD.show_restart()
+		round_started = false
+		return
+		
+	$HUD.left_info_text = str(score_left)
+	lastScored = Player.LEFT
+	_start_round()
