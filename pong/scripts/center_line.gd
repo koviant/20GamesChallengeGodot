@@ -12,3 +12,5 @@ func _draw():
 		draw_line(segmentStart, segmentEnd, Color.WHITE)
 		segmentStart.y += 2 * line_segment_length
 		segmentEnd.y += 2 * line_segment_length
+		
+	draw_dashed_line()
