@@ -69,6 +69,7 @@ shape = SubResource("RectangleShape2D_h2yge")
 [node name="Ball" type="RigidBody2D" parent="." unique_id=857503053]
 position = Vector2(488, 1536)
 gravity_scale = 0.0
+linear_damp_mode = 1
 script = ExtResource("3_sugp2")
 metadata/_edit_group_ = true
 
