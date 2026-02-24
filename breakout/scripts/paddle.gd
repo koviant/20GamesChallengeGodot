@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+var size: Vector2:
+	get: return ($CollisionShape2D.shape as RectangleShape2D).size
+
 const paddle_velocity := 400
 const max_paddle_velocity := 400
 const acceleration := 400
@@ -7,7 +10,6 @@ const acceleration := 400
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
 
 func _physics_process(delta: float) -> void:
 	#linear_velocity.x = _get_velocity_x()
