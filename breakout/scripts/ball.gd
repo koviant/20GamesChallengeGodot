@@ -1,6 +1,5 @@
 extends RigidBody2D
 
-
 var size: Vector2:
 	get: return ($CollisionShape2D.shape as RectangleShape2D).size
 
@@ -23,4 +22,6 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		velocity = velocity.bounce(collision.get_normal())
+		if collision.get_collider() is Brick:
+			collision.get_collider().queue_free()
 		
