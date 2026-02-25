@@ -1,6 +1,7 @@
 class_name Brick extends RigidBody2D
 
 const scene: PackedScene = preload("res://scenes/brick.tscn")
+const pixels_per_meter := 16
 
 static func create(size: Vector2) -> Brick:
 	var brick: Brick = scene.instantiate()
@@ -19,4 +20,4 @@ func set_size(value: Vector2) -> void:
 	$MeshInstance2D.mesh = mesh
 
 func _to_mesh_size_meters(value: Vector2) -> Vector2:
-	return value / 16
+	return value / pixels_per_meter

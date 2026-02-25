@@ -20,6 +20,13 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1080
 window/size/viewport_height=1920
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="ball"
+2d_physics/layer_3="paddle"
+2d_physics/layer_4="bricks"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
