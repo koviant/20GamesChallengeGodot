@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://jlgjr2k3m41o"]
+[gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://4b7pay5clcim"]
 
 [ext_resource type="Script" uid="uid://b2j3bmdlavrry" path="res://scripts/brick_cell.gd" id="1_0wf4w"]
 [ext_resource type="Script" uid="uid://uawn7ao0o6ub" path="res://scripts/brick_grid_data.gd" id="1_rc2sn"]
@@ -10,17 +10,24 @@ metadata/_custom_type_script = "uid://b2j3bmdlavrry"
 
 [sub_resource type="Resource" id="Resource_n81p6"]
 script = ExtResource("1_0wf4w")
-color = Color(0, 0, 1, 1)
+is_empty = true
+color = Color(0, 1, 0.1328125, 1)
 metadata/_custom_type_script = "uid://b2j3bmdlavrry"
 
 [sub_resource type="Resource" id="Resource_xpni5"]
 script = ExtResource("1_0wf4w")
-color = Color(0, 1, 0, 1)
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+metadata/_custom_type_script = "uid://b2j3bmdlavrry"
+
+[sub_resource type="Resource" id="Resource_ql5hv"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0.5973907, 0.5151333, 0.4824748, 0)
 metadata/_custom_type_script = "uid://b2j3bmdlavrry"
 
 [resource]
 script = ExtResource("1_rc2sn")
-grid = Array[ExtResource("1_0wf4w")]([SubResource("Resource_0wf4w"), SubResource("Resource_n81p6"), SubResource("Resource_xpni5"), null])
-row_count = 1
-column_count = 3
+grid = Array[ExtResource("1_0wf4w")]([SubResource("Resource_0wf4w"), SubResource("Resource_n81p6"), SubResource("Resource_xpni5"), SubResource("Resource_ql5hv")])
+row_count = 5
+column_count = 20
 metadata/_custom_type_script = "uid://uawn7ao0o6ub"
