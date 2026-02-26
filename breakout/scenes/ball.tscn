@@ -9,7 +9,6 @@ radius = 16.0
 gravity_scale = 0.0
 linear_damp_mode = 1
 script = ExtResource("1_7s4qf")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1974927744]
 position = Vector2(16, 16)

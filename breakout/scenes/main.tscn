@@ -21,6 +21,8 @@ size = Vector2(224, 2)
 
 [node name="Main" type="Node" unique_id=1366485895]
 script = ExtResource("1_o5qli")
+debug_ball_puddle_collision = false
+enable_normal_ball = true
 
 [node name="WallLeft" type="StaticBody2D" parent="." unique_id=1707080366]
 collision_mask = 0
