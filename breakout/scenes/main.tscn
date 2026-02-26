@@ -9,7 +9,7 @@
 size = Vector2(64, 1920)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(1080, 64)
+size = Vector2(1920, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(64, 1920)
@@ -33,14 +33,14 @@ shape = SubResource("RectangleShape2D_7dm0k")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop" unique_id=1681099707]
-position = Vector2(540, -32)
+position = Vector2(960, -32)
 shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="WallRight" type="StaticBody2D" parent="." unique_id=158355261]
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight" unique_id=58935380]
-position = Vector2(1112, 960)
+position = Vector2(1952, 960)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Paddle" type="RigidBody2D" parent="." unique_id=65247139]
@@ -71,7 +71,5 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Bricks" parent="." unique_id=1799808275 instance=ExtResource("4_jyhfs")]
-brick_width = 150
-brick_height = 50
 
 [connection signal="timeout" from="StartTimer" to="." method="_start_ball"]
