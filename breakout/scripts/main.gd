@@ -30,3 +30,21 @@ func reset() -> void:
 
 func _start_ball() -> void:
 	$Ball.start()
+
+func _physics_process(delta: float) -> void:
+	var collision = $Ball.move_and_collide($Ball.current_velocity * delta)
+	
+	if not collision:
+		return
+	
+	if collision.get_collider() is Brick:
+		collision.get_collider().queue_free()
+		$Ball.current_velocity = $Ball.current_velocity.bounce(collision.get_normal())
+	elif collision.get_collider() is Paddle:
+		var paddle := collision.get_collider() as Paddle
+		var total_possible_collision_len = paddle.size.x + 2 * $Ball.size.x
+		var intersection_fraction: float = (collision.get_position().x - (paddle.position.x - $Ball.size.x)) / total_possible_collision_len
+		var bounce_angle_deg = -135 + 90 * intersection_fraction
+		$Ball.current_velocity = $Ball.base_current_velocity.rotated(deg_to_rad(bounce_angle_deg))
+	else:
+		$Ball.current_velocity = $Ball.current_velocity.bounce(collision.get_normal())
