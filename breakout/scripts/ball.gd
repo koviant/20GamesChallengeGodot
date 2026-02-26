@@ -9,7 +9,7 @@ var size: Vector2:
 		$CollisionShape2D.shape = shape
 		queue_redraw()
 
-var initial_velocity := Vector2(300, 0)
+var initial_velocity := Vector2(600, 0)
 var current_velocity: Vector2
 
 func _draw() -> void:
