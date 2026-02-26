@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://b7rdkgwjcuwsp"]
+
+[ext_resource type="Script" uid="uid://nuu0m5lmq5f1" path="res://tools/bricks_grid_editor.gd" id="1_dwyxj"]
+[ext_resource type="Resource" uid="uid://jlgjr2k3m41o" path="res://levels/01.tres" id="2_2esv0"]
+
+[node name="BricksGridEditor" type="Node2D" unique_id=58308158]
+script = ExtResource("1_dwyxj")
+data = ExtResource("2_2esv0")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1826725102]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 1896.0
+offset_bottom = 960.0
+
+[node name="ClickMenu" type="PanelContainer" parent="." unique_id=708568201]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.98272187, 0.42463008, 0, 1)
+offset_right = 168.0
+offset_bottom = 102.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ClickMenu" unique_id=1269482598]
+layout_mode = 2
+alignment = 1
+
+[node name="IsEmptySelector" type="CheckButton" parent="ClickMenu/VBoxContainer" unique_id=829214846]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Empty"
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ClickMenu/VBoxContainer" unique_id=890252384]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ClickMenu/VBoxContainer/HBoxContainer" unique_id=926903560]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ClickMenu/VBoxContainer/HBoxContainer" unique_id=1954540593]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1712313507]
+offset_left = 152.0
+offset_top = 976.0
+offset_right = 272.0
+offset_bottom = 1040.0
+theme_override_font_sizes/font_size = 32
+
+[node name="Label" type="Label" parent="." unique_id=1775304661]
+offset_left = 48.0
+offset_top = 984.0
+offset_right = 138.0
+offset_bottom = 1043.091
+theme_override_font_sizes/font_size = 32
+text = "Rows:"
+
+[node name="TextEdit2" type="TextEdit" parent="." unique_id=1697159086]
+offset_left = 488.0
+offset_top = 976.0
+offset_right = 608.0
+offset_bottom = 1040.0
+theme_override_font_sizes/font_size = 32
+
+[node name="Label2" type="Label" parent="." unique_id=1453545324]
+offset_left = 328.0
+offset_top = 984.0
+offset_right = 418.0
+offset_bottom = 1043.091
+theme_override_font_sizes/font_size = 32
+text = "Columns:"
+
+[node name="Button" type="Button" parent="." unique_id=620445439]
+offset_left = 1480.0
+offset_top = 968.0
+offset_right = 1724.551
+offset_bottom = 1034.8564
+theme_override_font_sizes/font_size = 32
+text = "Save"
+
+[connection signal="gui_input" from="GridContainer" to="." method="_on_grid_container_gui_input"]
