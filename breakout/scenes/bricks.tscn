@@ -2,7 +2,5 @@
 
 [ext_resource type="Script" uid="uid://b52c5b6yqjhem" path="res://scripts/bricks.gd" id="1_d0w7u"]
 
-[node name="Bricks" type="Node2D" unique_id=1799808275]
+[node name="BricksGrid" type="Node2D" unique_id=1799808275]
 script = ExtResource("1_d0w7u")
-brick_width = 50
-brick_height = 20

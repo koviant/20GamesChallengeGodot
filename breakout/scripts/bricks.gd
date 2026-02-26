@@ -1,4 +1,4 @@
-extends Node
+class_name BrickGrid extends Node
 
 signal bricks_cleared
 
@@ -6,8 +6,8 @@ var rows := 8
 var colums := 25
 var h_spacing := 10
 var v_spacing := 10
-var brick_width := 100
-var brick_height := 50
+var brick_width := 60
+var brick_height := 30
 
 var brick_count: int:
 	get: return brick_count
@@ -16,8 +16,7 @@ var brick_count: int:
 		if brick_count == 0:
 			bricks_cleared.emit()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func reset():
 	_create_bricks()
 
 func _create_bricks() -> void:
@@ -37,7 +36,6 @@ func _create_bricks() -> void:
 	for current_row in range(rows):
 		if current_row % 2 == 0:
 			row_color = Color(randf(), randf(), randf())
-			print(row_color)
 			
 		for current_column in range(colums):
 			var brick := Brick.create(brick_size, row_color)
@@ -48,6 +46,6 @@ func _create_bricks() -> void:
 			add_child(brick)
 		
 		
-func remove_brick(brick: Brick):
+func remove_brick(brick: Brick) -> void:
 	brick.queue_free()
 	brick_count -= 1

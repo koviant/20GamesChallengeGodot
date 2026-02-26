@@ -44,7 +44,8 @@ position = Vector2(1952, 960)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Paddle" type="RigidBody2D" parent="." unique_id=65247139]
-position = Vector2(408, 1792)
+unique_name_in_owner = true
+position = Vector2(840, 960)
 collision_layer = 4
 gravity_scale = 0.0
 lock_rotation = true
@@ -61,15 +62,18 @@ position = Vector2(112, 1)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="Ball" parent="." unique_id=1584973393 instance=ExtResource("3_sugp2")]
-position = Vector2(488, 1384)
+unique_name_in_owner = true
+position = Vector2(936, 672)
 collision_layer = 2
 collision_mask = 13
 lock_rotation = true
 
 [node name="StartTimer" type="Timer" parent="." unique_id=1935026333]
+unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="Bricks" parent="." unique_id=1799808275 instance=ExtResource("4_jyhfs")]
+[node name="BricksGrid" parent="." unique_id=1799808275 instance=ExtResource("4_jyhfs")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="StartTimer" to="." method="_start_ball"]
