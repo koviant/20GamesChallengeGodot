@@ -10,6 +10,8 @@ extends Node2D
 @onready var copy_button: Button = %CopyButton
 @onready var paste_button: Button = %PasteButton
 @onready var copy_to_row_button: Button = %CopyToRowButton
+@onready var rows_input: TextEdit = %RowsTextEdit
+@onready var columns_input: TextEdit = %ColumnsTextEdit
 
 var clipboard: BrickCell
 
@@ -17,10 +19,11 @@ var clipboard: BrickCell
 func _ready() -> void:
 	reload()
 	
-# TODO UPDATE GRID DATA ON SAVE, OTHERWISE CELLS THAT WERE NOT IN THE DATA INITIALLY WILL NOT BE SAVED
-	
 func reload() -> void:
 	data.resize_if_needed()
+	rows_input.text = str(data.row_count)
+	columns_input.text = str(data.column_count)
+	
 	for ch in grid_container.get_children():
 		grid_container.remove_child(ch)
 	
@@ -95,10 +98,22 @@ func set_empty(brick: BrickRect, empty: bool) -> void:
 func _save_button_pressed() -> void:
 	ResourceSaver.save(data, "res://levels/01.tres")
 
-func _on_grid_container_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		click_menu.hide()
-
 func _reload_button_pressed() -> void:
 	data = ResourceLoader.load("res://levels/01.tres")
 	reload()
+
+func _update_pressed() -> void:
+	if not rows_input.text.is_valid_int() or not columns_input.text.is_valid_int():
+		return
+		
+	var rows := rows_input.text.to_int()
+	var column := columns_input.text.to_int()
+	
+	data.row_count = rows
+	data.column_count = column
+	data.resize_if_needed()
+	reload()
+
+func _on_background_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		click_menu.hide()
