@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7rdkgwjcuwsp"]
 
 [ext_resource type="Script" uid="uid://nuu0m5lmq5f1" path="res://tools/bricks_grid_editor.gd" id="1_dwyxj"]
-[ext_resource type="Resource" path="res://levels/01.tres" id="2_2esv0"]
+[ext_resource type="Resource" uid="uid://ctolixx4rnwq3" path="res://levels/01.tres" id="2_2esv0"]
 
 [node name="BricksGridEditor" type="Node2D" unique_id=58308158]
 script = ExtResource("1_dwyxj")
@@ -13,10 +13,10 @@ offset_bottom = 961.0
 color = Color(1, 1, 1, 0)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=751550276]
-offset_left = 1.0
-offset_top = 11.0
-offset_right = 1914.0
-offset_bottom = 215.0
+offset_left = 6.0
+offset_top = 85.0
+offset_right = 1919.0
+offset_bottom = 289.0
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer" unique_id=1826725102]
 unique_name_in_owner = true
@@ -130,7 +130,16 @@ offset_bottom = 1041.0
 theme_override_font_sizes/font_size = 32
 text = "Update"
 
+[node name="LevelSelector" type="OptionButton" parent="." unique_id=944558340]
+unique_name_in_owner = true
+offset_left = 34.0
+offset_top = 13.0
+offset_right = 577.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 32
+
 [connection signal="gui_input" from="Background" to="." method="_on_background_input"]
 [connection signal="pressed" from="SaveButton" to="." method="_save_button_pressed"]
 [connection signal="pressed" from="ReloadButton" to="." method="_reload_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_update_pressed"]
+[connection signal="item_selected" from="LevelSelector" to="." method="_on_level_selected"]

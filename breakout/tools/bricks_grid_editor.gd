@@ -12,21 +12,20 @@ extends Node2D
 @onready var copy_to_row_button: Button = %CopyToRowButton
 @onready var rows_input: TextEdit = %RowsTextEdit
 @onready var columns_input: TextEdit = %ColumnsTextEdit
+@onready var level_selector: OptionButton = %LevelSelector
 
 var clipboard: BrickCell
+const level_folder := "res://levels/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reload()
-	
+
 func reload() -> void:
+	_prepare_ui()
+	
 	data.resize_if_needed()
-	rows_input.text = str(data.row_count)
-	columns_input.text = str(data.column_count)
-	
-	for ch in grid_container.get_children():
-		grid_container.remove_child(ch)
-	
+		
 	var brick_size := Vector2(data.brick_width, data.brick_height)
 	grid_container.columns = data.column_count
 	grid_container.add_theme_constant_override("h_separation", data.column_spacing)
@@ -40,7 +39,11 @@ func reload() -> void:
 			grid_container.add_child(cell)
 
 func _on_cell_clicked(brick: BrickRect, click_position: Vector2):
-		click_menu.position = click_position
+		if click_position.x + click_menu.size.x > get_viewport_rect().size.x:
+			click_menu.position = Vector2(click_position.x - click_menu.size.x, click_position.y)
+		else:
+			click_menu.position = click_position
+		
 		click_menu.hide()
 		click_menu.show()
 		
@@ -83,23 +86,39 @@ func _on_cell_clicked(brick: BrickRect, click_position: Vector2):
 			
 		click_menu.hidden.connect(disconnect_callable, ConnectFlags.CONNECT_ONE_SHOT)
 
+func _prepare_ui():
+	var dir := DirAccess.open(level_folder)
+	assert(dir != null, "folder could not be opened")
+	level_selector.get_popup().add_theme_font_size_override("font_size", 32)
+	
+	if level_selector.item_count == 0:
+		for file: String in dir.get_files():
+			level_selector.add_item(level_folder + file)
+	
+	rows_input.text = str(data.row_count)
+	columns_input.text = str(data.column_count)
+		
+	for ch in grid_container.get_children():
+		grid_container.remove_child(ch)
+
 func _copy(from_data: BrickCell, to_rect: BrickRect) -> void:
 	to_rect.cell_color = from_data.color
 	to_rect.empty = from_data.is_empty
 
 func change_color(brick: BrickRect, color: Color) -> void:
-	if not brick.empty:
-		brick.cell_color = color
+	is_empty_selector.set_pressed_no_signal(false)
+	brick.empty = false
+	brick.cell_color = color
 
 func set_empty(brick: BrickRect, empty: bool) -> void:
 	brick.empty = empty	
 	brick.color = Color.TRANSPARENT if empty else color_picker_button.color
 
 func _save_button_pressed() -> void:
-	ResourceSaver.save(data, "res://levels/01.tres")
+	ResourceSaver.save(data, level_selector.text)
 
 func _reload_button_pressed() -> void:
-	data = ResourceLoader.load("res://levels/01.tres", "", ResourceLoader.CACHE_MODE_IGNORE)
+	data = ResourceLoader.load(level_selector.text, "", ResourceLoader.CACHE_MODE_IGNORE)
 	reload()
 
 func _update_pressed() -> void:
@@ -117,3 +136,8 @@ func _update_pressed() -> void:
 func _on_background_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		click_menu.hide()
+
+func _on_level_selected(index: int) -> void:
+	var level_path := level_selector.get_item_text(index)
+	data = ResourceLoader.load(level_path, "", ResourceLoader.CACHE_MODE_IGNORE)
+	reload()

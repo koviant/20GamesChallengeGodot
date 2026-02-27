@@ -1,0 +1,142 @@
+[gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://hir5d8uh1hif"]
+
+[ext_resource type="Script" uid="uid://7idrxj2uaf84" path="res://scripts/resources/brick_cell_row.gd" id="1_n11h6"]
+[ext_resource type="Script" uid="uid://uawn7ao0o6ub" path="res://scripts/resources/brick_grid_data.gd" id="2_blhre"]
+[ext_resource type="Script" uid="uid://b2j3bmdlavrry" path="res://scripts/resources/brick_cell.gd" id="2_l424r"]
+
+[sub_resource type="Resource" id="Resource_81sbd"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_wb8fi"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_s25pt"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_qe2pu"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_46lco"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_nh424"]
+script = ExtResource("1_n11h6")
+cells = Array[ExtResource("2_l424r")]([SubResource("Resource_81sbd"), SubResource("Resource_wb8fi"), SubResource("Resource_s25pt"), SubResource("Resource_qe2pu"), SubResource("Resource_46lco")])
+
+[sub_resource type="Resource" id="Resource_4gois"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_bdn13"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_8wx4a"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_fv1l7"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_nj4vt"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_iy36n"]
+script = ExtResource("1_n11h6")
+cells = Array[ExtResource("2_l424r")]([SubResource("Resource_4gois"), SubResource("Resource_bdn13"), SubResource("Resource_8wx4a"), SubResource("Resource_fv1l7"), SubResource("Resource_nj4vt")])
+
+[sub_resource type="Resource" id="Resource_4lixl"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_a85aw"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_lap13"]
+script = ExtResource("2_l424r")
+color = Color(0.03137252, 0.21617644, 0.94117653, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_vp5c6"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_ho2lw"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_qlffk"]
+script = ExtResource("1_n11h6")
+cells = Array[ExtResource("2_l424r")]([SubResource("Resource_4lixl"), SubResource("Resource_a85aw"), SubResource("Resource_lap13"), SubResource("Resource_vp5c6"), SubResource("Resource_ho2lw")])
+
+[sub_resource type="Resource" id="Resource_e1vkd"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(1, 1, 1, 0)
+
+[sub_resource type="Resource" id="Resource_afuti"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_sp30i"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_rv0pc"]
+script = ExtResource("2_l424r")
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_y225l"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(1, 1, 1, 0)
+
+[sub_resource type="Resource" id="Resource_bwep5"]
+script = ExtResource("1_n11h6")
+cells = Array[ExtResource("2_l424r")]([SubResource("Resource_e1vkd"), SubResource("Resource_afuti"), SubResource("Resource_sp30i"), SubResource("Resource_rv0pc"), SubResource("Resource_y225l")])
+
+[sub_resource type="Resource" id="Resource_e0wul"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(1, 1, 1, 0)
+
+[sub_resource type="Resource" id="Resource_7eypk"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(1, 1, 1, 0)
+
+[sub_resource type="Resource" id="Resource_pvmmv"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+
+[sub_resource type="Resource" id="Resource_gq8rt"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(1, 1, 1, 0)
+
+[sub_resource type="Resource" id="Resource_qf88k"]
+script = ExtResource("2_l424r")
+is_empty = true
+color = Color(1, 1, 1, 0)
+
+[sub_resource type="Resource" id="Resource_u45x4"]
+script = ExtResource("1_n11h6")
+cells = Array[ExtResource("2_l424r")]([SubResource("Resource_e0wul"), SubResource("Resource_7eypk"), SubResource("Resource_pvmmv"), SubResource("Resource_gq8rt"), SubResource("Resource_qf88k")])
+
+[resource]
+script = ExtResource("2_blhre")
+grid = Array[ExtResource("1_n11h6")]([SubResource("Resource_nh424"), SubResource("Resource_iy36n"), SubResource("Resource_qlffk"), SubResource("Resource_bwep5"), SubResource("Resource_u45x4")])
+row_count = 5
+column_count = 5
+metadata/_custom_type_script = "uid://uawn7ao0o6ub"
