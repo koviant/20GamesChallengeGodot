@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmxmut6xbsu83"]
 
 [ext_resource type="Script" uid="uid://b52c5b6yqjhem" path="res://scripts/bricks.gd" id="1_d0w7u"]
-[ext_resource type="Resource" uid="uid://jlgjr2k3m41o" path="res://levels/01.tres" id="2_gysv1"]
+[ext_resource type="Resource" uid="uid://dashb3grsv4is" path="res://levels/01.tres" id="2_gysv1"]
 
 [node name="BricksGrid" type="Node2D" unique_id=1799808275]
 script = ExtResource("1_d0w7u")

@@ -1,17 +1,18 @@
-[gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://4b7pay5clcim"]
+[gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://d2vt6g4pg8qge"]
 
 [ext_resource type="Script" uid="uid://b2j3bmdlavrry" path="res://scripts/brick_cell.gd" id="1_0wf4w"]
 [ext_resource type="Script" uid="uid://uawn7ao0o6ub" path="res://scripts/brick_grid_data.gd" id="1_rc2sn"]
 
 [sub_resource type="Resource" id="Resource_0wf4w"]
 script = ExtResource("1_0wf4w")
-color = Color(1, 0, 0, 1)
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
 metadata/_custom_type_script = "uid://b2j3bmdlavrry"
 
 [sub_resource type="Resource" id="Resource_n81p6"]
 script = ExtResource("1_0wf4w")
 is_empty = true
-color = Color(0, 1, 0.1328125, 1)
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
 metadata/_custom_type_script = "uid://b2j3bmdlavrry"
 
 [sub_resource type="Resource" id="Resource_xpni5"]
@@ -21,13 +22,407 @@ metadata/_custom_type_script = "uid://b2j3bmdlavrry"
 
 [sub_resource type="Resource" id="Resource_ql5hv"]
 script = ExtResource("1_0wf4w")
-is_empty = true
-color = Color(0.5973907, 0.5151333, 0.4824748, 0)
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
 metadata/_custom_type_script = "uid://b2j3bmdlavrry"
+
+[sub_resource type="Resource" id="Resource_lks0k"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_haadi"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+metadata/_custom_type_script = "uid://b2j3bmdlavrry"
+
+[sub_resource type="Resource" id="Resource_mw5bc"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_tb8m7"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_f1n24"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_rx7qi"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_c1nef"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_de1gb"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_483qt"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_e5p6d"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_77plf"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_bbdvk"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_7m01m"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_e3cxa"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_ny60i"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_abreu"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_hy4t1"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_sm013"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_4akey"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_dd70k"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_pnxur"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_ewje2"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_nmjrl"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_rt500"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1ir12"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_27a2m"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_sedvs"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_6qnc3"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fbenp"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1vssu"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_f5bxe"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_pu0cs"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_47mcn"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_8g5qc"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_xsxtj"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_32rjl"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_kowwc"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_gufwu"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_botkl"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_drdht"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_d10oa"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_cwhld"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_ekjai"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_m7b7u"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_4bp4i"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_yukuc"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_2xx4e"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_vuvlp"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_vscf1"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_gec7l"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_xbmyg"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_bpx2h"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fkldh"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_snp5h"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_iqw3k"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_qj8r8"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_hma5c"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_4y8id"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_nasam"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fbjv7"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_6o2xo"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_b7jad"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_ccfxv"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_n07kf"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_y7r4w"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_i12m1"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fslop"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_nuk7l"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_4ties"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_qmur6"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_2xill"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_01322"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_f51tx"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_7bdlv"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_7sgid"]
+script = ExtResource("1_0wf4w")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_v3dt4"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_tl35q"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_1wrpj"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_wwcg2"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_grt0m"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_fl6wb"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_5ww14"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_yn0mo"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_ly0a0"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_ghacc"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_5duw0"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_d5ikh"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_jcomb"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_3n8bf"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_8tt7t"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_ae2xl"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_x1gm3"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_2kw4h"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_ivpwv"]
+script = ExtResource("1_0wf4w")
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_3737e"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
+
+[sub_resource type="Resource" id="Resource_mdaa4"]
+script = ExtResource("1_0wf4w")
+is_empty = true
+color = Color(0, 0.022365198, 0.57254905, 0.52156866)
 
 [resource]
 script = ExtResource("1_rc2sn")
-grid = Array[ExtResource("1_0wf4w")]([SubResource("Resource_0wf4w"), SubResource("Resource_n81p6"), SubResource("Resource_xpni5"), SubResource("Resource_ql5hv")])
+grid = Array[ExtResource("1_0wf4w")]([SubResource("Resource_0wf4w"), SubResource("Resource_n81p6"), SubResource("Resource_xpni5"), SubResource("Resource_ql5hv"), SubResource("Resource_lks0k"), SubResource("Resource_haadi"), SubResource("Resource_mw5bc"), SubResource("Resource_tb8m7"), SubResource("Resource_f1n24"), SubResource("Resource_rx7qi"), SubResource("Resource_c1nef"), SubResource("Resource_de1gb"), SubResource("Resource_483qt"), SubResource("Resource_e5p6d"), SubResource("Resource_77plf"), SubResource("Resource_bbdvk"), SubResource("Resource_7m01m"), SubResource("Resource_e3cxa"), SubResource("Resource_ny60i"), SubResource("Resource_abreu"), SubResource("Resource_hy4t1"), SubResource("Resource_sm013"), SubResource("Resource_4akey"), SubResource("Resource_dd70k"), SubResource("Resource_pnxur"), SubResource("Resource_ewje2"), SubResource("Resource_nmjrl"), SubResource("Resource_rt500"), SubResource("Resource_1ir12"), SubResource("Resource_27a2m"), SubResource("Resource_sedvs"), SubResource("Resource_6qnc3"), SubResource("Resource_fbenp"), SubResource("Resource_1vssu"), SubResource("Resource_f5bxe"), SubResource("Resource_pu0cs"), SubResource("Resource_47mcn"), SubResource("Resource_8g5qc"), SubResource("Resource_xsxtj"), SubResource("Resource_32rjl"), SubResource("Resource_kowwc"), SubResource("Resource_gufwu"), SubResource("Resource_botkl"), SubResource("Resource_drdht"), SubResource("Resource_d10oa"), SubResource("Resource_cwhld"), SubResource("Resource_ekjai"), SubResource("Resource_m7b7u"), SubResource("Resource_4bp4i"), SubResource("Resource_yukuc"), SubResource("Resource_2xx4e"), SubResource("Resource_vuvlp"), SubResource("Resource_vscf1"), SubResource("Resource_gec7l"), SubResource("Resource_xbmyg"), SubResource("Resource_bpx2h"), SubResource("Resource_fkldh"), SubResource("Resource_snp5h"), SubResource("Resource_iqw3k"), SubResource("Resource_qj8r8"), SubResource("Resource_hma5c"), SubResource("Resource_4y8id"), SubResource("Resource_nasam"), SubResource("Resource_fbjv7"), SubResource("Resource_6o2xo"), SubResource("Resource_b7jad"), SubResource("Resource_ccfxv"), SubResource("Resource_n07kf"), SubResource("Resource_y7r4w"), SubResource("Resource_i12m1"), SubResource("Resource_fslop"), SubResource("Resource_nuk7l"), SubResource("Resource_4ties"), SubResource("Resource_qmur6"), SubResource("Resource_2xill"), SubResource("Resource_01322"), SubResource("Resource_f51tx"), SubResource("Resource_7bdlv"), SubResource("Resource_7sgid"), SubResource("Resource_v3dt4"), SubResource("Resource_tl35q"), SubResource("Resource_1wrpj"), SubResource("Resource_wwcg2"), SubResource("Resource_grt0m"), SubResource("Resource_fl6wb"), SubResource("Resource_5ww14"), SubResource("Resource_yn0mo"), SubResource("Resource_ly0a0"), SubResource("Resource_ghacc"), SubResource("Resource_5duw0"), SubResource("Resource_d5ikh"), SubResource("Resource_jcomb"), SubResource("Resource_3n8bf"), SubResource("Resource_8tt7t"), SubResource("Resource_ae2xl"), SubResource("Resource_x1gm3"), SubResource("Resource_2kw4h"), SubResource("Resource_ivpwv"), SubResource("Resource_3737e"), SubResource("Resource_mdaa4")])
 row_count = 5
 column_count = 20
 metadata/_custom_type_script = "uid://uawn7ao0o6ub"

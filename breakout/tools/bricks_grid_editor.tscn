@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://b7rdkgwjcuwsp"]
 
 [ext_resource type="Script" uid="uid://nuu0m5lmq5f1" path="res://tools/bricks_grid_editor.gd" id="1_dwyxj"]
-[ext_resource type="Resource" path="res://levels/01.tres" id="2_2esv0"]
+[ext_resource type="Resource" uid="uid://d2vt6g4pg8qge" path="res://levels/01.tres" id="2_2esv0"]
 
 [node name="BricksGridEditor" type="Node2D" unique_id=58308158]
 script = ExtResource("1_dwyxj")
 data = ExtResource("2_2esv0")
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=1826725102]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=751550276]
+offset_right = 1914.0
+offset_bottom = 215.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer" unique_id=1826725102]
 unique_name_in_owner = true
-offset_left = 16.0
-offset_top = 24.0
-offset_right = 1896.0
-offset_bottom = 960.0
+layout_mode = 2
 
 [node name="ClickMenu" type="PanelContainer" parent="." unique_id=708568201]
 unique_name_in_owner = true
@@ -58,6 +59,12 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Paste"
+
+[node name="CopyToRowButton" type="Button" parent="ClickMenu/VBoxContainer" unique_id=1433481252]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Copy to row"
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1712313507]
 offset_left = 152.0
@@ -106,6 +113,6 @@ theme_override_font_sizes/font_size = 32
 text = "Reload
 "
 
-[connection signal="gui_input" from="GridContainer" to="." method="_on_grid_container_gui_input"]
+[connection signal="gui_input" from="CenterContainer/GridContainer" to="." method="_on_grid_container_gui_input"]
 [connection signal="pressed" from="SaveButton" to="." method="_save_button_pressed"]
 [connection signal="pressed" from="ReloadButton" to="." method="_reload_button_pressed"]

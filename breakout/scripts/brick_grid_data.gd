@@ -8,15 +8,19 @@ class_name BrickGridData extends Resource
 @export var column_spacing: int = 10
 @export var row_spacing: int = 10
 
+func resize_if_needed() -> void:
+	if len(grid) != row_count * column_count:
+		grid.resize(row_count * column_count)
+
 func cell_at(row: int, column: int) -> BrickCell:
 	assert(row >= 0 && row < row_count, "row out of bounds")
 	assert(column >= 0 && column < column_count, "column out of bounds")
 	
 	var idx = row*column_count + column
-	if idx >= len(grid):
+	if not grid[idx]:
 		var b = BrickCell.new()
 		b.is_empty = true
 		b.color = Color.TRANSPARENT
-		return b
+		grid[idx] = b
 	
 	return grid[idx]

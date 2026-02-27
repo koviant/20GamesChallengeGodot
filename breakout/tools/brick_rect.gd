@@ -1,25 +1,31 @@
-class_name ColorRect2 extends ColorRect
+class_name BrickRect extends ColorRect
 
-signal mouse_click(caller: ColorRect2, global_position: Vector2)
+signal mouse_click(caller: BrickRect, global_position: Vector2)
 
 var cell_color: Color:
-	get: return data.color
+	get: return _data.color
 	set(value):
-		data.color = value
+		_data.color = value
 		color = value
 
 var empty: bool:
-	get: return data.is_empty
+	get: return _data.is_empty
 	set(value):
-		data.is_empty = value
+		_data.is_empty = value
 		queue_redraw()
 
 var data: BrickCell:
-	get: return data
-	set(value):
-		data = value
-		color = data.color if not data.is_empty else Color.TRANSPARENT
-		queue_redraw()
+	get: return _data
+
+var _data: BrickCell
+var row: int
+var column: int
+
+func _init(data: BrickCell, row: int, column: int) -> void:
+	_data = data
+	color = _data.color if not _data.is_empty else Color.TRANSPARENT
+	self.row = row
+	self.column = column
 
 var border_color: Color = Color.BLACK
 
