@@ -99,7 +99,7 @@ func _save_button_pressed() -> void:
 	ResourceSaver.save(data, "res://levels/01.tres")
 
 func _reload_button_pressed() -> void:
-	data = ResourceLoader.load("res://levels/01.tres")
+	data = ResourceLoader.load("res://levels/01.tres", "", ResourceLoader.CACHE_MODE_IGNORE)
 	reload()
 
 func _update_pressed() -> void:
