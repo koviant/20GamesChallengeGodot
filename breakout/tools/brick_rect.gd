@@ -37,6 +37,10 @@ func _ready() -> void:
 func _draw() -> void:
 	if empty:
 		draw_rect(Rect2(Vector2(-2, -2), Vector2(size.x+4, size.y+4)), border_color, false, 2)
+
+func copy_data_from(other: BrickCell) -> void:
+	self.cell_color = other.color
+	self.empty = other.is_empty
 	
 func _on_gui_event(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
