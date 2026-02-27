@@ -12,6 +12,8 @@ var empty: bool:
 	get: return _data.is_empty
 	set(value):
 		_data.is_empty = value
+		if value:
+			color = Color.TRANSPARENT
 		queue_redraw()
 
 var data: BrickCell:

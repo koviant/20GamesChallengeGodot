@@ -18,6 +18,12 @@ func _create_bricks() -> void:
 	brick_count = data.row_count * data.column_count
 	var total_width = data.column_count * data.brick_width + (data.column_count - 1) * data.column_spacing
 	var total_height = data.row_count * data.brick_height + (data.row_count - 1) * data.row_spacing
+	
+	assert(total_width > 0, "total_width < 0")
+	assert(get_viewport().get_visible_rect().size.x > total_width, "total_width > viewport width")
+	assert(total_height > 0, "total_height < 0")
+	assert(get_viewport().get_visible_rect().size.y / 2 > total_height, "total_height > half of the viewport height")
+	
 	var start_x = (get_viewport().get_visible_rect().size.x - total_width) / 2
 	var start_y := 100
 	var brick_size := Vector2(data.brick_width, data.brick_height)
