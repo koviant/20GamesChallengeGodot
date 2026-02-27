@@ -72,8 +72,8 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 	
 	var collider = collision.get_collider()
 	if collider is Brick:
-		bricks_grid.remove_brick(collider)
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
+		bricks_grid.remove_brick(collider)
 	elif collider is Paddle:
 		var total_possible_collision_len = paddle.size.x + 2 * ball.size.x
 		var intersection_fraction: float = (collision.get_position().x - (paddle.position.x - ball.size.x)) / total_possible_collision_len
