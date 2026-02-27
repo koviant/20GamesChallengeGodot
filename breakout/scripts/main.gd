@@ -2,6 +2,7 @@ extends Node
 
 @export var debug_ball_puddle_collision := true
 @export var enable_normal_ball := false
+@export var start_ball_vertically := false
 
 var ball_scene: PackedScene = preload("res://scenes/ball.tscn")
 var debug_paddle_collision_balls: Array[Ball] = []
@@ -29,16 +30,28 @@ func _ready() -> void:
 		get_viewport().get_visible_rect().size.x * 0.05,
 		100)
 	
-	reset()
+	next_level()
+	
+	bricks_grid.cleared.connect(next_level)
 	
 	_check_debug()
 	
 func reset() -> void:
 	set_physics_process(false)
 	bricks_grid.reset()
-	main_ball.reset(ball_start_position)
+	
+	if start_ball_vertically:
+		main_ball.reset(ball_start_position, -90)
+	else:
+		main_ball.reset(ball_start_position)
+		
 	paddle.position = paddle_start_position
 	start_timer.start()
+
+func next_level() -> void:
+	if Levels.has_next():
+		bricks_grid.data = Levels.next()
+		reset()
 
 func _start_ball() -> void:
 	set_physics_process(true)
@@ -50,10 +63,8 @@ func _physics_process(delta: float) -> void:
 	if debug_ball_puddle_collision:
 		for ball in debug_paddle_collision_balls:
 			_process_ball_physics(ball, delta)
-		
 
 func _process_ball_physics(ball: Ball, delta: float) -> void:	
-	
 	var collision = ball.move_and_collide(ball.current_velocity * delta)
 	
 	if not collision:

@@ -1,21 +1,21 @@
 class_name BrickGrid extends Node
 
-signal bricks_cleared
+signal cleared
 
 @export var data: BrickGridData 
 
-var brick_count: int:
-	get: return brick_count
+var _brick_count: int:
+	get: return _brick_count
 	set(value):
-		brick_count = value
-		if brick_count == 0:
-			bricks_cleared.emit()
+		_brick_count = value
+		if _brick_count == 0:
+			cleared.emit()
 
 func reset():
 	_create_bricks()
 	
 func _create_bricks() -> void:
-	brick_count = data.row_count * data.column_count
+	_brick_count = data.row_count * data.column_count
 	var total_width = data.column_count * data.brick_width + (data.column_count - 1) * data.column_spacing
 	var total_height = data.row_count * data.brick_height + (data.row_count - 1) * data.row_spacing
 	
@@ -43,4 +43,4 @@ func _create_bricks() -> void:
 		
 func remove_brick(brick: Brick) -> void:
 	brick.queue_free()
-	brick_count -= 1
+	_brick_count -= 1

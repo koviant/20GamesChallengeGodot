@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Clipboard="*uid://cs0kb1wabma54"
+Levels="*uid://6fvul223v0ns"
 
 [display]
 
