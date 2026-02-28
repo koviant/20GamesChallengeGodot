@@ -4,18 +4,12 @@ signal cleared
 
 @export var data: BrickGridData 
 
-var _brick_count: int:
-	get: return _brick_count
-	set(value):
-		_brick_count = value
-		if _brick_count == 0:
-			cleared.emit()
+var _brick_count: int = 0
 
 func reset():
 	_create_bricks()
 	
 func _create_bricks() -> void:
-	_brick_count = data.row_count * data.column_count
 	var total_width = data.column_count * data.brick_width + (data.column_count - 1) * data.column_spacing
 	var total_height = data.row_count * data.brick_height + (data.row_count - 1) * data.row_spacing
 	
@@ -33,6 +27,7 @@ func _create_bricks() -> void:
 			if brick_data.is_empty:
 				continue
 			
+			_brick_count += 1
 			var brick := Brick.create(brick_size, brick_data.color)
 			brick.position = Vector2(
 				start_x + column * (data.brick_width + data.column_spacing),
@@ -44,3 +39,5 @@ func _create_bricks() -> void:
 func remove_brick(brick: Brick) -> void:
 	brick.queue_free()
 	_brick_count -= 1
+	if _brick_count == 0:
+		cleared.emit()
