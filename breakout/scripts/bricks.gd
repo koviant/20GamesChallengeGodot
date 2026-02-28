@@ -19,7 +19,7 @@ func _create_bricks() -> void:
 	assert(get_viewport().get_visible_rect().size.y / 2 > total_height, "total_height > half of the viewport height")
 	
 	var start_x = (get_viewport().get_visible_rect().size.x - total_width) / 2
-	var start_y := 100
+	var start_y := 50
 	var brick_size := Vector2(data.brick_width, data.brick_height)
 	for row in range(data.row_count):
 		for column in range(data.column_count):

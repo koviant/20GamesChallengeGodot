@@ -13,3 +13,6 @@ func next() -> BrickGridData:
 	var level := _levels[_idx]
 	_idx += 1
 	return ResourceLoader.load("res://levels/" + level)
+
+func reset() -> void:
+	_idx = 0

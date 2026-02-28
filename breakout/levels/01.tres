@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="BrickGridData" format=3]
+[gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://bf3c51xx6dnwj"]
 
-[ext_resource type="Script" path="res://scripts/resources/brick_cell_row.gd" id="1_n81p6"]
-[ext_resource type="Script" path="res://scripts/resources/brick_cell.gd" id="2_xpni5"]
-[ext_resource type="Script" path="res://scripts/resources/brick_grid_data.gd" id="3_ql5hv"]
+[ext_resource type="Script" uid="uid://7idrxj2uaf84" path="res://scripts/resources/brick_cell_row.gd" id="1_n81p6"]
+[ext_resource type="Script" uid="uid://b2j3bmdlavrry" path="res://scripts/resources/brick_cell.gd" id="2_xpni5"]
+[ext_resource type="Script" uid="uid://uawn7ao0o6ub" path="res://scripts/resources/brick_grid_data.gd" id="3_ql5hv"]
 
 [sub_resource type="Resource" id="Resource_lks0k"]
 script = ExtResource("2_xpni5")

@@ -3,55 +3,64 @@ extends Node
 @export var debug_ball_puddle_collision := true
 @export var enable_normal_ball := false
 @export var start_ball_vertically := false
+@export_range (1, 10) var max_life_count := 3
 
 var ball_scene: PackedScene = preload("res://scenes/ball.tscn")
 var debug_paddle_collision_balls: Array[Ball] = []
 
 var ball_start_position: Vector2
 var paddle_start_position: Vector2
-var bricks_start_position: Vector2
 
 @onready var main_ball: Ball = %Ball
 @onready var paddle: Paddle = %Paddle
 @onready var start_timer: Timer = %StartTimer
 @onready var bricks_grid: BrickGrid = %BricksGrid
+@onready var hearts_container: FlowContainer = %HeartsContainer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	paddle_start_position = Vector2(
 		get_viewport().get_visible_rect().size.x / 2 - paddle.size.x / 2,
-		get_viewport().get_visible_rect().size.y - 100)
+		get_viewport().get_visible_rect().size.y - 200)
 	
 	ball_start_position = Vector2(
 		paddle_start_position.x + paddle.size.x / 2 - main_ball.size.x / 2,
 		paddle_start_position.y - main_ball.size.y - 1)
 	
-	bricks_start_position = Vector2(
-		get_viewport().get_visible_rect().size.x * 0.05,
-		100)
+	hearts_container.position = Vector2(
+		50,
+		paddle_start_position.y + 100)
 	
-	next_level()
-	
+	Lives.hearts_container = hearts_container
 	bricks_grid.cleared.connect(next_level)
 	
+	game_reset()
 	_check_debug()
+
+func game_reset() -> void:
+	Levels.reset()
+	next_level()
 	
-func reset() -> void:
+	Lives.max_life_count = max_life_count
+	Lives.reset()
+
+func level_reset() -> void:
 	set_physics_process(false)
 	bricks_grid.reset()
-	
+	paddle_and_ball_reset()
+	start_timer.start()
+
+func paddle_and_ball_reset() -> void:
 	if start_ball_vertically:
 		main_ball.reset(ball_start_position, -90)
 	else:
 		main_ball.reset(ball_start_position)
-		
+	
 	paddle.position = paddle_start_position
-	start_timer.start()
 
 func next_level() -> void:
 	if Levels.has_next():
 		bricks_grid.data = Levels.next()
-		reset()
+		level_reset()
 
 func _start_ball() -> void:
 	set_physics_process(true)
@@ -79,6 +88,12 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 		var intersection_fraction: float = (collision.get_position().x - (paddle.position.x - ball.size.x)) / total_possible_collision_len
 		var bounce_angle_deg = -135 + 90 * intersection_fraction
 		ball.current_velocity = ball.current_velocity.rotated(deg_to_rad(bounce_angle_deg) - ball.current_velocity.angle())
+	elif collider is DeathWall:
+		Lives.decrease_life_count()
+		if not Lives.alive:
+			game_reset()
+		else:
+			paddle_and_ball_reset()
 	else:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
 

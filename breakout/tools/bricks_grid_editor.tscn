@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7rdkgwjcuwsp"]
 
 [ext_resource type="Script" uid="uid://nuu0m5lmq5f1" path="res://tools/bricks_grid_editor.gd" id="1_dwyxj"]
-[ext_resource type="Resource" uid="uid://bratqu3d6hnu8" path="res://levels/01.tres" id="2_2esv0"]
+[ext_resource type="Resource" uid="uid://bn5vhiipat8en" path="res://levels/01.tres" id="2_2esv0"]
 [ext_resource type="Script" uid="uid://c73wmko1vamy2" path="res://tools/click_menu.gd" id="3_54kuu"]
 
 [node name="BricksGridEditor" type="Node2D" unique_id=58308158]
