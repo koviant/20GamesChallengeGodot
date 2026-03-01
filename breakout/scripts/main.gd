@@ -15,7 +15,8 @@ var paddle_start_position: Vector2
 @onready var paddle: Paddle = %Paddle
 @onready var start_timer: Timer = %StartTimer
 @onready var bricks_grid: BrickGrid = %BricksGrid
-@onready var hearts_container: FlowContainer = %HeartsContainer
+@onready var heart_start_position: Marker2D = %HeartStartPosition
+@onready var hud: CanvasLayer = %HUD
 
 func _ready() -> void:
 	paddle_start_position = Vector2(
@@ -26,11 +27,9 @@ func _ready() -> void:
 		paddle_start_position.x + paddle.size.x / 2 - main_ball.size.x / 2,
 		paddle_start_position.y - main_ball.size.y - 1)
 	
-	hearts_container.position = Vector2(
-		50,
-		paddle_start_position.y + 100)
-	
-	Lives.hearts_container = hearts_container
+	Lives.hud_layer = hud
+	Lives.heart_start_position = Vector2(50, paddle_start_position.y + 100)
+		
 	bricks_grid.cleared.connect(next_level)
 	
 	game_reset()
@@ -89,13 +88,18 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 		var bounce_angle_deg = -135 + 90 * intersection_fraction
 		ball.current_velocity = ball.current_velocity.rotated(deg_to_rad(bounce_angle_deg) - ball.current_velocity.angle())
 	elif collider is DeathWall:
-		Lives.decrease_life_count()
+		await decrease_life_with_animation()
 		if not Lives.alive:
 			game_reset()
 		else:
 			paddle_and_ball_reset()
 	else:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
+
+func decrease_life_with_animation():
+	set_physics_process(false)
+	await Lives.decrease_life_count()
+	set_physics_process(true)
 
 func _check_debug() -> void:
 	if debug_ball_puddle_collision:

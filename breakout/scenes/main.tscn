@@ -92,12 +92,6 @@ shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=610905763]
 
-[node name="HeartsContainer" type="FlowContainer" parent="HUD" unique_id=614612194]
 unique_name_in_owner = true
-offset_left = 68.0
-offset_top = 962.0
-offset_right = 964.0
-offset_bottom = 1055.0
-theme_override_constants/h_separation = 8
 
 [connection signal="timeout" from="StartTimer" to="." method="_start_ball"]
