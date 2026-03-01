@@ -28,7 +28,7 @@ func _ready() -> void:
 		paddle_start_position.y - main_ball.size.y - 1)
 	
 	Lives.hud_layer = hud
-	Lives.heart_start_position = Vector2(50, paddle_start_position.y + 100)
+	Lives.heart_start_position = Vector2(100, paddle_start_position.y + 120)
 		
 	bricks_grid.cleared.connect(next_level)
 	
