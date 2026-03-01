@@ -43,14 +43,13 @@ func show_menu(brick: BrickRect, click_position: Vector2):
 	var copy_to_row_callable = func(): paste_row_clicked.emit(brick.row, brick.data)
 	copy_to_row_button.pressed.connect(copy_to_row_callable)
 	
-	var disconnect_all_callables = func():
-		color_picker_button.color_changed.disconnect(color_changed_callable)
-		is_empty_selector.toggled.disconnect(empty_changed_callable)	
-		copy_button.pressed.disconnect(copy_cell_callable)	
-		paste_button.pressed.disconnect(paste_cell_callable)
-		copy_to_row_button.pressed.disconnect(copy_to_row_callable)
-		
-	hidden.connect(disconnect_all_callables, ConnectFlags.CONNECT_ONE_SHOT)
+	await hidden
+	
+	color_picker_button.color_changed.disconnect(color_changed_callable)
+	is_empty_selector.toggled.disconnect(empty_changed_callable)	
+	copy_button.pressed.disconnect(copy_cell_callable)	
+	paste_button.pressed.disconnect(paste_cell_callable)
+	copy_to_row_button.pressed.disconnect(copy_to_row_callable)
 
 func change_color(brick: BrickRect, color: Color) -> void:
 	is_empty_selector.set_pressed_no_signal(false)
