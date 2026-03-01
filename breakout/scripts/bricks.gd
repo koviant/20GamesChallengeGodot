@@ -7,9 +7,10 @@ signal cleared
 var _brick_count: int = 0
 
 func reset():
+	_clear_bricks()
 	_create_bricks()
 	
-func _create_bricks() -> void:
+func _create_bricks() -> void:	
 	var total_width = data.column_count * data.brick_width + (data.column_count - 1) * data.column_spacing
 	var total_height = data.row_count * data.brick_height + (data.row_count - 1) * data.row_spacing
 	
@@ -41,3 +42,7 @@ func remove_brick(brick: Brick) -> void:
 	_brick_count -= 1
 	if _brick_count == 0:
 		cleared.emit()
+
+func _clear_bricks() -> void:
+	for brick in get_children():
+		brick.queue_free()
