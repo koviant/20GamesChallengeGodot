@@ -103,10 +103,10 @@ func _create_beating_heart_animation() -> void:
 	var h = _full_hearts[0]
 	
 	var tween = create_tween().set_loops()
-	tween.tween_property(h, "scale", Vector2.ONE * 0.8, _beating_heart_animation_duration)
+	tween.tween_interval(_heart_animation_duration)
+	tween.tween_property(h, "scale", Vector2.ONE * 0.7, _beating_heart_animation_duration)
 	tween.tween_interval(_beating_heart_animation_duration)
 	tween.tween_property(h, "scale", Vector2.ONE, _beating_heart_animation_duration)
-	tween.tween_interval(_heart_animation_duration)
 	tween.stop()
 	
 	_beating_last_heart_animation = tween
