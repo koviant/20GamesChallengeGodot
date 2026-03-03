@@ -12,6 +12,7 @@ var _life_count: int
 
 var hud_layer: CanvasLayer
 var heart_start_position: Vector2
+var skip_animation := false
 
 var _full_hearts: Array[Sprite2D] = []
 var _empty_hearts: Array[Sprite2D] = []
@@ -61,6 +62,10 @@ func decrease_life_count():
 	assert(_life_count >= 0, "calling decrease_life_count on invalid life count")
 	
 	_life_count -= 1
+	
+	if skip_animation:
+		_full_hearts[_life_count].scale = Vector2.ZERO
+		return
 	
 	var heart_lost_tween = _create_heart_lost_animation_tween()
 	

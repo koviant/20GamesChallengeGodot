@@ -1,8 +1,10 @@
-extends Node
+class_name BreakoutMain extends Node
 
 @export var debug_ball_puddle_collision := true
 @export var enable_normal_ball := false
 @export var start_ball_vertically := false
+@export var start_timeout_override_seconds := -1.0
+@export var skip_death_animation := false
 @export_range (1, 10) var max_life_count := 3
 
 var ball_scene: PackedScene = preload("res://scenes/ball.tscn")
@@ -15,7 +17,6 @@ var paddle_start_position: Vector2
 @onready var paddle: Paddle = %Paddle
 @onready var start_timer: Timer = %StartTimer
 @onready var bricks_grid: BrickGrid = %BricksGrid
-@onready var heart_start_position: Marker2D = %HeartStartPosition
 @onready var hud: CanvasLayer = %HUD
 
 func _ready() -> void:
@@ -46,7 +47,7 @@ func level_reset() -> void:
 	set_physics_process(false)
 	bricks_grid.reset()
 	paddle_and_ball_reset()
-	start_timer.start()
+	start_timer.start(start_timeout_override_seconds)
 
 func paddle_and_ball_reset() -> void:
 	if start_ball_vertically:
@@ -54,7 +55,7 @@ func paddle_and_ball_reset() -> void:
 	else:
 		main_ball.reset(ball_start_position)
 	
-	paddle.position = paddle_start_position
+	paddle.global_transform.origin = paddle_start_position
 
 func next_level() -> void:
 	if Levels.has_next():
@@ -88,20 +89,25 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 		var bounce_angle_deg = -135 + 90 * intersection_fraction
 		ball.current_velocity = ball.current_velocity.rotated(deg_to_rad(bounce_angle_deg) - ball.current_velocity.angle())
 	elif collider is DeathWall:
-		await decrease_life_with_animation()
-		if not Lives.alive:
-			game_reset()
-		else:
-			paddle_and_ball_reset()
+		await handle_death()
 	else:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
 
+func handle_death():
+	await decrease_life_with_animation()
+	if not Lives.alive:
+		game_reset()
+	else:
+		paddle_and_ball_reset()
+	
 func decrease_life_with_animation():
 	set_physics_process(false)
 	await Lives.decrease_life_count()
 	set_physics_process(true)
 
 func _check_debug() -> void:
+	Lives.skip_animation = skip_death_animation
+	
 	if debug_ball_puddle_collision:
 		var y := paddle.position.y - 100 
 		var initial_velocity = Vector2(0, -80)
