@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b1cyp5sh4pqv6" path="res://scripts/ball.gd" id="1_7s4qf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7s4qf"]
+size = Vector2(32, 32)
 
 [node name="Ball" type="RigidBody2D" unique_id=1584973393]
 gravity_scale = 0.0
@@ -12,4 +12,4 @@ script = ExtResource("1_7s4qf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1974927744]
 position = Vector2(16, 16)
-shape = SubResource("CircleShape2D_cxlvu")
+shape = SubResource("RectangleShape2D_7s4qf")

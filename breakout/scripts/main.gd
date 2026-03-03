@@ -3,6 +3,8 @@ class_name BreakoutMain extends Node
 @export var debug_ball_puddle_collision := true
 @export var enable_normal_ball := false
 @export var start_ball_vertically := false
+
+## -1.0 value for no override
 @export var start_timeout_override_seconds := -1.0
 @export var skip_death_animation := false
 @export_range (1, 10) var max_life_count := 3

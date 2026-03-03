@@ -4,8 +4,8 @@ class_name Ball extends RigidBody2D
 var size: Vector2:
 	get: return $CollisionShape2D.shape.get_rect().size
 	set(value):
-		var shape := CircleShape2D.new()
-		shape.radius = value.x / 2
+		var shape := RectangleShape2D.new()
+		shape.size = value
 		$CollisionShape2D.shape = shape
 		queue_redraw()
 

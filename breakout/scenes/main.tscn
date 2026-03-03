@@ -19,13 +19,14 @@ size = Vector2(64, 1920)
 [sub_resource type="QuadMesh" id="QuadMesh_jyhfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(224, 2)
+size = Vector2(224, 21)
 
 [node name="Main" type="Node" unique_id=1366485895]
 script = ExtResource("1_o5qli")
 debug_ball_puddle_collision = false
 enable_normal_ball = true
-max_life_count = 2
+start_ball_vertically = true
+max_life_count = 1
 
 [node name="WallLeft" type="StaticBody2D" parent="." unique_id=1707080366]
 collision_mask = 0
@@ -55,15 +56,14 @@ collision_layer = 4
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("2_0wfyh")
-metadata/_edit_group_ = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Paddle" unique_id=992547386]
-position = Vector2(112.000015, 23.999952)
-scale = Vector2(223.99997, 48.000034)
+position = Vector2(112.000015, 10.499989)
+scale = Vector2(223.99997, 21.000107)
 mesh = SubResource("QuadMesh_jyhfs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle" unique_id=1326686161]
-position = Vector2(112, 1)
+position = Vector2(112, 10.5)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="PaddleController" type="Node" parent="Paddle" unique_id=81448055]
