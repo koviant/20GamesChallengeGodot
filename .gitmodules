@@ -1,3 +1,4 @@
 [submodule "addons_submodules/gdUnit4"]
 	path = addons_submodules/gdUnit4
 	url = https://github.com/MikeSchulze/gdUnit4.git
+	ignore = dirty
