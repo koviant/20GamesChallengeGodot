@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqiw48xdddd0g" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://18trg7xiqrjs" path="res://scripts/paddle.gd" id="2_0wfyh"]
+[ext_resource type="Resource" uid="uid://hir5d8uh1hif" path="res://levels/02.tres" id="2_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cxvgn5jfhfjca" path="res://scenes/ball.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bc0ph3xk0yuq0" path="res://scenes/paddle_controller.gd" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dmxmut6xbsu83" path="res://scenes/bricks.tscn" id="4_jyhfs"]

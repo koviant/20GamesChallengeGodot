@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Clipboard="*uid://cs0kb1wabma54"
 Levels="*uid://6fvul223v0ns"
 Lives="*uid://dlhque571vphm"
+Util="*uid://ckfineucrn0t2"
 
 [display]
 

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BrickGridData" format=3 uid="uid://hir5d8uh1hif"]
 
-[ext_resource type="Script" uid="uid://7idrxj2uaf84" path="res://scripts/resources/brick_cell_row.gd" id="1_n11h6"]
-[ext_resource type="Script" uid="uid://uawn7ao0o6ub" path="res://scripts/resources/brick_grid_data.gd" id="2_blhre"]
-[ext_resource type="Script" uid="uid://b2j3bmdlavrry" path="res://scripts/resources/brick_cell.gd" id="2_l424r"]
+[ext_resource type="Script" uid="uid://7idrxj2uaf84" path="res://scripts/bricks/resources/brick_cell_row.gd" id="1_n11h6"]
+[ext_resource type="Script" uid="uid://uawn7ao0o6ub" path="res://scripts/bricks/resources/brick_grid_data.gd" id="2_blhre"]
+[ext_resource type="Script" uid="uid://b2j3bmdlavrry" path="res://scripts/bricks/resources/brick_cell.gd" id="2_l424r"]
 
 [sub_resource type="Resource" id="Resource_81sbd"]
 script = ExtResource("2_l424r")
@@ -91,10 +91,12 @@ color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
 [sub_resource type="Resource" id="Resource_sp30i"]
 script = ExtResource("2_l424r")
 color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+type = 1
 
 [sub_resource type="Resource" id="Resource_rv0pc"]
 script = ExtResource("2_l424r")
 color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+type = 2
 
 [sub_resource type="Resource" id="Resource_y225l"]
 script = ExtResource("2_l424r")
@@ -112,18 +114,16 @@ color = Color(1, 1, 1, 0)
 
 [sub_resource type="Resource" id="Resource_7eypk"]
 script = ExtResource("2_l424r")
-is_empty = true
-color = Color(1, 1, 1, 0)
+color = Color(1, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_pvmmv"]
 script = ExtResource("2_l424r")
-is_empty = true
 color = Color(0.9411765, 0.03137255, 0.03137255, 0.98039216)
+type = 2
 
 [sub_resource type="Resource" id="Resource_gq8rt"]
 script = ExtResource("2_l424r")
-is_empty = true
-color = Color(1, 1, 1, 0)
+color = Color(1, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_qf88k"]
 script = ExtResource("2_l424r")

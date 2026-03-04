@@ -8,6 +8,10 @@ class_name BreakoutMain extends Node
 @export var start_timeout_override_seconds := -1.0
 @export var skip_death_animation := false
 @export_range (1, 10) var max_life_count := 3
+@export var show_mouse_coordinates := false
+@export var freeze_ball_on_mouse_click := false
+@export var show_bricks_coordinates := false
+@export var level_override: BrickGridData
 
 var ball_scene: PackedScene = preload("res://scenes/ball.tscn")
 var debug_paddle_collision_balls: Array[Ball] = []
@@ -20,6 +24,7 @@ var paddle_start_position: Vector2
 @onready var start_timer: Timer = %StartTimer
 @onready var bricks_grid: BrickGrid = %BricksGrid
 @onready var hud: CanvasLayer = %HUD
+@onready var mouse_coordinates_label: Label = _get_mouse_coordinates_label()
 
 func _ready() -> void:
 	paddle_start_position = Vector2(
@@ -32,12 +37,28 @@ func _ready() -> void:
 	
 	Lives.hud_layer = hud
 	Lives.heart_start_position = Vector2(100, paddle_start_position.y + 120)
-		
+	
+	bricks_grid.show_bricks_coordinates = show_bricks_coordinates
 	bricks_grid.cleared.connect(next_level)
 	
 	game_reset()
 	_check_debug()
 
+func _get_mouse_coordinates_label() -> Label:
+	var label = Label.new()
+	add_child(label)
+	label.hide()
+
+	return label
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_coordinates_label.text = str(event.position)
+		mouse_coordinates_label.show()
+		mouse_coordinates_label.position = Vector2(event.position.x + 20, event.position.y + 10)
+	elif event is InputEventMouseButton and event.is_pressed() and freeze_ball_on_mouse_click:
+		enable_normal_ball = !enable_normal_ball
+	
 func game_reset() -> void:
 	Levels.reset()
 	next_level()
@@ -60,6 +81,11 @@ func paddle_and_ball_reset() -> void:
 	paddle.global_transform.origin = paddle_start_position
 
 func next_level() -> void:
+	if level_override:
+		bricks_grid.data = level_override
+		level_reset()
+		return
+	
 	if Levels.has_next():
 		bricks_grid.data = Levels.next()
 		level_reset()
@@ -84,7 +110,7 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 	var collider = collision.get_collider()
 	if collider is Brick:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
-		bricks_grid.remove_brick(collider)
+		(collider as Brick).hit()
 	elif collider is Paddle:
 		var total_possible_collision_len = paddle.size.x + 2 * ball.size.x
 		var intersection_fraction: float = (collision.get_position().x - (paddle.position.x - ball.size.x)) / total_possible_collision_len
