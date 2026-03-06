@@ -18,7 +18,7 @@ func test_paddle_position_does_not_teleport_from_start_position_to_last_position
 	main.skip_death_animation = true
 	
 	var paddle: Paddle = runner.find_child("Paddle")
-	var paddle_controller := runner.find_child("PaddleController")
+	var paddle_controller := runner.find_child("MovementComponent")
 	paddle_controller.set_physics_process(false)
 	paddle.horizontal_velocity = 1000
 	

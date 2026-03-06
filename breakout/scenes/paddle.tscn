@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c2dxa717igktg"]
+
+[ext_resource type="Script" uid="uid://18trg7xiqrjs" path="res://scripts/paddle.gd" id="1_mo4dg"]
+[ext_resource type="Script" uid="uid://bufw820tgf7rx" path="res://scripts/components/health_component.gd" id="3_kvcsl"]
+[ext_resource type="Script" uid="uid://dfen6frecj7it" path="res://scripts/components/movement_component.gd" id="4_kvcsl"]
+[ext_resource type="Script" uid="uid://dp0i76shpqjkd" path="res://scripts/components/animation_component.gd" id="4_pacq5"]
+[ext_resource type="Script" uid="uid://doojxicm7k1kd" path="res://scripts/components/heart_display_component.gd" id="5_kvcsl"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jyhfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(224, 21)
+
+[node name="Paddle" type="RigidBody2D" unique_id=425579097]
+collision_layer = 4
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_mo4dg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1531268783]
+position = Vector2(112.000015, 10.499989)
+scale = Vector2(223.99997, 21.000107)
+mesh = SubResource("QuadMesh_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=702048420]
+position = Vector2(112, 10.5)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=606383469]
+unique_name_in_owner = true
+script = ExtResource("3_kvcsl")
+metadata/_custom_type_script = "uid://bufw820tgf7rx"
+
+[node name="AnimationComponent" type="Node" parent="." unique_id=1851901633]
+unique_name_in_owner = true
+script = ExtResource("4_pacq5")
+metadata/_custom_type_script = "uid://dp0i76shpqjkd"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1430350349]
+unique_name_in_owner = true
+script = ExtResource("4_kvcsl")
+metadata/_custom_type_script = "uid://dfen6frecj7it"
+
+[node name="HeartDisplayComponent" type="Node" parent="." unique_id=1892030559]
+unique_name_in_owner = true
+script = ExtResource("5_kvcsl")
+metadata/_custom_type_script = "uid://doojxicm7k1kd"

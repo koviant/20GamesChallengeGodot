@@ -1,4 +1,4 @@
-extends Node
+class_name MovementComponent extends Node
 
 const paddle_velocity := 800.0
 

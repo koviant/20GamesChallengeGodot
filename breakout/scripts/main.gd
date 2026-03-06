@@ -35,12 +35,13 @@ func _ready() -> void:
 		paddle_start_position.x + paddle.size.x / 2 - main_ball.size.x / 2,
 		paddle_start_position.y - main_ball.size.y - 1)
 	
-	Lives.hud_layer = hud
-	Lives.heart_start_position = Vector2(100, paddle_start_position.y + 120)
+	paddle.heart_display_component.hud_layer = hud
+	paddle.heart_display_component.heart_start_position = Vector2(100, paddle_start_position.y + 120)
 	
 	bricks_grid.show_bricks_coordinates = show_bricks_coordinates
 	bricks_grid.cleared.connect(next_level)
 	
+	paddle.setup()
 	game_reset()
 	_check_debug()
 
@@ -63,8 +64,8 @@ func game_reset() -> void:
 	Levels.reset()
 	next_level()
 	
-	Lives.max_life_count = max_life_count
-	Lives.reset()
+	paddle.max_life_count = max_life_count
+	paddle.reset()
 
 func level_reset() -> void:
 	set_physics_process(false)
@@ -110,7 +111,7 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 	var collider = collision.get_collider()
 	if collider is Brick:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
-		(collider as Brick).hit()
+		collider.hit()
 	elif collider is Paddle:
 		var total_possible_collision_len = paddle.size.x + 2 * ball.size.x
 		var intersection_fraction: float = (collision.get_position().x - (paddle.position.x - ball.size.x)) / total_possible_collision_len
@@ -122,19 +123,19 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())
 
 func handle_death():
-	await decrease_life_with_animation()
-	if not Lives.alive:
+	set_physics_process(false)
+	
+	await paddle.decrease_life_count()
+	if not paddle.alive:
+		await paddle.death_animation_finished
 		game_reset()
 	else:
 		paddle_and_ball_reset()
-	
-func decrease_life_with_animation():
-	set_physics_process(false)
-	await Lives.decrease_life_count()
+		
 	set_physics_process(true)
-
+	
 func _check_debug() -> void:
-	Lives.skip_animation = skip_death_animation
+	paddle.skip_death_animation = skip_death_animation
 	
 	if debug_ball_puddle_collision:
 		var y := paddle.position.y - 100 
