@@ -53,7 +53,7 @@ func _get_mouse_coordinates_label() -> Label:
 	return label
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and show_mouse_coordinates:
 		mouse_coordinates_label.text = str(event.position)
 		mouse_coordinates_label.show()
 		mouse_coordinates_label.position = Vector2(event.position.x + 20, event.position.y + 10)
