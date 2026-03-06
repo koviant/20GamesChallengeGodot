@@ -17,8 +17,9 @@ func play(key: String) -> void:
 
 func animation_completion(key: String) -> void:
 	_assert_valid_key(key)
+	assert(key in _running_animations.keys(), "This animation is not being monitored")
+	
 	var weak_reference: WeakRefTween = _running_animations.get(key)
-	assert(weak_reference, "This animation is not being monitored")
 	
 	var tween: Tween = weak_reference.get_tween_or_null()
 	if tween and tween.is_running():
