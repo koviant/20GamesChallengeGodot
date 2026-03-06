@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cnye1k4smn5pj"]
+
+[ext_resource type="Script" uid="uid://byxidakqerrpp" path="res://test/scripts/wall.gd" id="1_efbxx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efbxx"]
+
+[node name="Wall" type="StaticBody2D" unique_id=1067160200]
+script = ExtResource("1_efbxx")
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1392094548]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_efbxx")

@@ -10,6 +10,9 @@ export_credentials.cfg
 # Addons
 */addons/
 
+# Exports
+*/export/
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 

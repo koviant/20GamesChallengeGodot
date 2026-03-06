@@ -24,9 +24,25 @@ var paddle_start_position: Vector2
 @onready var start_timer: Timer = %StartTimer
 @onready var bricks_grid: BrickGrid = %BricksGrid
 @onready var hud: CanvasLayer = %HUD
+@onready var left_wall: Wall = %LeftWall
+@onready var top_wall: Wall = %TopWall
+@onready var right_wall: Wall = %RightWall
+@onready var death_wall: Wall = %DeathWall
 @onready var mouse_coordinates_label: Label = _get_mouse_coordinates_label()
 
 func _ready() -> void:
+	_layout()
+	
+	paddle.heart_display_component.hud_layer = hud
+	paddle.heart_display_component.heart_start_position = Vector2(100, paddle_start_position.y + 120)
+	bricks_grid.show_bricks_coordinates = show_bricks_coordinates
+	bricks_grid.cleared.connect(next_level)
+	
+	paddle.setup()
+	game_reset()
+	_check_debug()
+
+func _layout() -> void:
 	paddle_start_position = Vector2(
 		get_viewport().get_visible_rect().size.x / 2 - paddle.size.x / 2,
 		get_viewport().get_visible_rect().size.y - 200)
@@ -35,15 +51,20 @@ func _ready() -> void:
 		paddle_start_position.x + paddle.size.x / 2 - main_ball.size.x / 2,
 		paddle_start_position.y - main_ball.size.y - 1)
 	
-	paddle.heart_display_component.hud_layer = hud
-	paddle.heart_display_component.heart_start_position = Vector2(100, paddle_start_position.y + 120)
+	var half_viewport_x := get_viewport().get_visible_rect().size.x / 2
+	var half_viewport_y := get_viewport().get_visible_rect().size.y / 2
 	
-	bricks_grid.show_bricks_coordinates = show_bricks_coordinates
-	bricks_grid.cleared.connect(next_level)
+	left_wall.position = Vector2(-1, half_viewport_y)
+	left_wall.size = Vector2(1, get_viewport().get_visible_rect().size.y)
+		
+	top_wall.position = Vector2(half_viewport_x, -1)
+	top_wall.size = Vector2(get_viewport().get_visible_rect().size.x, 1)
+		
+	right_wall.position = Vector2(get_viewport().get_visible_rect().size.x + 1, half_viewport_y)
+	right_wall.size = Vector2(1, get_viewport().get_visible_rect().size.y)
 	
-	paddle.setup()
-	game_reset()
-	_check_debug()
+	death_wall.position = Vector2(half_viewport_x, get_viewport().get_visible_rect().size.y + 1)
+	death_wall.size = Vector2(get_viewport().get_visible_rect().size.x, 1)
 
 func _get_mouse_coordinates_label() -> Label:
 	var label = Label.new()
@@ -117,7 +138,7 @@ func _process_ball_physics(ball: Ball, delta: float) -> void:
 		var intersection_fraction: float = (collision.get_position().x - (paddle.position.x - ball.size.x)) / total_possible_collision_len
 		var bounce_angle_deg = -135 + 90 * intersection_fraction
 		ball.current_velocity = ball.current_velocity.rotated(deg_to_rad(bounce_angle_deg) - ball.current_velocity.angle())
-	elif collider is DeathWall:
+	elif is_same(collider, death_wall):
 		await handle_death()
 	else:
 		ball.current_velocity = ball.current_velocity.bounce(collision.get_normal())

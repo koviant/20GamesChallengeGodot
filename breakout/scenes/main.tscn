@@ -5,45 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://cxvgn5jfhfjca" path="res://scenes/ball.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c2dxa717igktg" path="res://scenes/paddle.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dmxmut6xbsu83" path="res://scenes/bricks.tscn" id="4_jyhfs"]
-[ext_resource type="Script" path="res://scripts/death_wall.gd" id="5_tbgi4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
-size = Vector2(64, 1920)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(1920, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(64, 1920)
+[ext_resource type="PackedScene" uid="uid://cnye1k4smn5pj" path="res://scenes/Wall.tscn" id="6_tefeu"]
 
 [node name="Main" type="Node" unique_id=1366485895]
 script = ExtResource("1_o5qli")
 debug_ball_puddle_collision = false
 enable_normal_ball = true
-max_life_count = 2
 freeze_ball_on_mouse_click = true
 level_override = ExtResource("2_o6xl0")
-
-[node name="WallLeft" type="StaticBody2D" parent="." unique_id=1707080366]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft" unique_id=153552375]
-position = Vector2(-32, 960)
-shape = SubResource("RectangleShape2D_7dm0k")
-
-[node name="WallTop" type="StaticBody2D" parent="." unique_id=924303726]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop" unique_id=1681099707]
-position = Vector2(960, -32)
-shape = SubResource("RectangleShape2D_ig7tw")
-
-[node name="WallRight" type="StaticBody2D" parent="." unique_id=158355261]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight" unique_id=58935380]
-position = Vector2(1952, 960)
-shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="Paddle" parent="." unique_id=425579097 instance=ExtResource("3_tefeu")]
 unique_name_in_owner = true
@@ -65,17 +34,19 @@ one_shot = true
 unique_name_in_owner = true
 data = null
 
-[node name="DeathWall" type="StaticBody2D" parent="." unique_id=1913318724]
-position = Vector2(415, 1145)
-collision_mask = 0
-script = ExtResource("5_tbgi4")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathWall" unique_id=657196524]
-position = Vector2(540, -32)
-shape = SubResource("RectangleShape2D_ig7tw")
-
 [node name="HUD" type="CanvasLayer" parent="." unique_id=610905763]
+unique_name_in_owner = true
+
+[node name="LeftWall" parent="." unique_id=1067160200 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
+
+[node name="TopWall" parent="." unique_id=724357946 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
+
+[node name="RightWall" parent="." unique_id=1039835169 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
+
+[node name="DeathWall" parent="." unique_id=1218058654 instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 
 [connection signal="timeout" from="StartTimer" to="." method="_start_ball"]

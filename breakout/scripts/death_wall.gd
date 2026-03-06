@@ -1,1 +1,0 @@
-class_name DeathWall extends StaticBody2D
