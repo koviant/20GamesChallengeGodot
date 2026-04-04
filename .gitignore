@@ -43,5 +43,6 @@ $RECYCLE.BIN/
 
 # Rider & .NET
 .idea/
+*.user
 *bin/
 *obj/
