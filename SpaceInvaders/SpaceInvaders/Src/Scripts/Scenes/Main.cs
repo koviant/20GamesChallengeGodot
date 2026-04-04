@@ -1,11 +1,13 @@
 using Godot;
+using GodotUtilities;
 
-namespace SpaceInvaders.Scripts;
+namespace SpaceInvaders.Scripts.Scenes;
 
+[Scene]
 public partial class Main : Node2D
 {
 	private ColorRect _player;
-	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{ 
