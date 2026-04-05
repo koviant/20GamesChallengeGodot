@@ -34,15 +34,15 @@ public partial class HealthComponent : Node
 
         LifeCount--;
 
-        EmitSignal(SignalName.LifeLost);
+        EmitSignalLifeLost();
 
         if (LifeCount is 1)
         {
-            EmitSignal(SignalName.LastLifeLeft);
+            EmitSignalLastLifeLeft();
         }
         else if (LifeCount is 0)
         {
-            EmitSignal(SignalName.Died);
+            EmitSignalDied();
         }
     }
 }

@@ -18,6 +18,9 @@ public partial class HeartDisplayComponent : Node
     public CanvasLayer HudLayer { get; set; }
     public Vector2 HeartStartPosition { get; set; }
 
+    public IReadOnlyList<Sprite2D> FullHearts => _fullHearts;
+    public IReadOnlyList<Sprite2D> EmptyHearts => _emptyHearts;
+    
     private readonly List<Sprite2D> _emptyHearts = [];
     private readonly List<Sprite2D> _fullHearts = [];
 
