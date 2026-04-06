@@ -30,19 +30,18 @@ public partial class AnimationComponent : Node
         CreateTweenInternal(key);
     }
 
-    public async Task AnimationCompletion(string key)
+    public Tween? GetAnimationTween(string key)
     {
         AssertValidKey(key);
 
-        if (!_runningAnimations.TryGetValue(key, out var animation))
+        if (_runningAnimations.TryGetValue(key, out var animation) && 
+            animation.TryGetTarget(out var tween) && 
+            tween.IsRunning())
         {
-            return;
+            return tween;
         }
 
-        if (animation.TryGetTarget(out var tween) && tween.IsRunning())
-        {
-            await tween.FinishedSignaled;
-        }
+        return null;
     }
 
     public void CancelRunningAnimation(string key)

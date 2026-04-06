@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 using static Godot.GD;
@@ -20,7 +22,8 @@ public partial class HeartDisplayComponent : Node
     public Vector2 HeartStartPosition { get; set; }
 
     public IReadOnlyList<Sprite2D> EmptyHearts => _emptyHearts;
-    public Sprite2D LastFullHeart => _fullHearts.First(s => s.Scale.X > 0);
+    public Sprite2D LastFullHeart => _fullHearts.Last(s => s.Scale.X > 0.001);
+    public Sprite2D FirstFullHeart => _fullHearts[0];
     
     private readonly List<Sprite2D> _emptyHearts = [];
     private readonly List<Sprite2D> _fullHearts = [];
@@ -29,6 +32,8 @@ public partial class HeartDisplayComponent : Node
     
     public void Reset(int maxLifeCount)
     {
+        Debug.Assert(maxLifeCount > 0);
+        
         _lifeCount = maxLifeCount;
 
         if (_maxLifeCount != maxLifeCount || SpritesNotCreated)

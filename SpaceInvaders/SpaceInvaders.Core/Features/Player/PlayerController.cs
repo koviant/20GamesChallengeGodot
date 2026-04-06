@@ -25,7 +25,16 @@ public class PlayerController : ControllerBase<IPlayerView>
         _healthComponent.OnLifeLost += OnHealthComponentOnOnLifeLost;
         _healthComponent.OnLastLifeLeft += OnHealthComponentOnOnLastLifeLeft;
         _healthComponent.OnDied += OnHealthComponentOnOnDied;
-        
+
+        View.Hit += _healthComponent.DecreaseLifeCount;
+        View.DeathAnimationFinished += Reset;
+
+        Reset();
+    }
+
+    private void Reset()
+    {
+        _healthComponent.Reset(MaxLifeCount);
         View.Reset(MaxLifeCount);
     }
 
@@ -64,5 +73,8 @@ public class PlayerController : ControllerBase<IPlayerView>
         _healthComponent.OnLifeLost -= OnHealthComponentOnOnLifeLost;
         _healthComponent.OnLastLifeLeft -= OnHealthComponentOnOnLastLifeLeft;
         _healthComponent.OnDied -= OnHealthComponentOnOnDied;
+        
+        View.Hit -= _healthComponent.DecreaseLifeCount;
+        View.DeathAnimationFinished -= Reset;
     }
 }

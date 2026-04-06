@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace SpaceInvaders.Core.Utils;
 
 public class HealthComponent
@@ -17,10 +19,7 @@ public class HealthComponent
 
     public void DecreaseLifeCount()
     {
-        if (LifeCount < 0)
-        {
-            throw new InvalidOperationException($"Calling {nameof(DecreaseLifeCount)} on invalid life count");
-        }
+        Debug.Assert(LifeCount > 0, $"Calling {nameof(DecreaseLifeCount)} on invalid life count");
 
         LifeCount--;
 

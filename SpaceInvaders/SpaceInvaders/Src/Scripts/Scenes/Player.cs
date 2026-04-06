@@ -13,7 +13,7 @@ namespace SpaceInvaders.Scripts.Scenes;
 [Scene]
 public partial class Player : RigidBody2D, IPlayerView
 {
-	[Signal] public delegate void DeathAnimationFinishedEventHandler();
+	public event Action? DeathAnimationFinished;
 	
 	[Node] private AnimationComponent _animationComponent;
 	[Node] private HeartDisplayComponent _heartDisplayComponent;
@@ -23,6 +23,8 @@ public partial class Player : RigidBody2D, IPlayerView
 	private const string AnimationHeartBeating = nameof(AnimationHeartBeating);
 	private const string AnimationNoneHeartsLeft = nameof(AnimationNoneHeartsLeft);
 
+	public event Action? Hit;
+	
 	[Export] public bool SkipDeathAnimation { get; set; }
 
 	public System.Numerics.Vector2 Speed { get; set; }
@@ -47,6 +49,14 @@ public partial class Player : RigidBody2D, IPlayerView
 		};
 		
 		_animationComponent.Setup(animations);
+	}
+
+	public override void _Input(InputEvent e)
+	{
+		if (e is InputEventMouseButton { Pressed: true })
+		{
+			Hit?.Invoke();
+		}
 	}
 
 	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
@@ -91,11 +101,12 @@ public partial class Player : RigidBody2D, IPlayerView
 
 	private Tween StartHeartBeatingAnimation()
 	{
-		var heart = HeartDisplayComponent.LastFullHeart;
+		var lostHeartAnimationTween = _animationComponent.GetAnimationTween(AnimationHeartLost);
 
 		return Animation.Beating(
-			heart,
-			[0.1f, 0.2f, 0.2f, 0.2f]
+			HeartDisplayComponent.FirstFullHeart,
+			[0.1f, 0.2f, 0.2f, 0.2f],
+			attach: lostHeartAnimationTween
 		);
 	}
 
@@ -113,5 +124,5 @@ public partial class Player : RigidBody2D, IPlayerView
 		return bliping;
 	}
 
-	private void OnBlipingFinished() => EmitSignalDeathAnimationFinished();
+	private void OnBlipingFinished() => DeathAnimationFinished?.Invoke();
 }

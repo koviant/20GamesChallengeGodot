@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>SpaceInvaders</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpaceInvaders.Core\SpaceInvaders.Core.csproj" />

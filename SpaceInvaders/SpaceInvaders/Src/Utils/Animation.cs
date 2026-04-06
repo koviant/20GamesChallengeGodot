@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 
 namespace SpaceInvaders.Utils;
@@ -14,15 +15,13 @@ public static class Animation
         return tween;
     }
 
-    public static Tween Beating(Sprite2D sprite, List<float> pattern)
+    public static Tween Beating(Sprite2D sprite, List<float> pattern, Tween? attach = null)
     {
-        if (pattern.Count != 4)
-        {
-            throw new ArgumentException("pattern should contain exactly 4 items");
-        }
+        Debug.Assert(pattern.Count == 4, "pattern should contain exactly 4 items");
 
-        var tween = sprite.CreateTween().SetLoops();
+        var tween = attach ?? sprite.CreateTween();
 
+        tween.SetLoops();
         tween.TweenInterval(pattern[0]);
         tween.TweenProperty(sprite, "scale", Vector2.One * 0.7f, pattern[1]);
         tween.TweenInterval(pattern[2]);
@@ -33,10 +32,7 @@ public static class Animation
 
     public static Tween Bliping(IReadOnlyList<Sprite2D> sprites, List<float> pattern)
     {
-        if (pattern.Count != 2)
-        {
-            throw new ArgumentException("pattern should contain exactly 2 items");
-        }
+        Debug.Assert(pattern.Count == 2, "pattern should contain exactly 2 items");
 
         var tween = sprites[0].CreateTween().SetLoops(5);
 
