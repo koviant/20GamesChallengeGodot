@@ -1,22 +1,24 @@
+using System;
 using Godot;
+using SpaceInvaders.Core.Features.Player;
+using SpaceInvaders.Core.Utils;
 
 namespace SpaceInvaders.Scripts.Components;
 
-[GlobalClass]
-public partial class HorizontalMovementComponent : Node
+public partial class HorizontalMovementComponent : Node, IHorizontalMovementComponent
 {
-    private Vector2 _velocity;
-    private RigidBody2D _body;
-    
-    public void Setup(Vector2 velocity, RigidBody2D body)
-    {
-        _velocity = velocity;
-        _body = body;
-    }
-    
     public override void _PhysicsProcess(double delta)
     {
-        var direction = Input.GetAxis("ui_left", "ui_right");
-        _body.LinearVelocity = direction * _velocity;
+        var axis = Input.GetAxis("ui_left", "ui_right");
+        var direction = axis switch
+        {
+            < 0 => Movement.Left,
+            > 0 => Movement.Right,
+            _ => Movement.None,
+        };
+        
+        OnMovement?.Invoke(direction);
     }
+
+    public event Action<Movement> OnMovement;
 }

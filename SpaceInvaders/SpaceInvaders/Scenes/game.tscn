@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dxm02q52wkhfp"]
+
+[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Scripts/Scenes/GameView.cs" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://cv7b8ebbp10qx" path="res://Scenes/player.tscn" id="2_wrm1d"]
+
+[node name="Root" type="Node2D" unique_id=2034994352]
+script = ExtResource("1_qxrlw")
+
+[node name="Player" parent="." unique_id=594952053 instance=ExtResource("2_wrm1d")]
+SkipDeathAnimation = null
+
+[node name="Hud" type="CanvasLayer" parent="." unique_id=750371727]
+unique_name_in_owner = true

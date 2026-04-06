@@ -41,7 +41,7 @@ public partial class AnimationComponent : Node
 
         if (animation.TryGetTarget(out var tween) && tween.IsRunning())
         {
-            await tween.FinishedAwaiter;
+            await tween.FinishedSignaled;
         }
     }
 

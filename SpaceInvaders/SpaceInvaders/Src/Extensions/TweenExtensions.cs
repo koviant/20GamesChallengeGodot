@@ -6,6 +6,6 @@ public static class TweenExtensions
 {
     extension(Tween tween)
     {
-        public SignalAwaiter FinishedAwaiter => tween.ToSignal(tween, Tween.SignalName.Finished);
+        public SignalAwaiter FinishedSignaled => tween.ToSignal(tween, Tween.SignalName.Finished);
     }
 }

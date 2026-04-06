@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using static Godot.GD;
 
@@ -18,8 +19,8 @@ public partial class HeartDisplayComponent : Node
     public CanvasLayer HudLayer { get; set; }
     public Vector2 HeartStartPosition { get; set; }
 
-    public IReadOnlyList<Sprite2D> FullHearts => _fullHearts;
     public IReadOnlyList<Sprite2D> EmptyHearts => _emptyHearts;
+    public Sprite2D LastFullHeart => _fullHearts.First(s => s.Scale.X > 0);
     
     private readonly List<Sprite2D> _emptyHearts = [];
     private readonly List<Sprite2D> _fullHearts = [];

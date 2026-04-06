@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cv7b8ebbp10qx"]
+
+[ext_resource type="Script" uid="uid://cxb5iyld8e3u0" path="res://Src/Scripts/Components/AnimationComponent.cs" id="1_6t5aa"]
+[ext_resource type="Script" uid="uid://bhgbh718px31t" path="res://Src/Scripts/Scenes/Player.cs" id="1_vgqql"]
+[ext_resource type="Script" uid="uid://cvqiuydi6s7jg" path="res://Src/Scripts/Components/HorizontalMovementComponent.cs" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://bxhdihkq1bp6w" path="res://Src/Scripts/Components/HeartDisplayComponent.cs" id="4_vgqql"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vgqql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
+size = Vector2(100, 100)
+
+[node name="Player" type="RigidBody2D" unique_id=469508281]
+gravity_scale = 0.0
+can_sleep = false
+script = ExtResource("1_vgqql")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1461256098]
+position = Vector2(-9.536743e-07, 4.708767e-06)
+scale = Vector2(100, 100.00001)
+mesh = SubResource("QuadMesh_vgqql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=956177540]
+shape = SubResource("RectangleShape2D_fkybt")
+
+[node name="AnimationComponent" type="Node" parent="." unique_id=1367397991]
+unique_name_in_owner = true
+script = ExtResource("1_6t5aa")
+metadata/_custom_type_script = "uid://cxb5iyld8e3u0"
+
+[node name="HorizontalMovementComponent" type="Node" parent="." unique_id=515635836]
+unique_name_in_owner = true
+script = ExtResource("3_fkybt")
+metadata/_custom_type_script = "uid://cvqiuydi6s7jg"
+
+[node name="HeartDisplayComponent" type="Node" parent="." unique_id=552900767]
+unique_name_in_owner = true
+script = ExtResource("4_vgqql")
+metadata/_custom_type_script = "uid://bxhdihkq1bp6w"

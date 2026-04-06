@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SpaceInvaders"
-run/main_scene="uid://dxm02q52wkhfp"
+run/main_scene="uid://csh6fcdlpyykk"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 

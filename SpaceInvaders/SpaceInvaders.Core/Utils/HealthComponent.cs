@@ -1,23 +1,13 @@
-using System;
-using Godot;
+namespace SpaceInvaders.Core.Utils;
 
-namespace SpaceInvaders.Scripts.Components;
-
-[GlobalClass]
-public partial class HealthComponent : Node
+public class HealthComponent
 {
-    [Signal]
-    public delegate void LifeLostEventHandler();
-
-    [Signal]
-    public delegate void LastLifeLeftEventHandler();
-
-    [Signal]
-    public delegate void DiedEventHandler();
+    public event Action? OnLifeLost;
+    public event Action? OnLastLifeLeft;
+    public event Action? OnDied;
 
     public bool Alive => LifeCount > 0;
 
-    [Export]
     public int LifeCount { get; private set; }
 
     public void Reset(int maxLifeCount)
@@ -34,15 +24,15 @@ public partial class HealthComponent : Node
 
         LifeCount--;
 
-        EmitSignalLifeLost();
+        OnLifeLost?.Invoke();
 
         if (LifeCount is 1)
         {
-            EmitSignalLastLifeLeft();
+            OnLastLifeLeft?.Invoke();
         }
         else if (LifeCount is 0)
         {
-            EmitSignalDied();
+            OnDied?.Invoke();
         }
     }
 }
