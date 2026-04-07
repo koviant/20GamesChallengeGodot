@@ -1,5 +1,5 @@
 using Jab;
-using SpaceInvaders.Core.Features.Main;
+using SpaceInvaders.Core.Features.Game;
 
 namespace SpaceInvaders.Core;
 

@@ -1,6 +1,6 @@
 using Godot;
 using GodotUtilities;
-using SpaceInvaders.Core.Features.Main;
+using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Scripts.Scenes;
