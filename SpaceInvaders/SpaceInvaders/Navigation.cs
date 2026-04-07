@@ -7,7 +7,6 @@ using SpaceInvaders.Scripts.Scenes;
 
 namespace SpaceInvaders;
 
-
 public class Navigation : INavigation
 {
     public void NavigateToMain()
@@ -20,7 +19,7 @@ public class Navigation : INavigation
     }
 
     private void Bind<TView, TViewImpl>(ControllerBase<TView> controller, TViewImpl view) 
-        where TViewImpl : Node, IView, TView 
+        where TViewImpl : Node, TView 
         where TView : IView
     {
         controller.SetView(view);
