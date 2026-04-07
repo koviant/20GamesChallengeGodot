@@ -18,9 +18,10 @@ public partial class Game : Node2D, IMainView
 		WireNodes();
 		
 		_player.HeartDisplayComponent.HudLayer = _hud;
-		_player.HeartDisplayComponent.HeartStartPosition = new Vector2(100, VisibleRectSize.Y - 200);
+		_player.HeartDisplayComponent.HeartStartPosition = new Vector2(100, VisibleRectSize.Y - 80);
+		
+		_player.GlobalPosition = new Vector2(VisibleRectSize.X / 2 - _player.Size.X / 2, VisibleRectSize.Y - 200);
 	}
-
-
+	
 	public IPlayerView Player => _player;
 }

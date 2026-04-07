@@ -18,6 +18,7 @@ public partial class Player : RigidBody2D, IPlayerView
 	[Node] private AnimationComponent _animationComponent;
 	[Node] private HeartDisplayComponent _heartDisplayComponent;
 	[Node] private HorizontalMovementComponent _horizontalMovementComponent;
+	[Node] private CollisionShape2D _collisionShape2D;
 	
 	private const string AnimationHeartLost = nameof(AnimationHeartLost);
 	private const string AnimationHeartBeating = nameof(AnimationHeartBeating);
@@ -28,6 +29,7 @@ public partial class Player : RigidBody2D, IPlayerView
 	[Export] public bool SkipDeathAnimation { get; set; }
 
 	public System.Numerics.Vector2 Speed { get; set; }
+	public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
 
 	public HeartDisplayComponent HeartDisplayComponent
 	{
