@@ -14,110 +14,112 @@ namespace SpaceInvaders.Scripts.Scenes;
 [Scene]
 public partial class Player : RigidBody2D, IPlayerView
 {
-	public event Action? DeathAnimationFinished;
-	
-	[Node] private AnimationComponent _animationComponent;
-	[Node] private HeartDisplayComponent _heartDisplayComponent;
-	[Node] private PlayerControllerComponent _controllerComponent;
-	[Node] private CollisionShape2D _collisionShape2D;
-	
-	private const string AnimationHeartLost = nameof(AnimationHeartLost);
-	private const string AnimationHeartBeating = nameof(AnimationHeartBeating);
-	private const string AnimationNoneHeartsLeft = nameof(AnimationNoneHeartsLeft);
+    private const string AnimationHeartLost = nameof(AnimationHeartLost);
+    private const string AnimationHeartBeating = nameof(AnimationHeartBeating);
+    private const string AnimationNoneHeartsLeft = nameof(AnimationNoneHeartsLeft);
 
-	public event Action? Hit;
-	
-	[Export] public bool SkipDeathAnimation { get; set; }
+    [Node] private AnimationComponent _animationComponent;
+    [Node] private CollisionShape2D _collisionShape2D;
+    [Node] private PlayerControllerComponent _controllerComponent;
+    [Node] private HeartDisplayComponent _heartDisplayComponent;
 
-	public System.Numerics.Vector2 Speed { get; set; }
-	public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
+    [Export] public bool SkipDeathAnimation { get; set; }
+    public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
 
-	public HeartDisplayComponent HeartDisplayComponent => _heartDisplayComponent;
+    public HeartDisplayComponent HeartDisplayComponent => _heartDisplayComponent;
+    public event Action? DeathAnimationFinished;
 
-	public IPlayerControllerComponent ControllerComponent => _controllerComponent;
+    public event Action? Hit;
 
-	public override void _Ready()
-	{
-		WireNodes();
-		
-		var animations = new Dictionary<string, Func<Tween>>
-		{
-			[AnimationHeartLost] = StartHeartLostAnimation,
-			[AnimationHeartBeating] = StartHeartBeatingAnimation,
-			[AnimationNoneHeartsLeft] = StartBlipingHeartsAnimation,
-		};
-		
-		_animationComponent.Setup(animations);
-	}
+    public System.Numerics.Vector2 Speed { get; set; }
 
-	public override void _Input(InputEvent e)
-	{
-		if (e is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
-		{
-			Hit?.Invoke();
-		}
-	}
+    public IPlayerControllerComponent ControllerComponent => _controllerComponent;
 
-	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
-	{
-		state.LinearVelocity = Speed.ToGodotVector();
-	}
+    public void PlayHeartLostAnimation()
+    {
+        _animationComponent.PlayAndMonitor(AnimationHeartLost);
+    }
 
-	public void PlayHeartLostAnimation()
-	{
-		_animationComponent.PlayAndMonitor(AnimationHeartLost);
-	}
+    public void PlayHeartBeatingAnimation()
+    {
+        _animationComponent.PlayAndMonitor(AnimationHeartBeating);
+    }
 
-	public void PlayHeartBeatingAnimation()
-	{
-		_animationComponent.PlayAndMonitor(AnimationHeartBeating);
-	}
+    public void PlayNoneHeartsLeftAnimation()
+    {
+        _animationComponent.Play(AnimationNoneHeartsLeft);
+    }
 
-	public void PlayNoneHeartsLeftAnimation()
-	{
-		_animationComponent.Play(AnimationNoneHeartsLeft);
-	}
-	
-	public void Reset(int maxLifeCount)
-	{
-		HeartDisplayComponent.Reset(maxLifeCount);
-	}
+    public void Reset(int maxLifeCount)
+    {
+        HeartDisplayComponent.Reset(maxLifeCount);
+    }
 
-	private Tween StartHeartLostAnimation()
-	{
-		if (SkipDeathAnimation)
-		{
-			return CreateTween();
-		}
+    public override void _Ready()
+    {
+        WireNodes();
 
-		var heart = HeartDisplayComponent.LastFullHeart;
-		return Animation.ScaleToZero(heart, 0.2f);
-	}
+        var animations = new Dictionary<string, Func<Tween>>
+        {
+            [AnimationHeartLost] = StartHeartLostAnimation,
+            [AnimationHeartBeating] = StartHeartBeatingAnimation,
+            [AnimationNoneHeartsLeft] = StartBlipingHeartsAnimation,
+        };
 
-	private Tween StartHeartBeatingAnimation()
-	{
-		var lostHeartAnimationTween = _animationComponent.GetAnimationTween(AnimationHeartLost);
+        _animationComponent.Setup(animations);
+    }
 
-		return Animation.Beating(
-			HeartDisplayComponent.FirstFullHeart,
-			[0.1f, 0.2f, 0.2f, 0.2f],
-			attach: lostHeartAnimationTween
-		);
-	}
+    public override void _Input(InputEvent e)
+    {
+        if (e is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
+        {
+            Hit?.Invoke();
+        }
+    }
 
-	private Tween StartBlipingHeartsAnimation()
-	{
-		_animationComponent.CancelRunningAnimation(AnimationHeartBeating);
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+        state.LinearVelocity = Speed.ToGodotVector();
+    }
 
-		var bliping = Animation.Bliping(
-			HeartDisplayComponent.EmptyHearts,
-			[0.2f, 0.2f]
-		);
+    private Tween StartHeartLostAnimation()
+    {
+        if (SkipDeathAnimation)
+        {
+            return CreateTween();
+        }
 
-		bliping.ConnectOneShot(Tween.SignalName.Finished, Callable.From(OnBlipingFinished));
-		
-		return bliping;
-	}
+        var heart = HeartDisplayComponent.LastFullHeart;
+        return Animation.ScaleToZero(heart, 0.2f);
+    }
 
-	private void OnBlipingFinished() => DeathAnimationFinished?.Invoke();
+    private Tween StartHeartBeatingAnimation()
+    {
+        var lostHeartAnimationTween = _animationComponent.GetAnimationTween(AnimationHeartLost);
+
+        return Animation.Beating(
+            HeartDisplayComponent.FirstFullHeart,
+            [0.1f, 0.2f, 0.2f, 0.2f],
+            lostHeartAnimationTween
+        );
+    }
+
+    private Tween StartBlipingHeartsAnimation()
+    {
+        _animationComponent.CancelRunningAnimation(AnimationHeartBeating);
+
+        var bliping = Animation.Bliping(
+            HeartDisplayComponent.EmptyHearts,
+            [0.2f, 0.2f]
+        );
+
+        bliping.ConnectOneShot(Tween.SignalName.Finished, Callable.From(OnBlipingFinished));
+
+        return bliping;
+    }
+
+    private void OnBlipingFinished()
+    {
+        DeathAnimationFinished?.Invoke();
+    }
 }

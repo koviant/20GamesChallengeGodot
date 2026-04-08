@@ -4,13 +4,12 @@ namespace SpaceInvaders.Core.Utils;
 
 public class HealthComponent
 {
-    public event Action? OnLifeLost;
-    public event Action? OnLastLifeLeft;
-    public event Action? OnDied;
-
     public bool Alive => LifeCount > 0;
 
     public int LifeCount { get; private set; }
+    public event Action? OnLifeLost;
+    public event Action? OnLastLifeLeft;
+    public event Action? OnDied;
 
     public void Reset(int maxLifeCount)
     {

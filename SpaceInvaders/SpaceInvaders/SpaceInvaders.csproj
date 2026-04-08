@@ -1,15 +1,15 @@
 <Project Sdk="Godot.NET.Sdk/4.6.2">
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>SpaceInvaders</RootNamespace>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SpaceInvaders.Core\SpaceInvaders.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Firebelley.GodotUtilities" Version="6.1.1" />
-    <PackageReference Include="Jab" Version="0.12.0" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <RootNamespace>SpaceInvaders</RootNamespace>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\SpaceInvaders.Core\SpaceInvaders.Core.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Firebelley.GodotUtilities" Version="6.1.1"/>
+        <PackageReference Include="Jab" Version="0.12.0"/>
+    </ItemGroup>
 </Project>

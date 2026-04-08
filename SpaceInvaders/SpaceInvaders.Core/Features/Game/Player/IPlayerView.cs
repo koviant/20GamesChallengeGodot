@@ -5,13 +5,12 @@ namespace SpaceInvaders.Core.Features.Player;
 
 public interface IPlayerView : IView
 {
-	event Action? Hit;
-	event Action? DeathAnimationFinished;
-	
-	IPlayerControllerComponent ControllerComponent { get; }
-	
-	Vector2 Speed { get; set; }
-    
+    IPlayerControllerComponent ControllerComponent { get; }
+
+    Vector2 Speed { get; set; }
+    event Action? Hit;
+    event Action? DeathAnimationFinished;
+
     void PlayHeartLostAnimation();
     void PlayHeartBeatingAnimation();
     void PlayNoneHeartsLeftAnimation();

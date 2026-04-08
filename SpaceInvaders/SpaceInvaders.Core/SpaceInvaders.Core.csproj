@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Jab" Version="0.12.0" />
+        <PackageReference Include="Jab" Version="0.12.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Features\" />
+        <Folder Include="Features\"/>
     </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ public abstract class ControllerBase<TView> where TView : IView
     {
         View = view;
     }
-    
+
     public virtual void OnStart()
     {
     }

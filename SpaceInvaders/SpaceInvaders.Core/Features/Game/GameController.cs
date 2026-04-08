@@ -7,12 +7,12 @@ namespace SpaceInvaders.Core.Features.Game;
 
 public class GameController : ControllerBase<IGameView>
 {
+    private readonly GlobalEventBus _eventBus;
     private readonly PlayerController _playerController;
     private readonly ProjectileController _projectileController;
-    private readonly GlobalEventBus _eventBus;
 
     public GameController(
-        PlayerController playerController, 
+        PlayerController playerController,
         ProjectileController projectileController,
         GlobalEventBus eventBus)
     {
@@ -26,9 +26,9 @@ public class GameController : ControllerBase<IGameView>
     {
         _playerController.SetView(View.Player);
         _projectileController.SetView(View.ProjectileView);
-        
+
         _eventBus.ShotPressed += ShotHandler;
-        
+
         _playerController.OnStart();
         _projectileController.OnStart();
     }
@@ -36,7 +36,7 @@ public class GameController : ControllerBase<IGameView>
     public override void OnStop()
     {
         _eventBus.ShotPressed -= ShotHandler;
-        
+
         _playerController.OnStop();
         _projectileController.OnStop();
     }

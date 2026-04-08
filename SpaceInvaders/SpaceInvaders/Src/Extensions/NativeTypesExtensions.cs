@@ -1,19 +1,31 @@
+using System.Drawing;
+using System.Numerics;
+
 namespace SpaceInvaders.Extensions;
 
 public static class VectorExtensionMethods
 {
-    extension(System.Numerics.Vector2 v)
+    extension(Vector2 v)
     {
-        public Godot.Vector2 ToGodotVector() => new(v.X, v.Y);
+        public Godot.Vector2 ToGodotVector()
+        {
+            return new Godot.Vector2(v.X, v.Y);
+        }
     }
 
-    extension(System.Drawing.Color c)
+    extension(Color c)
     {
-        public Godot.Color ToGodotColor() => new(c.R, c.G, c.B, c.A);
+        public Godot.Color ToGodotColor()
+        {
+            return new Godot.Color(c.R, c.G, c.B, c.A);
+        }
     }
 
     extension(Godot.Color c)
     {
-        public System.Drawing.Color ToNativeColor() => System.Drawing.Color.FromArgb(c.A8, c.R8, c.G8, c.B8);
+        public Color ToNativeColor()
+        {
+            return Color.FromArgb(c.A8, c.R8, c.G8, c.B8);
+        }
     }
 }

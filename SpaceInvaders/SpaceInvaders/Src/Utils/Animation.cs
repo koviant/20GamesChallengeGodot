@@ -42,12 +42,18 @@ public static class Animation
 
         void ShowAll()
         {
-            foreach (var s in sprites) s.Show();
+            foreach (var s in sprites)
+            {
+                s.Show();
+            }
         }
 
         void HideAll()
         {
-            foreach (var s in sprites) s.Hide();
+            foreach (var s in sprites)
+            {
+                s.Hide();
+            }
         }
     }
 }

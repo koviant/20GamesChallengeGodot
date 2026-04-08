@@ -1,13 +1,13 @@
 <Solution>
-  <Configurations>
-    <BuildType Name="Debug" />
-    <BuildType Name="ExportDebug" />
-    <BuildType Name="ExportRelease" />
-  </Configurations>
-  <Project Path="SpaceInvaders\SpaceInvaders.csproj">
-    <BuildType Project="Debug" />
-  </Project>
-  <Project Path="SpaceInvaders.Core/SpaceInvaders.Core.csproj">
-    <BuildType Project="Debug" />
-  </Project>
+    <Configurations>
+        <BuildType Name="Debug"/>
+        <BuildType Name="ExportDebug"/>
+        <BuildType Name="ExportRelease"/>
+    </Configurations>
+    <Project Path="SpaceInvaders\SpaceInvaders.csproj">
+        <BuildType Project="Debug"/>
+    </Project>
+    <Project Path="SpaceInvaders.Core/SpaceInvaders.Core.csproj">
+        <BuildType Project="Debug"/>
+    </Project>
 </Solution>

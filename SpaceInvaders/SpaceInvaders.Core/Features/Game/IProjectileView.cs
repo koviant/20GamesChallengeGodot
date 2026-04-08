@@ -6,10 +6,9 @@ namespace SpaceInvaders.Core.Features.Game;
 
 public interface IProjectileView : IView
 {
-    event Action? Hit;
-    event Action? OutOfBounds;
-    
     Color Color { get; set; }
     Vector2 Speed { get; set; }
-    ProjectileState State { get; set; } 
+    ProjectileState State { get; set; }
+    event Action? Hit;
+    event Action? OutOfBounds;
 }

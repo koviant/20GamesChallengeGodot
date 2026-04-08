@@ -8,23 +8,23 @@ public class PlayerController : ControllerBase<IPlayerView>
 {
     private readonly GlobalEventBus _eventBus;
     private readonly HealthComponent _healthComponent;
-    
-	private readonly Vector2 _speed = new(800, 0);
 
-    public int MaxLifeCount { get; set; } = 3;
-    
+    private readonly Vector2 _speed = new(800, 0);
+
     public PlayerController(GlobalEventBus eventBus)
     {
         _eventBus = eventBus;
-        _healthComponent = new();
+        _healthComponent = new HealthComponent();
     }
-    
+
+    public int MaxLifeCount { get; set; } = 3;
+
     public override void OnStart()
     {
         View.ControllerComponent.Initialize(_eventBus);
-        
+
         _eventBus.MovementPressed += MovementHandler;
-        
+
         _healthComponent.OnLifeLost += OnHealthComponentOnOnLifeLost;
         _healthComponent.OnLastLifeLeft += OnHealthComponentOnOnLastLifeLeft;
         _healthComponent.OnDied += OnHealthComponentOnOnDied;
@@ -63,20 +63,20 @@ public class PlayerController : ControllerBase<IPlayerView>
             Movement.None => 0,
             Movement.Left => -1,
             Movement.Right => 1,
-            _ => throw new ArgumentOutOfRangeException(nameof(movement), movement, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(movement), movement, null),
         };
-        
+
         View.Speed = _speed * multiplier;
     }
 
     public override void OnStop()
     {
         _eventBus.MovementPressed -= MovementHandler;
-        
+
         _healthComponent.OnLifeLost -= OnHealthComponentOnOnLifeLost;
         _healthComponent.OnLastLifeLeft -= OnHealthComponentOnOnLastLifeLeft;
         _healthComponent.OnDied -= OnHealthComponentOnOnDied;
-        
+
         View.Hit -= _healthComponent.DecreaseLifeCount;
         View.DeathAnimationFinished -= Reset;
     }

@@ -8,9 +8,8 @@ namespace SpaceInvaders.Scripts.Components;
 [GlobalClass]
 public partial class AnimationComponent : Node
 {
-    private Dictionary<string, Func<Tween>> _animations = new();
-
     private readonly Dictionary<string, WeakReference<Tween>> _runningAnimations = new();
+    private Dictionary<string, Func<Tween>> _animations = new();
 
     public void Setup(Dictionary<string, Func<Tween>> animations)
     {
@@ -32,8 +31,8 @@ public partial class AnimationComponent : Node
     {
         AssertValidKey(key);
 
-        if (_runningAnimations.TryGetValue(key, out var animation) && 
-            animation.TryGetTarget(out var tween) && 
+        if (_runningAnimations.TryGetValue(key, out var animation) &&
+            animation.TryGetTarget(out var tween) &&
             tween.IsRunning())
         {
             return tween;

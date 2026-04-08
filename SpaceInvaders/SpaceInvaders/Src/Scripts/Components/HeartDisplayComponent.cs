@@ -9,13 +9,15 @@ namespace SpaceInvaders.Scripts.Components;
 [GlobalClass]
 public partial class HeartDisplayComponent : Node
 {
+    private const int HeartOffset = 8;
     private static readonly Texture2D HeartEmpty = Load<Texture2D>("uid://bpjx44406nhxe");
     private static readonly Texture2D HeartFull = Load<Texture2D>("uid://c3xjcawoynrv5");
 
-    private const int HeartOffset = 8;
+    private readonly List<Sprite2D> _emptyHearts = [];
+    private readonly List<Sprite2D> _fullHearts = [];
+    private int _lifeCount;
 
     private int _maxLifeCount;
-    private int _lifeCount;
 
     public CanvasLayer HudLayer { get; set; }
     public Vector2 HeartStartPosition { get; set; }
@@ -23,16 +25,13 @@ public partial class HeartDisplayComponent : Node
     public IReadOnlyList<Sprite2D> EmptyHearts => _emptyHearts;
     public Sprite2D LastFullHeart => _fullHearts.Last(s => s.Scale.X > 0.001);
     public Sprite2D FirstFullHeart => _fullHearts[0];
-    
-    private readonly List<Sprite2D> _emptyHearts = [];
-    private readonly List<Sprite2D> _fullHearts = [];
 
     private bool SpritesNotCreated => _fullHearts.Count == 0;
-    
+
     public void Reset(int maxLifeCount)
     {
         Debug.Assert(maxLifeCount > 0);
-        
+
         _lifeCount = maxLifeCount;
 
         if (_maxLifeCount != maxLifeCount || SpritesNotCreated)
@@ -51,7 +50,7 @@ public partial class HeartDisplayComponent : Node
             heart.Scale = Vector2.One;
         }
     }
-    
+
     private void CreateSprites()
     {
         QueueFreeHearts();
@@ -61,7 +60,7 @@ public partial class HeartDisplayComponent : Node
 
         var currentPosition = HeartStartPosition;
 
-        for (int i = 0; i < _maxLifeCount; i++)
+        for (var i = 0; i < _maxLifeCount; i++)
         {
             var fullHeart = CreateSprite(HeartFull, currentPosition);
             var emptyHeart = CreateSprite(HeartEmpty, currentPosition);
@@ -94,7 +93,7 @@ public partial class HeartDisplayComponent : Node
         var heart = new Sprite2D
         {
             Texture = texture,
-            Position = pos
+            Position = pos,
         };
 
         return heart;

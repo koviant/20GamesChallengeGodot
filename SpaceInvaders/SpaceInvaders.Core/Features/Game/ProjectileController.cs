@@ -26,7 +26,7 @@ public class ProjectileController : ControllerBase<IProjectileView>
         View.Speed = Speed;
         View.State = State;
         View.Color = Color;
-        
+
         View.Hit += Reset;
         View.OutOfBounds += Reset;
     }

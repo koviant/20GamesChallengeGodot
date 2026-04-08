@@ -10,10 +10,22 @@ namespace SpaceInvaders.Scripts.Scenes;
 [Scene]
 public partial class Projectile : Area2D, IProjectileView
 {
-    [Node] private MeshInstance2D _meshInstance;
     [Node] private CollisionShape2D _collisionShape2D;
+    [Node] private MeshInstance2D _meshInstance;
 
     public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
+
+    public event Action? Hit;
+    public event Action? OutOfBounds;
+
+    public Color Color
+    {
+        get => _meshInstance.Modulate.ToNativeColor();
+        set => _meshInstance.Modulate = value.ToGodotColor();
+    }
+
+    public System.Numerics.Vector2 Speed { get; set; }
+    public ProjectileState State { get; set; }
 
     public override void _Ready()
     {
@@ -40,16 +52,4 @@ public partial class Projectile : Area2D, IProjectileView
             OutOfBounds?.Invoke();
         }
     }
-
-    public event Action? Hit;
-    public event Action? OutOfBounds;
-
-    public Color Color
-    {
-        get => _meshInstance.Modulate.ToNativeColor();
-        set => _meshInstance.Modulate = value.ToGodotColor();
-    }
-
-    public System.Numerics.Vector2 Speed { get; set; }
-    public ProjectileState State { get; set; }
 }

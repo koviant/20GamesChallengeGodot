@@ -12,7 +12,12 @@ public partial class PlayerControllerComponent : Node, IPlayerControllerComponen
     private GlobalEventBus? _eventBus;
 
     private GlobalEventBus EventBus => _eventBus ?? throw new InvalidOperationException("EventBus not set");
-    
+
+    public void Initialize(GlobalEventBus eventBus)
+    {
+        _eventBus = eventBus;
+    }
+
     public override void _Input(InputEvent e)
     {
         if (e is InputEventMouseButton { ButtonIndex: MouseButton.Right, Pressed: true })
@@ -21,11 +26,6 @@ public partial class PlayerControllerComponent : Node, IPlayerControllerComponen
         }
     }
 
-    public void Initialize(GlobalEventBus eventBus)
-    {
-        _eventBus = eventBus;
-    }
-    
     public override void _PhysicsProcess(double delta)
     {
         var axis = Input.GetAxis("ui_left", "ui_right");
@@ -35,7 +35,7 @@ public partial class PlayerControllerComponent : Node, IPlayerControllerComponen
             > 0 => Movement.Right,
             _ => Movement.None,
         };
-        
+
         EventBus.OnMovementPressed(direction);
     }
 }
