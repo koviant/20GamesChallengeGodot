@@ -9,7 +9,7 @@ namespace SpaceInvaders;
 
 public class Navigation : INavigation
 {
-    public void NavigateToMain()
+    public void NavigateToGame()
     {
         var scene = GD.Load<PackedScene>("res://Scenes/game.tscn").Instantiate<Game>();
         var controller = ServiceLocator.Instance.GetService<GameController>();

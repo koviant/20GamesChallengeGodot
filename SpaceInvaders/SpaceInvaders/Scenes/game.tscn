@@ -1,13 +1,38 @@
 [gd_scene format=3 uid="uid://dxm02q52wkhfp"]
 
-[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Scripts/Scenes/GameView.cs" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Scripts/Scenes/Game.cs" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://cv7b8ebbp10qx" path="res://Scenes/player.tscn" id="2_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://dqmo33dt5h3ow" path="res://Scenes/projectile.tscn" id="5_h4fw4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_wrm1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(1920, 64)
 
 [node name="Root" type="Node2D" unique_id=2034994352]
 script = ExtResource("1_qxrlw")
 
 [node name="Player" parent="." unique_id=594952053 instance=ExtResource("2_wrm1d")]
-SkipDeathAnimation = null
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=750371727]
 unique_name_in_owner = true
+
+[node name="Area2D" type="RigidBody2D" parent="." unique_id=1837001152]
+position = Vector2(856, 136)
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Area2D" unique_id=1391694452]
+position = Vector2(102.16626, 44.16678)
+scale = Vector2(1920, 64)
+mesh = SubResource("QuadMesh_wrm1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1045397597]
+position = Vector2(102.16632, 44.16678)
+shape = SubResource("RectangleShape2D_qxrlw")
+debug_color = Color(0.9514205, 3.080368e-06, 0.56617075, 0.41960785)
+
+[node name="PlayerProjectile" parent="." unique_id=94937809 instance=ExtResource("5_h4fw4")]
+unique_name_in_owner = true
+collision_mask = 4

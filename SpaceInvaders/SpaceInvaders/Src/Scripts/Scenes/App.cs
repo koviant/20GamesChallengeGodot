@@ -15,6 +15,6 @@ public partial class App : Node2D
 	
 	public override void _Ready()
 	{
-		ServiceLocator.Instance.GetService<INavigation>().NavigateToMain();
+		ServiceLocator.Instance.GetService<INavigation>().NavigateToGame();
 	}
 }

@@ -3,7 +3,8 @@ using SpaceInvaders.Core.Utils;
 
 namespace SpaceInvaders.Core.Features.Game;
 
-public interface IMainView : IView
+public interface IGameView : IView
 { 
     IPlayerView Player { get; }
+    IProjectileView ProjectileView { get; }
 }

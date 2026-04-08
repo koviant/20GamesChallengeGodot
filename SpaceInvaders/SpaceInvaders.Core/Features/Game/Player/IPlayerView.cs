@@ -8,8 +8,9 @@ public interface IPlayerView : IView
 	event Action? Hit;
 	event Action? DeathAnimationFinished;
 	
+	IPlayerControllerComponent ControllerComponent { get; }
+	
 	Vector2 Speed { get; set; }
-	IHorizontalMovementComponent HorizontalMovementComponent { get; }
     
     void PlayHeartLostAnimation();
     void PlayHeartBeatingAnimation();

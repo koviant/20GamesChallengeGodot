@@ -25,6 +25,13 @@ window/size/viewport_height=1080
 project/assembly_name="SpaceInvaders"
 project/solution_directory="../"
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="PlayerProjectile"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="EnemyProjectile"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

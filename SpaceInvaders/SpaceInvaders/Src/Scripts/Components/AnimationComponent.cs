@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Godot;
-using SpaceInvaders.Extensions;
 
 namespace SpaceInvaders.Scripts.Components;
 

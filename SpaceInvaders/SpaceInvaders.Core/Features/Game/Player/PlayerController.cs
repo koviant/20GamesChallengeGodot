@@ -1,27 +1,30 @@
 using System.Numerics;
+using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Core.Utils;
 
 namespace SpaceInvaders.Core.Features.Player;
 
 public class PlayerController : ControllerBase<IPlayerView>
 {
+    private readonly GlobalEventBus _eventBus;
     private readonly HealthComponent _healthComponent;
-    private IHorizontalMovementComponent _movementComponent;
     
 	private readonly Vector2 _speed = new(800, 0);
 
     public int MaxLifeCount { get; set; } = 3;
     
-    public PlayerController()
+    public PlayerController(GlobalEventBus eventBus)
     {
+        _eventBus = eventBus;
         _healthComponent = new();
     }
     
     public override void OnStart()
     {
-        _movementComponent = View.HorizontalMovementComponent;
-        _movementComponent.OnMovement += OnMovementHandler;
-
+        View.ControllerComponent.Initialize(_eventBus);
+        
+        _eventBus.MovementPressed += MovementHandler;
+        
         _healthComponent.OnLifeLost += OnHealthComponentOnOnLifeLost;
         _healthComponent.OnLastLifeLeft += OnHealthComponentOnOnLastLifeLeft;
         _healthComponent.OnDied += OnHealthComponentOnOnDied;
@@ -53,7 +56,7 @@ public class PlayerController : ControllerBase<IPlayerView>
         View.PlayHeartLostAnimation();
     }
 
-    private void OnMovementHandler(Movement movement)
+    private void MovementHandler(Movement movement)
     {
         var multiplier = movement switch
         {
@@ -68,7 +71,7 @@ public class PlayerController : ControllerBase<IPlayerView>
 
     public override void OnStop()
     {
-        _movementComponent.OnMovement -= OnMovementHandler;
+        _eventBus.MovementPressed -= MovementHandler;
         
         _healthComponent.OnLifeLost -= OnHealthComponentOnOnLifeLost;
         _healthComponent.OnLastLifeLeft -= OnHealthComponentOnOnLastLifeLeft;

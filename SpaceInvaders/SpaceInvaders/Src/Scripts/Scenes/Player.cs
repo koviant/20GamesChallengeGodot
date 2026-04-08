@@ -7,6 +7,7 @@ using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Extensions;
 using SpaceInvaders.Scripts.Components;
 using Animation = SpaceInvaders.Utils.Animation;
+using Vector2 = Godot.Vector2;
 
 namespace SpaceInvaders.Scripts.Scenes;
 
@@ -17,7 +18,7 @@ public partial class Player : RigidBody2D, IPlayerView
 	
 	[Node] private AnimationComponent _animationComponent;
 	[Node] private HeartDisplayComponent _heartDisplayComponent;
-	[Node] private HorizontalMovementComponent _horizontalMovementComponent;
+	[Node] private PlayerControllerComponent _controllerComponent;
 	[Node] private CollisionShape2D _collisionShape2D;
 	
 	private const string AnimationHeartLost = nameof(AnimationHeartLost);
@@ -31,13 +32,9 @@ public partial class Player : RigidBody2D, IPlayerView
 	public System.Numerics.Vector2 Speed { get; set; }
 	public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
 
-	public HeartDisplayComponent HeartDisplayComponent
-	{
-		get => _heartDisplayComponent;
-		set => _heartDisplayComponent = value;
-	}
-	
-	public IHorizontalMovementComponent HorizontalMovementComponent => _horizontalMovementComponent;
+	public HeartDisplayComponent HeartDisplayComponent => _heartDisplayComponent;
+
+	public IPlayerControllerComponent ControllerComponent => _controllerComponent;
 
 	public override void _Ready()
 	{
@@ -55,7 +52,7 @@ public partial class Player : RigidBody2D, IPlayerView
 
 	public override void _Input(InputEvent e)
 	{
-		if (e is InputEventMouseButton { Pressed: true })
+		if (e is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
 		{
 			Hit?.Invoke();
 		}
@@ -63,13 +60,9 @@ public partial class Player : RigidBody2D, IPlayerView
 
 	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
 	{
-		var converted = Speed.ToGodotVector();
-		if (state.LinearVelocity != converted)
-		{
-			state.LinearVelocity = converted;
-		}
+		state.LinearVelocity = Speed.ToGodotVector();
 	}
-	
+
 	public void PlayHeartLostAnimation()
 	{
 		_animationComponent.PlayAndMonitor(AnimationHeartLost);

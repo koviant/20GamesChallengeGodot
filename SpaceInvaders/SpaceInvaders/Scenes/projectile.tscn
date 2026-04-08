@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dqmo33dt5h3ow"]
+
+[ext_resource type="Script" uid="uid://b52x1n8m74nkv" path="res://Src/Scripts/Scenes/Projectile.cs" id="1_f8cdk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_f8cdk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr2qt"]
+size = Vector2(6, 20)
+
+[node name="Projectile" type="Area2D" unique_id=94937809]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_f8cdk")
+
+[node name="MeshInstance" type="MeshInstance2D" parent="." unique_id=1942941904]
+position = Vector2(2.9999998, 10)
+scale = Vector2(5.9999995, 20)
+mesh = SubResource("QuadMesh_f8cdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=817584065]
+position = Vector2(3, 10)
+shape = SubResource("RectangleShape2D_yr2qt")
