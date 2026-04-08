@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 
-namespace SpaceInvaders.Scripts.Components;
+namespace SpaceInvaders.Components;
 
 [GlobalClass]
 public partial class AnimationComponent : Node

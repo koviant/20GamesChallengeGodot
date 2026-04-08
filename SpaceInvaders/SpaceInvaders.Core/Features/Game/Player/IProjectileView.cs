@@ -2,7 +2,7 @@ using System.Drawing;
 using System.Numerics;
 using SpaceInvaders.Core.Utils;
 
-namespace SpaceInvaders.Core.Features.Game;
+namespace SpaceInvaders.Core.Features.Game.Player;
 
 public interface IProjectileView : IView
 {

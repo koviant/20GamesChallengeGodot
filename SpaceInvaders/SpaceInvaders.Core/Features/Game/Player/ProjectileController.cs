@@ -1,9 +1,9 @@
 using System.Drawing;
 using System.Numerics;
 using SpaceInvaders.Core.Utils;
-using static SpaceInvaders.Core.Features.Game.ProjectileState;
+using static SpaceInvaders.Core.Features.Game.Player.ProjectileState;
 
-namespace SpaceInvaders.Core.Features.Game;
+namespace SpaceInvaders.Core.Features.Game.Player;
 
 public class ProjectileController : ControllerBase<IProjectileView>
 {

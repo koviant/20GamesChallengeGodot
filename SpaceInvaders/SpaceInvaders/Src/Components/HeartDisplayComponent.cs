@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 using static Godot.GD;
 
-namespace SpaceInvaders.Scripts.Components;
+namespace SpaceInvaders.Components;
 
 [GlobalClass]
 public partial class HeartDisplayComponent : Node

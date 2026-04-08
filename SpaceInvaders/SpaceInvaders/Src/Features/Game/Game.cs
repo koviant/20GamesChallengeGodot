@@ -1,10 +1,10 @@
 using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Game;
-using SpaceInvaders.Core.Features.Player;
+using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Extensions;
 
-namespace SpaceInvaders.Scripts.Scenes;
+namespace SpaceInvaders.Features.Game;
 
 [Scene]
 public partial class Game : Node2D, IGameView

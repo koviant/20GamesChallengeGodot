@@ -1,4 +1,4 @@
-using SpaceInvaders.Core.Features.Player;
+using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Core.Utils;
 
 namespace SpaceInvaders.Core.Features.Game;

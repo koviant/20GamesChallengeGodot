@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dxm02q52wkhfp"]
 
-[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Scripts/Scenes/Game.cs" id="1_qxrlw"]
-[ext_resource type="PackedScene" uid="uid://cv7b8ebbp10qx" path="res://Scenes/player.tscn" id="2_wrm1d"]
-[ext_resource type="PackedScene" uid="uid://dqmo33dt5h3ow" path="res://Scenes/projectile.tscn" id="5_h4fw4"]
+[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Features/Game/Game.cs" id="1_nw1px"]
+[ext_resource type="PackedScene" uid="uid://cv7b8ebbp10qx" path="res://Src/Features/Game/player.tscn" id="4_hs6uv"]
+[ext_resource type="PackedScene" uid="uid://dqmo33dt5h3ow" path="res://Src/Features/Game/projectile.tscn" id="5_gdor5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_wrm1d"]
 
@@ -10,9 +10,9 @@
 size = Vector2(1920, 64)
 
 [node name="Root" type="Node2D" unique_id=2034994352]
-script = ExtResource("1_qxrlw")
+script = ExtResource("1_nw1px")
 
-[node name="Player" parent="." unique_id=594952053 instance=ExtResource("2_wrm1d")]
+[node name="Player" parent="." unique_id=594952053 instance=ExtResource("4_hs6uv")]
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=750371727]
 unique_name_in_owner = true
@@ -33,6 +33,6 @@ position = Vector2(102.16632, 44.16678)
 shape = SubResource("RectangleShape2D_qxrlw")
 debug_color = Color(0.9514205, 3.080368e-06, 0.56617075, 0.41960785)
 
-[node name="PlayerProjectile" parent="." unique_id=94937809 instance=ExtResource("5_h4fw4")]
+[node name="PlayerProjectile" parent="." unique_id=94937809 instance=ExtResource("5_gdor5")]
 unique_name_in_owner = true
 collision_mask = 4

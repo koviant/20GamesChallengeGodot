@@ -2,7 +2,7 @@ using System.Numerics;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Core.Utils;
 
-namespace SpaceInvaders.Core.Features.Player;
+namespace SpaceInvaders.Core.Features.Game.Player;
 
 public class PlayerController : ControllerBase<IPlayerView>
 {

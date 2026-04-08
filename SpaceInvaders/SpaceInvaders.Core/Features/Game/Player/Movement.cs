@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Core.Features.Player;
+namespace SpaceInvaders.Core.Features.Game.Player;
 
 public enum Movement
 {

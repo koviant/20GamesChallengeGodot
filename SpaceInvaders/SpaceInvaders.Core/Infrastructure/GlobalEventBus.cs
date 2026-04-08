@@ -1,4 +1,4 @@
-using SpaceInvaders.Core.Features.Player;
+using SpaceInvaders.Core.Features.Game.Player;
 
 namespace SpaceInvaders.Core.Infrastructure;
 

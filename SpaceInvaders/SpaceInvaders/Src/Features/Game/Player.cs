@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using GodotUtilities;
-using SpaceInvaders.Core.Features.Player;
+using SpaceInvaders.Components;
+using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Extensions;
-using SpaceInvaders.Scripts.Components;
 using Animation = SpaceInvaders.Utils.Animation;
 using Vector2 = Godot.Vector2;
 
-namespace SpaceInvaders.Scripts.Scenes;
+namespace SpaceInvaders.Features.Game;
 
 [Scene]
 public partial class Player : RigidBody2D, IPlayerView

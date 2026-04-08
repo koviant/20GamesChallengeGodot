@@ -1,11 +1,11 @@
 using System;
 using Godot;
 using GodotUtilities;
-using SpaceInvaders.Core.Features.Game;
+using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Extensions;
 using Color = System.Drawing.Color;
 
-namespace SpaceInvaders.Scripts.Scenes;
+namespace SpaceInvaders.Features.Game;
 
 [Scene]
 public partial class Projectile : Area2D, IProjectileView
@@ -33,14 +33,12 @@ public partial class Projectile : Area2D, IProjectileView
 
         AreaEntered += obj =>
         {
-            obj.QueueFree();
-            Hit?.Invoke();
+            OnHit();
         };
 
         BodyShapeEntered += (_, obj, _, _) =>
         {
-            obj.QueueFree();
-            Hit?.Invoke();
+            OnHit();
         };
     }
 
@@ -51,5 +49,10 @@ public partial class Projectile : Area2D, IProjectileView
         {
             OutOfBounds?.Invoke();
         }
+    }
+    
+    private void OnHit()
+    {
+        Hit?.Invoke();
     }
 }

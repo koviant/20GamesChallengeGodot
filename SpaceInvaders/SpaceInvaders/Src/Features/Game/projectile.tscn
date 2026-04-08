@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqmo33dt5h3ow"]
 
-[ext_resource type="Script" uid="uid://b52x1n8m74nkv" path="res://Src/Scripts/Scenes/Projectile.cs" id="1_f8cdk"]
+[ext_resource type="Script" uid="uid://b52x1n8m74nkv" path="res://Src/Features/Game/Projectile.cs" id="1_f8cdk"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_f8cdk"]
 

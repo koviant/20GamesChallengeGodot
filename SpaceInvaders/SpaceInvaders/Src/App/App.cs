@@ -1,7 +1,8 @@
 using System.Diagnostics;
 using Godot;
-using SpaceInvaders;
 using SpaceInvaders.Core.Infrastructure;
+
+namespace SpaceInvaders.App;
 
 public partial class App : Node2D
 {
