@@ -3,7 +3,7 @@ using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Core.Infrastructure;
 
-namespace SpaceInvaders;
+namespace SpaceInvaders.Infrastructure;
 
 [ServiceProvider]
 [Transient<PlayerController>]

@@ -5,7 +5,7 @@ using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Core.Utils;
 using Game = SpaceInvaders.Features.Game.Game;
 
-namespace SpaceInvaders;
+namespace SpaceInvaders.Infrastructure;
 
 public class Navigation : INavigation
 {
@@ -15,7 +15,7 @@ public class Navigation : INavigation
         var controller = ServiceLocator.Instance.GetService<GameController>();
         Bind(controller, scene);
 
-        App.App.Instance.GetTree().Root.AddChildDeferred(scene);
+        App.Instance.AddChildDeferred(scene);
     }
 
     private void Bind<TView, TViewImpl>(ControllerBase<TView> controller, TViewImpl view)

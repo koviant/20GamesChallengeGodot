@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Godot;
 using SpaceInvaders.Core.Infrastructure;
 
-namespace SpaceInvaders.App;
+namespace SpaceInvaders.Infrastructure;
 
 public partial class App : Node2D
 {

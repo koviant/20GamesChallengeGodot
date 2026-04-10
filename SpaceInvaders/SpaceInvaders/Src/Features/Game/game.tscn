@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxm02q52wkhfp"]
 
 [ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Features/Game/Game.cs" id="1_nw1px"]
+[ext_resource type="PackedScene" uid="uid://caube6k58h084" path="res://Src/Features/Enemy/enemy_grid.tscn" id="4_6vici"]
 [ext_resource type="PackedScene" uid="uid://cv7b8ebbp10qx" path="res://Src/Features/Game/player.tscn" id="4_hs6uv"]
 [ext_resource type="PackedScene" uid="uid://dqmo33dt5h3ow" path="res://Src/Features/Game/projectile.tscn" id="5_gdor5"]
 
@@ -17,22 +18,25 @@ script = ExtResource("1_nw1px")
 [node name="Hud" type="CanvasLayer" parent="." unique_id=750371727]
 unique_name_in_owner = true
 
-[node name="Area2D" type="RigidBody2D" parent="." unique_id=1837001152]
+[node name="PlayerProjectile" parent="." unique_id=94937809 instance=ExtResource("5_gdor5")]
+unique_name_in_owner = true
+collision_mask = 4
+
+[node name="EnemyGrid" parent="." unique_id=582466071 instance=ExtResource("4_6vici")]
+
+[node name="TestHitArea" type="RigidBody2D" parent="." unique_id=1837001152]
+visible = false
 position = Vector2(856, 136)
-collision_layer = 4
+collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Area2D" unique_id=1391694452]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="TestHitArea" unique_id=1391694452]
 position = Vector2(102.16626, 44.16678)
 scale = Vector2(1920, 64)
 mesh = SubResource("QuadMesh_wrm1d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1045397597]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestHitArea" unique_id=1045397597]
 position = Vector2(102.16632, 44.16678)
 shape = SubResource("RectangleShape2D_qxrlw")
 debug_color = Color(0.9514205, 3.080368e-06, 0.56617075, 0.41960785)
-
-[node name="PlayerProjectile" parent="." unique_id=94937809 instance=ExtResource("5_gdor5")]
-unique_name_in_owner = true
-collision_mask = 4
