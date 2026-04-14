@@ -4,6 +4,9 @@
         <BuildType Name="ExportDebug"/>
         <BuildType Name="ExportRelease"/>
     </Configurations>
+    <Project Path="SpaceInvaders.Framework/SpaceInvaders.Framework.csproj">
+        <BuildType Project="Debug"/>
+    </Project>
     <Project Path="SpaceInvaders\SpaceInvaders.csproj">
         <BuildType Project="Debug"/>
     </Project>

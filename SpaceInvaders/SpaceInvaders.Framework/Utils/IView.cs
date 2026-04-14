@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Core.Utils;
+namespace SpaceInvaders.Framework.Utils;
 
 public interface IView
 {

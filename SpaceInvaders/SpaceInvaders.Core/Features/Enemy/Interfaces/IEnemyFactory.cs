@@ -1,6 +1,6 @@
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Controllers;
 
-namespace SpaceInvaders.Core.Features.Enemy;
+namespace SpaceInvaders.Core.Features.Enemy.Interfaces;
 
 public interface IEnemyFactory
 {

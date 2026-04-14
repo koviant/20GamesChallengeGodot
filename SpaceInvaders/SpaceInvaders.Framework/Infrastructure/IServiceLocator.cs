@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Core.Infrastructure;
+namespace SpaceInvaders.Framework.Infrastructure;
 
 public interface IServiceLocator
 {

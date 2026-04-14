@@ -1,10 +1,11 @@
 using Godot;
 using GodotUtilities;
-using SpaceInvaders.Core.Features.Enemy;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Extensions;
 using SpaceInvaders.Features.Enemy;
+using SpaceInvaders.Features.Player;
 using SpaceInvaders.StartableNodes;
 
 namespace SpaceInvaders.Features.Game;
@@ -14,7 +15,7 @@ public partial class Game : StartableNode2D, IGameView
 {
     [Node] private EnemyGrid _enemyGrid;
     [Node] private CanvasLayer _hud;
-    [Node] private Player _player;
+    [Node] private Player.Player _player;
     [Node] private Projectile _playerProjectile;
     [Node] private Marker2D _projectileResetMarker;
 

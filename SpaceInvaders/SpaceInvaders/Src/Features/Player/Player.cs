@@ -10,7 +10,7 @@ using SpaceInvaders.StartableNodes;
 using Animation = SpaceInvaders.Utils.Animation;
 using Vector2 = Godot.Vector2;
 
-namespace SpaceInvaders.Features.Game;
+namespace SpaceInvaders.Features.Player;
 
 [Scene]
 public partial class Player : StartableRigidBody2D, IPlayerView

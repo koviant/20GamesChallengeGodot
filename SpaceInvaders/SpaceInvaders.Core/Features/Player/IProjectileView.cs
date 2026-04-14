@@ -1,6 +1,6 @@
 using System.Drawing;
 using System.Numerics;
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Utils;
 
 namespace SpaceInvaders.Core.Features.Game.Player;
 

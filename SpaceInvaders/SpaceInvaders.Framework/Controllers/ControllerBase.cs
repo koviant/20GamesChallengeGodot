@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Core.Utils;
+namespace SpaceInvaders.Framework.Controllers;
 
 public abstract class ControllerBase
 {

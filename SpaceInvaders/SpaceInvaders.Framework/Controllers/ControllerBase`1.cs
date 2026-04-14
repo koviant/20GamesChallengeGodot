@@ -1,4 +1,6 @@
-namespace SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Utils;
+
+namespace SpaceInvaders.Framework.Controllers;
 
 public abstract class ControllerBase<TView> : ControllerBase where TView : IView
 {

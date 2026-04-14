@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Core.Features.Enemy;
+namespace SpaceInvaders.Core.Features.Enemy.Interfaces;
 
 public interface IEnemyDataReader
 {

@@ -2,7 +2,8 @@ using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Infrastructure;
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Controllers;
+using SpaceInvaders.Framework.Utils;
 using Game = SpaceInvaders.Features.Game.Game;
 
 namespace SpaceInvaders.Infrastructure;

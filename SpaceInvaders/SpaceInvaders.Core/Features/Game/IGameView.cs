@@ -1,6 +1,6 @@
-using SpaceInvaders.Core.Features.Enemy;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Core.Features.Game.Player;
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Utils;
 
 namespace SpaceInvaders.Core.Features.Game;
 

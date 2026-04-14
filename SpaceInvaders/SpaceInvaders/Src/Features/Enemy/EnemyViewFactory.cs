@@ -1,5 +1,5 @@
 using System.Numerics;
-using SpaceInvaders.Core.Features.Enemy;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
 
 namespace SpaceInvaders.Features.Enemy;
 

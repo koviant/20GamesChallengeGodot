@@ -1,6 +1,7 @@
 using System.Numerics;
-using SpaceInvaders.Core.Infrastructure;
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
+using SpaceInvaders.Framework.Controllers;
+using SpaceInvaders.Framework.Infrastructure;
 
 namespace SpaceInvaders.Core.Features.Enemy;
 
@@ -27,13 +28,13 @@ public class EnemyFactory(
                 var enemyController = serviceLocator.Get<EnemyController>();
                 enemyController.SetView(enemy);
                 parentController.AddChildController(enemyController);
-                
+
                 enemy.PlaceAt(GetPosition(gridData, row, col));
 
                 enemies.Add(enemy);
             }
         }
-        
+
         return enemies;
     }
 

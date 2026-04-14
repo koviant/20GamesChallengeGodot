@@ -3,12 +3,12 @@ using System.Diagnostics;
 using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Game.Player;
-using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Extensions;
+using SpaceInvaders.Framework.Utils;
 using Color = System.Drawing.Color;
 using StartableArea2D = SpaceInvaders.StartableNodes.StartableArea2D;
 
-namespace SpaceInvaders.Features.Game;
+namespace SpaceInvaders.Features.Player;
 
 [Scene]
 public partial class Projectile : StartableArea2D, IProjectileView

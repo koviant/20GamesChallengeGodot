@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Core.Features.Enemy;
+namespace SpaceInvaders.Framework.Grid;
 
 public interface IGridData<out TCell> where TCell : ICellData
 {

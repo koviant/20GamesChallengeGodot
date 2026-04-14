@@ -1,6 +1,6 @@
 using System.Drawing;
 using System.Numerics;
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Controllers;
 using static SpaceInvaders.Core.Features.Game.Player.ProjectileState;
 
 namespace SpaceInvaders.Core.Features.Game.Player;

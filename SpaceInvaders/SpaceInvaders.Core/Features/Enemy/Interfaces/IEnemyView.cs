@@ -1,8 +1,8 @@
 using System.Drawing;
 using System.Numerics;
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Framework.Utils;
 
-namespace SpaceInvaders.Core.Features.Enemy;
+namespace SpaceInvaders.Core.Features.Enemy.Interfaces;
 
 public interface IEnemyView : IView
 {

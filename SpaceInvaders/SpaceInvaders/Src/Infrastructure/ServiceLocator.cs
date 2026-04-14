@@ -1,9 +1,11 @@
 using Jab;
 using SpaceInvaders.Core.Features.Enemy;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Features.Enemy;
+using SpaceInvaders.Framework.Infrastructure;
 
 namespace SpaceInvaders.Infrastructure;
 

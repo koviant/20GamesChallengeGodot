@@ -3,7 +3,7 @@ using Godot;
 
 namespace SpaceInvaders.StartableNodes;
 
-public class StartHandler<TNode> where TNode: Node, IViewStart
+public class StartHandler<TNode> where TNode : Node, IViewStart
 {
     private readonly TNode _node;
     private bool _started;
@@ -13,14 +13,14 @@ public class StartHandler<TNode> where TNode: Node, IViewStart
         _node = node;
         _node.SetPhysicsProcess(false);
     }
-    
+
     public void Handle()
     {
         if (_started)
         {
             throw new InvalidOperationException("The node has already been started.");
         }
-        
+
         _started = true;
 
         _node.ViewStart();

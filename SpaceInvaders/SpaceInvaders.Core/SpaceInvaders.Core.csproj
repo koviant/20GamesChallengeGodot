@@ -14,4 +14,8 @@
         <Folder Include="Features\"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\SpaceInvaders.Framework\SpaceInvaders.Framework.csproj"/>
+    </ItemGroup>
+
 </Project>

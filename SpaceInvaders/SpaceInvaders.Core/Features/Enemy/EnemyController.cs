@@ -1,4 +1,5 @@
-using SpaceInvaders.Core.Utils;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
+using SpaceInvaders.Framework.Controllers;
 
 namespace SpaceInvaders.Core.Features.Enemy;
 

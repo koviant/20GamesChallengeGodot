@@ -1,6 +1,7 @@
 using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Enemy;
+using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Extensions;
 using StartableArea2D = SpaceInvaders.StartableNodes.StartableArea2D;
 
