@@ -31,7 +31,7 @@ public class GameController : ControllerBase<IGameView>
         _projectileController.Color = Color.Yellow;
     }
 
-    protected override void SetChildControllersView()
+    protected override void BeforeChildControllersStart()
     {
         _playerController.SetView(View.Player);
         _projectileController.SetView(View.ProjectileView);

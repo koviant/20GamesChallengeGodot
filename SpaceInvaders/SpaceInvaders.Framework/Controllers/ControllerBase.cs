@@ -5,12 +5,12 @@ namespace SpaceInvaders.Framework.Controllers;
 
 public abstract class ControllerBase
 {
-    private readonly List<ControllerBase> _controllers = new();
+    private readonly List<ControllerBase> _childControllers = new();
     private CompositeDisposable? _disposables;
     
     public void AddChildController(ControllerBase controller)
     {
-        _controllers.Add(controller);
+        _childControllers.Add(controller);
     }
 
     public void AddChildController(params ControllerBase[] controllers)
@@ -21,7 +21,7 @@ public abstract class ControllerBase
         }
     }
 
-    protected virtual void SetChildControllersView()
+    protected virtual void BeforeChildControllersStart()
     {
     }
 
@@ -33,9 +33,9 @@ public abstract class ControllerBase
 
     public virtual void Start()
     {
-        SetChildControllersView();
+        BeforeChildControllersStart();
 
-        foreach (var controller in _controllers)
+        foreach (var controller in _childControllers)
         {
             controller.Start();
         }
@@ -49,12 +49,12 @@ public abstract class ControllerBase
 
     public void Stop()
     {
-        foreach (var controller in _controllers)
+        foreach (var controller in _childControllers)
         {
             controller.Stop();
         }
 
-        _controllers.Clear();
+        _childControllers.Clear();
         _disposables?.Dispose();
 
         OnStop();
