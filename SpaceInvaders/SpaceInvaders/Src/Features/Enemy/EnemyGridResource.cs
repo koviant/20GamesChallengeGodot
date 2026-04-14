@@ -20,5 +20,5 @@ public partial class EnemyGridResource : Resource, IEnemyGridData<EnemyResource>
 
     [Export] public int ColumnCount { get; set; }
 
-    public EnemyResource this[int row, int column] => Items[row * RowCount + column];
+    public EnemyResource this[int row, int column] => Items[row * ColumnCount + column];
 }

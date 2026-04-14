@@ -1,3 +1,4 @@
+using SpaceInvaders.Core.Features.Enemy;
 using SpaceInvaders.Core.Features.Enemy.Interfaces;
 
 namespace SpaceInvaders.Features.Enemy;
@@ -10,7 +11,7 @@ public class EnemyResourceDataReader : IEnemyDataReader
         {
             CellWidth = 80,
             CellHeight = 40,
-            HSpacing = 30,
+            HSpacing = 40,
             VSpacing = 10,
             RowCount = 2,
             ColumnCount = 3,
@@ -20,7 +21,7 @@ public class EnemyResourceDataReader : IEnemyDataReader
                 new EnemyResource(),
                 new EnemyResource(),
                 new EnemyResource(),
-                new EnemyResource(),
+                new EnemyResource { Type = EnemyType.Empty },
                 new EnemyResource(),
             ],
         };
