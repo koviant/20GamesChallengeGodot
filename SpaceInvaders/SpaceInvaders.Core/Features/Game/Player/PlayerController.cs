@@ -19,7 +19,7 @@ public class PlayerController : ControllerBase<IPlayerView>
 
     public int MaxLifeCount { get; set; } = 3;
 
-    public override void OnStart()
+    protected override void OnStart()
     {
         View.ControllerComponent.Initialize(_eventBus);
 
@@ -31,8 +31,6 @@ public class PlayerController : ControllerBase<IPlayerView>
 
         View.Hit += _healthComponent.DecreaseLifeCount;
         View.DeathAnimationFinished += Reset;
-
-        Reset();
     }
 
     private void Reset()
@@ -69,7 +67,7 @@ public class PlayerController : ControllerBase<IPlayerView>
         View.Speed = _speed * multiplier;
     }
 
-    public override void OnStop()
+    protected override void OnStop()
     {
         _eventBus.MovementPressed -= MovementHandler;
 

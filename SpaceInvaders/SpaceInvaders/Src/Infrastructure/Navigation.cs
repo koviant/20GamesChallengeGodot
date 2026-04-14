@@ -24,7 +24,7 @@ public class Navigation : INavigation
     {
         controller.SetView(view);
 
-        view.Ready += controller.OnStart;
-        view.TreeExited += controller.OnStop;
+        view.Ready += controller.Start;
+        view.TreeExited += controller.Stop;
     }
 }

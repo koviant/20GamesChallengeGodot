@@ -40,3 +40,5 @@ mesh = SubResource("QuadMesh_wrm1d")
 position = Vector2(102.16632, 44.16678)
 shape = SubResource("RectangleShape2D_qxrlw")
 debug_color = Color(0.9514205, 3.080368e-06, 0.56617075, 0.41960785)
+
+[node name="ProjectileResetMarker" type="Marker2D" parent="." unique_id=1961794348]

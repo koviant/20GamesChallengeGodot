@@ -1,4 +1,4 @@
-namespace SpaceInvaders.Features.Enemy;
+namespace SpaceInvaders.Core.Features.Enemy;
 
 public enum EnemyGridState
 {

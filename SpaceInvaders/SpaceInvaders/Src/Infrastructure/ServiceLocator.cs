@@ -1,17 +1,35 @@
 using Jab;
+using SpaceInvaders.Core.Features.Enemy;
 using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Core.Infrastructure;
+using SpaceInvaders.Features.Enemy;
 
 namespace SpaceInvaders.Infrastructure;
 
 [ServiceProvider]
 [Transient<PlayerController>]
 [Transient<ProjectileController>]
+[Transient<EnemyGridController>]
+[Transient<EnemyController>]
+[Transient<IEnemyFactory, EnemyFactory>]
+[Transient<IEnemyDataReader, EnemyResourceDataReader>]
+[Transient<IEnemyViewFactory, EnemyViewFactory>]
+[Singleton<IServiceLocator>(Factory = nameof(GetServiceLocator))]
 [Singleton<INavigation, Navigation>]
 [Singleton<GlobalEventBus>]
 [Transient<GameController>]
-public partial class ServiceLocator
+public partial class ServiceLocator : IServiceLocator
 {
     public static ServiceLocator Instance { get; } = new();
+
+    public TService Get<TService>()
+    {
+        return GetService<TService>();
+    }
+
+    public IServiceLocator GetServiceLocator()
+    {
+        return Instance;
+    }
 }

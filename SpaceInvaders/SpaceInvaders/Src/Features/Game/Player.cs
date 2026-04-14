@@ -6,13 +6,14 @@ using SpaceInvaders.Components;
 using SpaceInvaders.Core.Features.Game.Player;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Extensions;
+using SpaceInvaders.StartableNodes;
 using Animation = SpaceInvaders.Utils.Animation;
 using Vector2 = Godot.Vector2;
 
 namespace SpaceInvaders.Features.Game;
 
 [Scene]
-public partial class Player : RigidBody2D, IPlayerView
+public partial class Player : StartableRigidBody2D, IPlayerView
 {
     private const string AnimationHeartLost = nameof(AnimationHeartLost);
     private const string AnimationHeartBeating = nameof(AnimationHeartBeating);

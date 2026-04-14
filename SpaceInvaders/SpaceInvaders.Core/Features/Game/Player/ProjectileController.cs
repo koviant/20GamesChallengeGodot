@@ -21,13 +21,12 @@ public class ProjectileController : ControllerBase<IProjectileView>
 
     public Color Color { get; set; } = Color.DarkGray;
 
-    public override void OnStart()
+    protected override void OnStart()
     {
         View.Speed = Speed;
         View.State = State;
         View.Color = Color;
 
-        View.Hit += Reset;
         View.OutOfBounds += Reset;
     }
 
@@ -36,9 +35,14 @@ public class ProjectileController : ControllerBase<IProjectileView>
         State = Flying;
     }
 
-    private void Reset()
+    public void Reset()
     {
         State = Ready;
+    }
+
+    protected override void OnStop()
+    {
+        View.OutOfBounds -= Reset;
     }
 }
 
