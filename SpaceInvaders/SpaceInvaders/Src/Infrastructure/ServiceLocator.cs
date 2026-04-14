@@ -2,7 +2,7 @@ using Jab;
 using SpaceInvaders.Core.Features.Enemy;
 using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Core.Features.Game;
-using SpaceInvaders.Core.Features.Game.Player;
+using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Features.Enemy;
 using SpaceInvaders.Framework.Infrastructure;
@@ -21,6 +21,7 @@ namespace SpaceInvaders.Infrastructure;
 [Singleton<INavigation, Navigation>]
 [Singleton<GlobalEventBus>]
 [Transient<GameController>]
+[Transient<App>(Factory = nameof(GetApp))]
 public partial class ServiceLocator : IServiceLocator
 {
     public static ServiceLocator Instance { get; } = new();
@@ -33,5 +34,10 @@ public partial class ServiceLocator : IServiceLocator
     public IServiceLocator GetServiceLocator()
     {
         return Instance;
+    }
+    
+    public App GetApp()
+    {
+        return App.Instance;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using GodotUtilities;
 using SpaceInvaders.Components;
-using SpaceInvaders.Core.Features.Game.Player;
+using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Extensions;
 using SpaceInvaders.StartableNodes;

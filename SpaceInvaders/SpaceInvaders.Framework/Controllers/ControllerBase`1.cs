@@ -16,5 +16,11 @@ public abstract class ControllerBase<TView> : ControllerBase where TView : IView
         base.Start();
 
         View.Start();
+        
+        AfterViewStarted();
+    }
+
+    protected virtual void AfterViewStarted()
+    {
     }
 }

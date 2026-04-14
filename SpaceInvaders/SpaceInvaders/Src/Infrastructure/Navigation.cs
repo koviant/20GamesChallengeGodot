@@ -3,20 +3,22 @@ using GodotUtilities;
 using SpaceInvaders.Core.Features.Game;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Framework.Controllers;
+using SpaceInvaders.Framework.Infrastructure;
 using SpaceInvaders.Framework.Utils;
 using Game = SpaceInvaders.Features.Game.Game;
 
 namespace SpaceInvaders.Infrastructure;
 
-public class Navigation : INavigation
+public class Navigation(IServiceLocator serviceLocator) : INavigation
 {
     public void NavigateToGame()
     {
         var scene = GD.Load<PackedScene>("res://Src/Features/Game/game.tscn").Instantiate<Game>();
-        var controller = ServiceLocator.Instance.GetService<GameController>();
+        var controller = serviceLocator.Get<GameController>(); 
+        
         Bind(controller, scene);
 
-        App.Instance.AddChildDeferred(scene);
+        serviceLocator.Get<App>().AddChildDeferred(scene);
     }
 
     private void Bind<TView, TViewImpl>(ControllerBase<TView> controller, TViewImpl view)

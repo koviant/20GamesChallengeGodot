@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using SpaceInvaders.Core.Features.Enemy;
 using SpaceInvaders.Core.Features.Enemy.Interfaces;
-using SpaceInvaders.Core.Features.Game.Player;
+using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Framework.Controllers;
 using SpaceInvaders.Framework.Utils;
@@ -42,6 +42,11 @@ public class GameController : ControllerBase<IGameView>
     {
         _eventBus.ShotPressed += ShotHandler;
         View.ProjectileView.Hit += ProjectileViewOnHit;
+    }
+
+    protected override void AfterViewStarted()
+    {
+        _playerController.Reset();
     }
 
     private void ProjectileViewOnHit(IView obj)

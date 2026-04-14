@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using Godot;
 using GodotUtilities;
-using SpaceInvaders.Core.Features.Game.Player;
+using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Extensions;
 using SpaceInvaders.Framework.Utils;
 using Color = System.Drawing.Color;

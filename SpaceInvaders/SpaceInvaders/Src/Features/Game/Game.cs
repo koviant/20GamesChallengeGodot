@@ -2,7 +2,7 @@ using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Core.Features.Game;
-using SpaceInvaders.Core.Features.Game.Player;
+using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Extensions;
 using SpaceInvaders.Features.Enemy;
 using SpaceInvaders.Features.Player;

@@ -3,7 +3,7 @@ using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Framework.Controllers;
 
-namespace SpaceInvaders.Core.Features.Game.Player;
+namespace SpaceInvaders.Core.Features.Player;
 
 public class PlayerController : ControllerBase<IPlayerView>
 {
@@ -34,7 +34,7 @@ public class PlayerController : ControllerBase<IPlayerView>
         View.DeathAnimationFinished += Reset;
     }
 
-    private void Reset()
+    public void Reset()
     {
         _healthComponent.Reset(MaxLifeCount);
         View.Reset(MaxLifeCount);
