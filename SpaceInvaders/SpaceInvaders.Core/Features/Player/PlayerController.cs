@@ -2,36 +2,29 @@ using System.Numerics;
 using SpaceInvaders.Core.Infrastructure;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Framework.Controllers;
+using SpaceInvaders.Framework.Utils;
 
 namespace SpaceInvaders.Core.Features.Player;
 
-public class PlayerController : ControllerBase<IPlayerView>
+public class PlayerController(GlobalEventBus eventBus) : ControllerBase<IPlayerView>
 {
-    private readonly GlobalEventBus _eventBus;
-    private readonly HealthComponent _healthComponent;
+    private readonly HealthComponent _healthComponent = new();
 
     private readonly Vector2 _speed = new(800, 0);
-
-    public PlayerController(GlobalEventBus eventBus)
-    {
-        _eventBus = eventBus;
-        _healthComponent = new HealthComponent();
-    }
 
     public int MaxLifeCount { get; set; } = 3;
 
     protected override void OnStart()
     {
-        View.ControllerComponent.Initialize(_eventBus);
+        View.ControllerComponent.Initialize(eventBus);
 
-        _eventBus.MovementPressed += MovementHandler;
-
-        _healthComponent.OnLifeLost += OnHealthComponentOnOnLifeLost;
-        _healthComponent.OnLastLifeLeft += OnHealthComponentOnOnLastLifeLeft;
-        _healthComponent.OnDied += OnHealthComponentOnOnDied;
-
-        View.Hit += _healthComponent.DecreaseLifeCount;
-        View.DeathAnimationFinished += Reset;
+        AutoSubscribe(eventBus.MovementPressed, MovementHandler);
+        AutoSubscribe(eventBus.MovementPressed, MovementHandler);
+        AutoSubscribe(_healthComponent.OnLifeLost, OnHealthComponentOnOnLifeLost);
+        AutoSubscribe(_healthComponent.OnLastLifeLeft, OnHealthComponentOnOnLastLifeLeft);
+        AutoSubscribe(_healthComponent.OnDied, OnHealthComponentOnDied);
+        AutoSubscribe(View.Hit, _ => _healthComponent.DecreaseLifeCount());
+        AutoSubscribe(View.DeathAnimationFinished, _ => Reset());
     }
 
     public void Reset()
@@ -40,17 +33,17 @@ public class PlayerController : ControllerBase<IPlayerView>
         View.Reset(MaxLifeCount);
     }
 
-    private void OnHealthComponentOnOnDied()
+    private void OnHealthComponentOnDied(Unit _)
     {
         View.PlayNoneHeartsLeftAnimation();
     }
 
-    private void OnHealthComponentOnOnLastLifeLeft()
+    private void OnHealthComponentOnOnLastLifeLeft(Unit _)
     {
         View.PlayHeartBeatingAnimation();
     }
 
-    private void OnHealthComponentOnOnLifeLost()
+    private void OnHealthComponentOnOnLifeLost(Unit _)
     {
         View.PlayHeartLostAnimation();
     }
@@ -66,17 +59,5 @@ public class PlayerController : ControllerBase<IPlayerView>
         };
 
         View.Speed = _speed * multiplier;
-    }
-
-    protected override void OnStop()
-    {
-        _eventBus.MovementPressed -= MovementHandler;
-
-        _healthComponent.OnLifeLost -= OnHealthComponentOnOnLifeLost;
-        _healthComponent.OnLastLifeLeft -= OnHealthComponentOnOnLastLifeLeft;
-        _healthComponent.OnDied -= OnHealthComponentOnOnDied;
-
-        View.Hit -= _healthComponent.DecreaseLifeCount;
-        View.DeathAnimationFinished -= Reset;
     }
 }

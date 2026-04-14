@@ -6,6 +6,8 @@ using SpaceInvaders.Components;
 using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Core.Utils;
 using SpaceInvaders.Extensions;
+using SpaceInvaders.Framework.Events;
+using SpaceInvaders.Framework.Utils;
 using SpaceInvaders.StartableNodes;
 using Animation = SpaceInvaders.Utils.Animation;
 using Vector2 = Godot.Vector2;
@@ -24,13 +26,15 @@ public partial class Player : StartableRigidBody2D, IPlayerView
     [Node] private PlayerControllerComponent _controllerComponent;
     [Node] private HeartDisplayComponent _heartDisplayComponent;
 
+    private InvokableEvent _deathAnimationFinished = new();
+    private InvokableEvent _hit = new();
+    
     [Export] public bool SkipDeathAnimation { get; set; }
     public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
 
     public HeartDisplayComponent HeartDisplayComponent => _heartDisplayComponent;
-    public event Action? DeathAnimationFinished;
-
-    public event Action? Hit;
+    public Event<Unit> DeathAnimationFinished => _deathAnimationFinished;
+    public Event<Unit> Hit => _hit;
 
     public System.Numerics.Vector2 Speed { get; set; }
 
@@ -74,7 +78,7 @@ public partial class Player : StartableRigidBody2D, IPlayerView
     {
         if (e is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true })
         {
-            Hit?.Invoke();
+            _hit.Invoke();
         }
     }
 
@@ -121,6 +125,6 @@ public partial class Player : StartableRigidBody2D, IPlayerView
 
     private void OnBlipingFinished()
     {
-        DeathAnimationFinished?.Invoke();
+        _deathAnimationFinished.Invoke();
     }
 }

@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.Numerics;
 using SpaceInvaders.Framework.Controllers;
+using SpaceInvaders.Framework.Utils;
 using static SpaceInvaders.Core.Features.Player.ProjectileState;
 
 namespace SpaceInvaders.Core.Features.Player;
@@ -27,7 +28,7 @@ public class ProjectileController : ControllerBase<IProjectileView>
         View.State = State;
         View.Color = Color;
 
-        View.OutOfBounds += Reset;
+        AutoSubscribe(View.OutOfBounds, _ => Reset());
     }
 
     public void Shoot()
@@ -38,11 +39,6 @@ public class ProjectileController : ControllerBase<IProjectileView>
     public void Reset()
     {
         State = Ready;
-    }
-
-    protected override void OnStop()
-    {
-        View.OutOfBounds -= Reset;
     }
 }
 

@@ -40,8 +40,13 @@ public class GameController : ControllerBase<IGameView>
 
     protected override void OnStart()
     {
-        _eventBus.ShotPressed += ShotHandler;
-        View.ProjectileView.Hit += ProjectileViewOnHit;
+        AutoSubscribe(_eventBus.ShotPressed, OnShotPressed);
+        AutoSubscribe(View.ProjectileView.Hit, ProjectileViewOnHit);
+    }
+
+    private void OnShotPressed(Unit _)
+    {
+        ShotHandler();
     }
 
     protected override void AfterViewStarted()
@@ -63,11 +68,6 @@ public class GameController : ControllerBase<IGameView>
     {
         enemy = _enemyGridController.EnemyViews.FirstOrDefault(v => ReferenceEquals(v, obj));
         return enemy is not null;
-    }
-
-    protected override void OnStop()
-    {
-        _eventBus.ShotPressed -= ShotHandler;
     }
 
     private void ShotHandler()

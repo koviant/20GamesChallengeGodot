@@ -1,5 +1,6 @@
 using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Framework.Controllers;
+using SpaceInvaders.Framework.Utils;
 
 namespace SpaceInvaders.Core.Features.Enemy;
 
@@ -26,8 +27,8 @@ public class EnemyGridController(IEnemyFactory enemyFactory, IEnemyDataReader da
         State = EnemyGridState.MovingLeft;
 
         CreateEnemies();
-
-        View.HitBorder += ViewOnHitBorder;
+        
+        AutoSubscribe(View.HitBorder, ViewOnHitBorder);
     }
 
     private void CreateEnemies()
@@ -39,12 +40,7 @@ public class EnemyGridController(IEnemyFactory enemyFactory, IEnemyDataReader da
         View.SetEnemies(EnemyViews);
     }
 
-    protected override void OnStop()
-    {
-        View.HitBorder -= ViewOnHitBorder;
-    }
-
-    private void ViewOnHitBorder()
+    private void ViewOnHitBorder(Unit _)
     {
         if (State is EnemyGridState.Stopped)
         {

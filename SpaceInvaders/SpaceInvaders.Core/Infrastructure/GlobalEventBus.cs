@@ -1,19 +1,24 @@
 using SpaceInvaders.Core.Features.Player;
+using SpaceInvaders.Framework.Events;
+using SpaceInvaders.Framework.Utils;
 
 namespace SpaceInvaders.Core.Infrastructure;
 
 public class GlobalEventBus
 {
-    public event Action? ShotPressed;
-    public event Action<Movement>? MovementPressed;
+    private InvokableEvent _shotPressed = new();
+    private InvokableEvent<Movement> _movementPressed = new();
+    
+    public Event<Unit> ShotPressed  => _shotPressed;
+    public Event<Movement> MovementPressed  => _movementPressed;
 
     public void OnShotPressed()
     {
-        ShotPressed?.Invoke();
+        _shotPressed.Invoke();
     }
 
     public void OnMovementPressed(Movement m)
     {
-        MovementPressed?.Invoke(m);
+        _movementPressed.Invoke(m);
     }
 }

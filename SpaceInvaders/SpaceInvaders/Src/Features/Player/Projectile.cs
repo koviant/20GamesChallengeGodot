@@ -4,6 +4,7 @@ using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Player;
 using SpaceInvaders.Extensions;
+using SpaceInvaders.Framework.Events;
 using SpaceInvaders.Framework.Utils;
 using Color = System.Drawing.Color;
 using StartableArea2D = SpaceInvaders.StartableNodes.StartableArea2D;
@@ -16,11 +17,14 @@ public partial class Projectile : StartableArea2D, IProjectileView
     [Node] private CollisionShape2D _collisionShape2D;
     [Node] private MeshInstance2D _meshInstance;
 
+    private InvokableEvent<IView> _hit = new();
+    private InvokableEvent _outOfBounds = new();
+
     public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
     public Marker2D? ResetMarker { get; set; }
 
-    public event Action<IView>? Hit;
-    public event Action? OutOfBounds;
+    public Event<IView> Hit => _hit;
+    public Event<Unit> OutOfBounds => _outOfBounds;
 
     public Color Color
     {
@@ -47,7 +51,7 @@ public partial class Projectile : StartableArea2D, IProjectileView
             if (Position.X < 0 || Position.X >= this.ViewportSize.X ||
                 Position.Y < 0 || Position.Y >= this.ViewportSize.Y)
             {
-                OutOfBounds?.Invoke();
+                _outOfBounds.Invoke();
             }
         }
         else if (State is ProjectileState.Ready)
@@ -61,7 +65,7 @@ public partial class Projectile : StartableArea2D, IProjectileView
     {
         if (area is IView view)
         {
-            Hit?.Invoke(view);
+            _hit.Invoke(view);
         }
     }
 }

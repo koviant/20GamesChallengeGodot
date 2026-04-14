@@ -6,6 +6,8 @@ using GodotUtilities;
 using SpaceInvaders.Core.Features.Enemy;
 using SpaceInvaders.Core.Features.Enemy.Interfaces;
 using SpaceInvaders.Extensions;
+using SpaceInvaders.Framework.Events;
+using SpaceInvaders.Framework.Utils;
 using SpaceInvaders.StartableNodes;
 
 namespace SpaceInvaders.Features.Enemy;
@@ -14,6 +16,7 @@ namespace SpaceInvaders.Features.Enemy;
 public partial class EnemyGrid : StartableNode2D, IEnemyGridView
 {
     private int _enemyCount;
+    private InvokableEvent _hitBorder = new();
 
     [Export]
     public EnemyGridResource? ResourceData
@@ -31,7 +34,7 @@ public partial class EnemyGrid : StartableNode2D, IEnemyGridView
         }
     }
 
-    public event Action? HitBorder;
+    public Event<Unit> HitBorder => _hitBorder;
 
     public EnemyGridState State { get; set; }
     public int HSpeed { get; set; }
@@ -65,7 +68,7 @@ public partial class EnemyGrid : StartableNode2D, IEnemyGridView
     {
         if (Position.X <= 0 || Position.X >= this.ViewportSize.X - TotalWidth)
         {
-            HitBorder?.Invoke();
+            _hitBorder.Invoke();
         }
 
         var positionDelta = HSpeed * (float)delta;
