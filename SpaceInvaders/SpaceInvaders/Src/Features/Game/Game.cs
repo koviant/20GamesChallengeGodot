@@ -31,9 +31,9 @@ public partial class Game : StartableNode2D, IGameView
     public override void ViewStart()
     {
         _player.HeartDisplayComponent.HudLayer = _hud;
-        _player.HeartDisplayComponent.HeartStartPosition = new Vector2(100, this.ViewportSize.Y - 80);
+        _player.HeartDisplayComponent.HeartStartPosition = new Vector2(80, this.ViewportSize.Y - 60);
 
-        _player.Position = new Vector2(this.ViewportSize.X / 2 - _player.Size.X / 2, this.ViewportSize.Y - 200);
+        _player.Position = new Vector2(this.ViewportSize.X / 2 - _player.Size.X / 2, this.ViewportSize.Y - 220);
         _enemyGrid.Position = new Vector2((this.ViewportSize.X - _enemyGrid.TotalWidth) / 2, 50);
 
         _playerProjectile.ResetMarker = _projectileResetMarker;
