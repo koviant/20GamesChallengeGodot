@@ -13,10 +13,10 @@ using SpaceInvaders.StartableNodes;
 namespace SpaceInvaders.Features.Enemy;
 
 [Scene]
-public partial class EnemyGrid : StartableNode2D, IEnemyGridView
+public partial class EnemyGridScene : StartableNode2D, IEnemyGridView
 {
     private int _enemyCount;
-    private InvokableEvent _hitBorder = new();
+    private readonly InvokableEvent _hitBorder = new();
 
     [Export]
     public EnemyGridResource? ResourceData

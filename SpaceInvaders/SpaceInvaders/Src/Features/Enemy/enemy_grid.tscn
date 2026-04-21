@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caube6k58h084"]
 
-[ext_resource type="Script" uid="uid://dobxetd8o1fwo" path="res://Src/Features/Enemy/EnemyGrid.cs" id="1_5tb45"]
+[ext_resource type="Script" uid="uid://dobxetd8o1fwo" path="res://Src/Features/Enemy/EnemyGridScene.cs" id="1_5tb45"]
 
 [node name="EnemiesGrid" type="Node2D" unique_id=1159729043]
 script = ExtResource("1_5tb45")

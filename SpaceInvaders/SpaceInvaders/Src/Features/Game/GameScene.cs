@@ -11,12 +11,12 @@ using SpaceInvaders.StartableNodes;
 namespace SpaceInvaders.Features.Game;
 
 [Scene]
-public partial class Game : StartableNode2D, IGameView
+public partial class GameScene : StartableNode2D, IGameView
 {
-    [Node] private EnemyGrid _enemyGrid;
+    [Node] private EnemyGridScene _enemyGrid;
     [Node] private CanvasLayer _hud;
-    [Node] private Player.Player _player;
-    [Node] private Projectile _playerProjectile;
+    [Node] private Player.PlayerScene _player;
+    [Node] private ProjectileScene _playerProjectile;
     [Node] private Marker2D _projectileResetMarker;
 
     public IPlayerView Player => _player;

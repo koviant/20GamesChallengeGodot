@@ -12,13 +12,13 @@ using StartableArea2D = SpaceInvaders.StartableNodes.StartableArea2D;
 namespace SpaceInvaders.Features.Player;
 
 [Scene]
-public partial class Projectile : StartableArea2D, IProjectileView
+public partial class ProjectileScene : StartableArea2D, IProjectileView
 {
     [Node] private CollisionShape2D _collisionShape2D;
     [Node] private MeshInstance2D _meshInstance;
 
-    private InvokableEvent<IView> _hit = new();
-    private InvokableEvent _outOfBounds = new();
+    private readonly InvokableEvent<IView> _hit = new();
+    private readonly InvokableEvent _outOfBounds = new();
 
     public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
     public Marker2D? ResetMarker { get; set; }

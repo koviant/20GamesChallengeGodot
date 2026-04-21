@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxm02q52wkhfp"]
 
-[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Features/Game/Game.cs" id="1_nw1px"]
+[ext_resource type="Script" uid="uid://2iw0pwwfuni3" path="res://Src/Features/Game/GameScene.cs" id="1_nw1px"]
 [ext_resource type="PackedScene" uid="uid://caube6k58h084" path="res://Src/Features/Enemy/enemy_grid.tscn" id="4_6vici"]
 [ext_resource type="PackedScene" uid="uid://cv7b8ebbp10qx" path="res://Src/Features/Game/player.tscn" id="4_hs6uv"]
 [ext_resource type="PackedScene" uid="uid://dqmo33dt5h3ow" path="res://Src/Features/Game/projectile.tscn" id="5_gdor5"]

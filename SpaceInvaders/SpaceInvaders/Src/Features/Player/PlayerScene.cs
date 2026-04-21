@@ -15,7 +15,7 @@ using Vector2 = Godot.Vector2;
 namespace SpaceInvaders.Features.Player;
 
 [Scene]
-public partial class Player : StartableRigidBody2D, IPlayerView
+public partial class PlayerScene : StartableRigidBody2D, IPlayerView
 {
     private const string AnimationHeartLost = nameof(AnimationHeartLost);
     private const string AnimationHeartBeating = nameof(AnimationHeartBeating);
@@ -26,8 +26,8 @@ public partial class Player : StartableRigidBody2D, IPlayerView
     [Node] private PlayerControllerComponent _controllerComponent;
     [Node] private HeartDisplayComponent _heartDisplayComponent;
 
-    private InvokableEvent _deathAnimationFinished = new();
-    private InvokableEvent _hit = new();
+    private readonly InvokableEvent _deathAnimationFinished = new();
+    private readonly InvokableEvent _hit = new();
     
     [Export] public bool SkipDeathAnimation { get; set; }
     public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;

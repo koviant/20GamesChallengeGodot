@@ -9,20 +9,31 @@ public class EnemyResourceDataReader : IEnemyDataReader
     {
         return new EnemyGridResource
         {
-            CellWidth = 80,
+            CellWidth = 60,
             CellHeight = 40,
             HSpacing = 40,
             VSpacing = 10,
-            RowCount = 2,
-            ColumnCount = 3,
+            RowCount = 3,
+            ColumnCount = 5,
             Items =
             [
-                new EnemyResource(),
-                new EnemyResource(),
-                new EnemyResource(),
-                new EnemyResource(),
                 new EnemyResource { Type = EnemyType.Empty },
+                new EnemyResource(),  
+                new EnemyResource { Type = EnemyType.Empty }, 
+                new EnemyResource(), 
+                new EnemyResource { Type = EnemyType.Empty },
+                
+                new EnemyResource(), 
+                new EnemyResource(), 
+                new EnemyResource(), 
                 new EnemyResource(),
+                new EnemyResource(),
+                
+                new EnemyResource(), 
+                new EnemyResource(), 
+                new EnemyResource { Type = EnemyType.Empty }, 
+                new EnemyResource(), 
+                new EnemyResource(), 
             ],
         };
     }
