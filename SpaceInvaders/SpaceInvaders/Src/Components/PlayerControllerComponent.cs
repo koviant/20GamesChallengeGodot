@@ -37,5 +37,10 @@ public partial class PlayerControllerComponent : Node, IPlayerControllerComponen
         };
 
         EventBus.OnMovementPressed(direction);
+
+        if (Input.IsActionJustPressed("ui_up"))
+        {
+            EventBus.OnStartEnemyMoving();
+        }
     }
 }

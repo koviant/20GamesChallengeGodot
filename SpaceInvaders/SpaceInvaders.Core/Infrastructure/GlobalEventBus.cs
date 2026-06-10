@@ -8,9 +8,11 @@ public class GlobalEventBus
 {
     private readonly InvokableEvent _shotPressed = new();
     private readonly InvokableEvent<Movement> _movementPressed = new(); 
+    private readonly InvokableEvent _startEnemyMoving = new();
     
     public Event<Unit> ShotPressed  => _shotPressed;
     public Event<Movement> MovementPressed  => _movementPressed;
+    public Event<Unit> StartEnemyMoving => _startEnemyMoving;
 
     public void OnShotPressed()
     {
@@ -20,5 +22,10 @@ public class GlobalEventBus
     public void OnMovementPressed(Movement m)
     {
         _movementPressed.Invoke(m);
+    }
+
+    public void OnStartEnemyMoving()
+    {
+        _startEnemyMoving.Invoke();
     }
 }

@@ -10,5 +10,10 @@ public static class VectorExtensions
         {
             return new Vector2(x, v.Y);
         }
+        
+        public Vector2 AddXY(float x, float y)
+        {
+            return new Vector2(v.X + x, v.Y + y);
+        }
     }
 }

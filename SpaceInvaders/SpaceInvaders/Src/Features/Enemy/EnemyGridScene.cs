@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using Godot;
 using GodotUtilities;
 using SpaceInvaders.Core.Features.Enemy;
@@ -17,28 +17,17 @@ public partial class EnemyGridScene : StartableNode2D, IEnemyGridView
 {
     private int _enemyCount;
     private readonly InvokableEvent _hitBorder = new();
-
+    private EnemyScene? _flyingEnemy;
+    
     [Export]
-    public EnemyGridResource? ResourceData
-    {
-        get => Data as EnemyGridResource;
-        set => Data = value;
-    }
+    public EnemyGridResource? ResourceData { get; set; }
 
-    public float TotalWidth
-    {
-        get
-        {
-            Debug.Assert(Data is not null);
-            return Data.ColumnCount * Data.CellWidth + (Data.ColumnCount - 1) * Data.HSpacing;
-        }
-    }
+    public float TotalWidth { get; set; }
 
     public Event<Unit> HitBorder => _hitBorder;
 
     public EnemyGridState State { get; set; }
     public int HSpeed { get; set; }
-    public IEnemyGridData<IEnemyData>? Data { get; set; }
 
     public void SetEnemies(List<IEnemyView> enemies)
     {
@@ -53,7 +42,7 @@ public partial class EnemyGridScene : StartableNode2D, IEnemyGridView
 
     public void ClearGrid()
     {
-        foreach (var child in GetChildren())
+        foreach (var child in GetChildren().OfType<EnemyScene>())
         {
             child.QueueFree();
         }

@@ -15,9 +15,14 @@ public partial class GameScene : StartableNode2D, IGameView
 {
     [Node] private EnemyGridScene _enemyGrid;
     [Node] private CanvasLayer _hud;
-    [Node] private Player.PlayerScene _player;
+    [Node] private PlayerScene _player;
     [Node] private ProjectileScene _playerProjectile;
     [Node] private Marker2D _projectileResetMarker;
+    [Node] private Path2D _flyingEnemyPath;
+    [Node] private PathFollow2D _flyingEnemyPathFollow;
+    
+    private EnemyScene? _flyingEnemy;
+    private Vector2 _initialPosition;
 
     public IPlayerView Player => _player;
     public IProjectileView ProjectileView => _playerProjectile;
@@ -44,5 +49,36 @@ public partial class GameScene : StartableNode2D, IGameView
         _projectileResetMarker.Position = new Vector2(
             _player.Position.X + _player.Size.X / 2 - _playerProjectile.Size.X / 2,
             _player.Position.Y - _playerProjectile.Size.Y);
+
+        if (_flyingEnemy.IsValid())
+        {
+            _flyingEnemy.GlobalPosition = _flyingEnemyPathFollow.Position - _flyingEnemy.Size / 2;
+        }
+    }
+    
+    public void SendFlying(IEnemyView flying)
+    {
+        if (flying is not EnemyScene enemy || _flyingEnemy is not null)
+        {
+            return;
+        }
+
+        _flyingEnemyPath.Curve.ClearPoints();
+        _flyingEnemyPath.Curve.AddPoint(enemy.GlobalCenter);
+        _flyingEnemyPath.Curve.AddPoint(_player.Position.AddXY(_player.Size.X / 2, _player.Size.Y));
+        
+        _flyingEnemy = enemy;
+        _initialPosition = _flyingEnemy.Position;
+
+        _flyingEnemyPath.DrawOn(this);
+        
+        var tween = CreateTween();
+        tween.TweenProperty(_flyingEnemyPathFollow, "progress_ratio", 1, 1.3);
+        tween.TweenCallback(Callable.From(() =>
+        {
+            _flyingEnemyPathFollow.ProgressRatio = 0;
+            _flyingEnemy.Position = _initialPosition;
+            _flyingEnemy = null;
+        }));
     }
 }

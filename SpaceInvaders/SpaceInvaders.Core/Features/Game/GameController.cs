@@ -42,6 +42,13 @@ public class GameController : ControllerBase<IGameView>
     {
         AutoSubscribe(_eventBus.ShotPressed, OnShotPressed);
         AutoSubscribe(View.ProjectileView.Hit, ProjectileViewOnHit);
+        AutoSubscribe(_eventBus.StartEnemyMoving, SendFlying);
+    }
+
+    private void SendFlying(Unit _)
+    {
+        var flying = _enemyGridController.EnemyViews[3];
+        View.SendFlying(flying);
     }
 
     private void OnShotPressed(Unit _)

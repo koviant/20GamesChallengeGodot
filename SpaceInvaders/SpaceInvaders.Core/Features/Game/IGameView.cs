@@ -9,4 +9,5 @@ public interface IGameView : IView
     IPlayerView Player { get; }
     IProjectileView ProjectileView { get; }
     IEnemyGridView EnemyGridView { get; }
+    void SendFlying(IEnemyView flying);
 }

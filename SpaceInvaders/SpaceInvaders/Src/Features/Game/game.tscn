@@ -10,6 +10,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
 size = Vector2(1920, 64)
 
+[sub_resource type="Curve2D" id="Curve2D_6vici"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10)
+}
+point_count = 2
+
 [node name="Root" type="Node2D" unique_id=2034994352]
 script = ExtResource("1_nw1px")
 
@@ -42,3 +48,12 @@ shape = SubResource("RectangleShape2D_qxrlw")
 debug_color = Color(0.9514205, 3.080368e-06, 0.56617075, 0.41960785)
 
 [node name="ProjectileResetMarker" type="Marker2D" parent="." unique_id=1961794348]
+
+[node name="FlyingEnemyPath" type="Path2D" parent="." unique_id=1942596516]
+unique_name_in_owner = true
+scale = Vector2(12.8, 8.8)
+curve = SubResource("Curve2D_6vici")
+
+[node name="FlyingEnemyPathFollow" type="PathFollow2D" parent="FlyingEnemyPath" unique_id=633118690]
+unique_name_in_owner = true
+rotation = 0.7853982

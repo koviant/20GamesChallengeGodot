@@ -12,9 +12,11 @@ namespace SpaceInvaders.Features.Enemy;
 public partial class EnemyScene : StartableArea2D, IEnemyView
 {
     private static readonly PackedScene Scene = GD.Load<PackedScene>("res://Src/Features/Enemy/enemy.tscn");
+
     [Node] private CollisionShape2D _collisionShape2D;
     [Node] private MeshInstance2D _meshInstance2D;
 
+    public Vector2 GlobalCenter => GlobalPosition + Size / 2;
     public Vector2 Size { get; set; }
     public Color MeshColor { get; set; }
     public System.Drawing.Color Color { get; set; }

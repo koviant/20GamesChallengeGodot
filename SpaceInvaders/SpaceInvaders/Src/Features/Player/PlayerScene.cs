@@ -30,6 +30,7 @@ public partial class PlayerScene : StartableRigidBody2D, IPlayerView
     private readonly InvokableEvent _hit = new();
     
     [Export] public bool SkipDeathAnimation { get; set; }
+    
     public Vector2 Size => _collisionShape2D.Shape.GetRect().Size;
 
     public HeartDisplayComponent HeartDisplayComponent => _heartDisplayComponent;
